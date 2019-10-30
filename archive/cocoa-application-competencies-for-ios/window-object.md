@@ -2,7 +2,7 @@
 
 윈도우 객체는 화면의 직사각형 영역에 그래픽 콘텐츠를 표시하고 이벤트를 분배하는 역할을 한다. Cocoa Touch의 [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow)와 Cocoa의 [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow)\(OS X\)에서 상속받은 이 객체는 애플리케이션에 나타나는 윈도우를 나타낸다. 윈도우 객체 \(또는 단순히 윈도우\)는 본질적으로 뷰의 컨테이너이며, 그러한 뷰에 의해 수행되는 그리기 및 이벤트 처리와 관련된 주요 책임을 갖는다.
 
-### Windows Coordinate Drawing and Distribute Events
+## Windows Coordinate Drawing and Distribute Events
 
 윈도우는 다른 뷰를 둘러싸는 계층에서 가장 높은 뷰를 가진 뷰 계층의 근원에 있다. 윈도우가 내용을 표시할 때, 각 뷰가 차례로 슈퍼 뷰의 컨텍스트에서 그 자신을 그리도록 요청하면서, 이 계층구조를 진행한다. 계층의 맨 위에 있는 뷰는 콘텐츠 뷰이다. 콘텐츠 뷰는 윈도우의 전체 그리기 영역을 차지하며, 윈도우의 다른 모든 뷰의 배경 역할을 한다. \(`UIWindow` 객체의 경우 이 콘텐츠 뷰는 윈도우 자체이다.\)
 
@@ -12,11 +12,11 @@
 
 Cocoa Touch와 Cocoa의 윈도우는 이러한 일반적인 책임을 공유하지만, 그들은 다른 특성과 행동을 가지고 있다. 그 차이점은 다른 사용자 환경에서 유래하고 있다. 즉 데스크탑 시스템과 화면 영역이 제한된 휴대용 장치이다. 사용자 환경이 다르기 때문에 사용 패턴과 요구 사항이 달라진다.
 
-### Window Objects in iOS
+## Window Objects in iOS
 
 `UIWindow`객체는 역할이 제한된 특수 뷰이다.\(`NSWindow` 객체와 비교된다.\) 비록 iOS 애플리케이션은 기술적으로 한 계층이 다른 계층 위에 있는 한 개 이상의 윈도우를 가질 수 있지만, 관례상 그것들은 단일 윈도우로 제한된다. 윈도우는 화면 전체를 점유하고 있으며, OS X의 윈도우처럼 제목이나 제어장치 또는 기타 장식이 없기 때문에 사용자가 조작할 수 없다. 실행 시 애플리케이션은 이 윈도우를 생성하고 뷰를 추가하거나, nib 파일에서 윈도우와 뷰를 로드한다. 윈도우를 표시한 후에는 다시 참조할 필요가 거의 없다.
 
-### Window Objects in OS X
+## Window Objects in OS X
 
 `NSWindow` 객체로 표시되는 윈도우에는 두 가지 주요 부분이 있다: 프레임 영역 및 콘텐츠 뷰이다. private 뷰로 구성된 프레임 영역은 윈도우 전체 영역을 둘러싸고 윈도우의 테두리, 제목 표시줄 및 제목 표시줄에 있는 항목 \(닫기 버튼, 축소 버튼, 제목 등\)을 그린다. 또한 오른쪽 하단에 있는 크기 조정 삼각형을 포함한다. 콘텐츠 뷰는 프레임 영역으로 둘러싸인 영역을 차지하며, 윈도우의 뷰 계층의 루트이다.
 
@@ -29,11 +29,11 @@ OS X의 애플리케이션은 여러 개의 윈도우를 가질 수 있다. 문�
 
 윈도우는 또한 수준과 Z-order를 가지고 있으며, 운영체제에 의해 유지된다. 레벨은 특정한 기능적 형식의 윈도우에 표시된 하위집합이다. 예를 들어 모달 창이 떠 있는 윈도우 위에 표시되도록 레벨 자체가 계층적으로 배열되어 있다. 현재 화면 또는 밖의 모든 윈도우는 각 윈도우의 레벨에 따라 영향을 받는 특정한 앞뒤 순서로 되어 있다. 이 목록에서 윈도우의 위치는 Z-order이다.
 
-#### Prerequisite Articles
+### Prerequisite Articles
 
 \(None\)
 
-#### Related Articles
+### Related Articles
 
 [View hierarchy](https://developer.apple.com/library/archive/documentation/General/Conceptual/Devpedia-CocoaApp/View%20Hierarchy.html#//apple_ref/doc/uid/TP40009071-CH2-SW1)  
 [Coordinate system](https://developer.apple.com/library/archive/documentation/General/Conceptual/Devpedia-CocoaApp/CoordinateSystem.html#//apple_ref/doc/uid/TP40009071-CH8-SW1)  
@@ -45,7 +45,7 @@ OS X의 애플리케이션은 여러 개의 윈도우를 가질 수 있다. 문�
 
 [Performance Tuning](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforHandlingAppStateTransitions/StrategiesforHandlingAppStateTransitions.html#//apple_ref/doc/uid/TP40007072-CH8)
 
-#### Sample Code Projects
+### Sample Code Projects
 
 \(None\)
 

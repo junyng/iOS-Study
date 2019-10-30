@@ -20,7 +20,7 @@ PHAsset, PHPhotoLibrary, PHImageManager 와 같은 사진 라이브러리와 상
 
 **Figure 1** NSPhotoLibraryUsageDescription 키와 관련된 값은 사용자에게 접근 권한 메시지가 보여지는 문자열이다.
 
-![nsphotolibrary\_usage\_description](../.gitbook/assets/nsphotolibrary_usage_description.png)
+![nsphotolibrary\_usage\_description](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/nsphotolibrary_usage_description.png)
 
 ## Observe Changes Before Fetching
 

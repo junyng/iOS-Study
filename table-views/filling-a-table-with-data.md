@@ -8,7 +8,7 @@
 
 테이블 뷰에서 데이터를 행과 섹션으로 편성한다. 행에 개별 데이터 항목이 표시되고 섹션이 관련 행을 함께 그룹화한다. 섹션은 필요하지 않지만, 이미 계층화된 데이터를 구성하는 좋은 방법이다. 예를 들어, 연락처 앱은 각 연락처의 이름을 일렬로 표시하고, 행을 그 사람의 성의 첫 글자를 기준으로 한 섹션으로 그룹화한다.
 
-![contacts](../.gitbook/assets/contacts.png)
+![contacts](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/contacts.png)
 
 ## Provide the Numbers of Rows and Sections
 
@@ -44,7 +44,7 @@ override func tableView(_ tableView: UITableView,
 
 다음 그림은 각각 표준 셀 스타일 중 하나를 사용하는 두 개의 프로토타입 셀이 있는 테이블을 보여준다.
 
-![tableview\_prototype\_cell](../.gitbook/assets/tableview_prototype_cell.png)
+![tableview\_prototype\_cell](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_prototype_cell.png)
 
 스토리보드 파일에서 각 프로토타입 셀에 대해 다음 작업을 수행하라.
 

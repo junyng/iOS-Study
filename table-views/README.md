@@ -6,7 +6,7 @@
 
 테이블 뷰에는 행과 섹션으로 분할된 수직 스크롤 컨텐츠의 단일 열이 표시된다. 표의 각 행에는 앱과 관련된 정보가 하나씩 표시된다. 섹션을 통해 관련 행을 그룹화할 수 있다. 예를 들어, 연락처 앱은 테이블을 사용하여 사용자의 연락처 이름을 표시한다.
 
-![table\_views](../.gitbook/assets/table_views.png)
+![table\_views](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/table_views.png)
 
 테이블 뷰는 다음과 같은 여러 객체간의 공동 작업이다.
 

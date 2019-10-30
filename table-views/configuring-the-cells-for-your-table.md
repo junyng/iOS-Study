@@ -8,7 +8,7 @@
 
 설계시 셀의 모양을 스토리보드 파일에 지정한다. Xcode는 각 테이블마다 하나의 프로토타입 셀을 제공하며, 필요에 따라 더 많은 프로토타입 셀을 추가할 수 있다. 프로토타입 셀은 셀의 모양을 본뜬 역할을 한다. 이는 표시하려는 뷰와 셀의 내용 영역 내에 나열된 뷰를 포함한다. 런타임에 테이블의 데이터 소스 객체는 프로토타입에서 실제 셀을 생성하여 앱의 데이터로 구성한다.
 
-![prototype\_cells](../.gitbook/assets/prototype_cells.png)
+![prototype\_cells](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/prototype_cells.png)
 
 셀 모양 설계 방법에 대한 팁은 Human Interface Guidelines: Tables 를 참조하라.
 
@@ -28,7 +28,7 @@ var cell = tableView.dequeueReusableCell(withIdentifier: “myCellType”, for: 
 
 표준 스타일 중 하나로 프로토타입 셀을 구성하려면 스토리보드에서 셀을 선택하고 셀의 스타일 속성을 사용자 정의 이외의 값으로 설정하라.
 
-![tableview\_configure\_cell](../.gitbook/assets/tableview_configure_cell.png)
+![tableview\_configure\_cell](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_configure_cell.png)
 
 `tableView(_:cellForRowAt:)` 메서드에서 `UITableViewCell` 의 `textLabel`, `detailTextLabel` 및 `imageView` 프로퍼티를 사용하여 셀 내용을 구성하라. 이러한 프로퍼티는 뷰를 포함하지만, 셀 객체는 스타일이 해당 내용은 지원하는 경우에만 뷰를 할당한다. 예를 들어, 기본 셀 스타일은 상세 문자열을 지원하지 않으므로 `detailTextLabel` 프로퍼티는 해당 스타일에 대해 0이 된다. 다음 예제 코드는 기본 셀 스타일을 사용하는 셀을 구성하는 방법을 보여준다.
 
@@ -51,7 +51,7 @@ override func tableView(_ tableView: UITableView,
 
 사용자 정의 셀을 구성하려면 테이블의 프로토타입 셀로 뷰를 끌어다 놓아라. 다음 그림은 뷰에 대한 사용자 정의 레이아웃과 형식을 갖춘 셀을 보여준다. 셀의 내용 영역 내에 위치시키기 위해 제약을 사용한다. 제약 조건을 설정할 때 "Constrain to margins" 옵션을 사용하여 셀의 내용 영역 간의 간격을 유지하라.
 
-![tableview\_configure\_cell\_with\_custom\_views](../.gitbook/assets/tableview_configure_cell_with_custom_views.png)
+![tableview\_configure\_cell\_with\_custom\_views](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_configure_cell_with_custom_views.png)
 
 사용자 지정 셀의 경우, 셀의 뷰에 접근하기 위해 `UITableViewCell` 하위 클래스를 정의해야 한다. 하위 클래스에 아울렛을 추가하고 해당 아울렛을 프로토타입 셀의 해당 뷰에 연결하라.
 

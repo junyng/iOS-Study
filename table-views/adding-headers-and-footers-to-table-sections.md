@@ -6,7 +6,7 @@
 
 헤더 및 푸터 뷰를 섹션의 시작과 끝에 대한 시각적 마커로 사용한다. 헤더와 푸터 뷰는 선택 사항으로 원하는 만큼 많거나 적게 사용자 지정할 수 있다.
 
-![tableview\_header\_footer](../.gitbook/assets/tableview_header_footer.png)
+![tableview\_header\_footer](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_header_footer.png)
 
 텍스트 라벨을 사용하여 기본 헤더 또는 푸터를 생성하려면 테이블의 데이터 소스 객체의 `tableView(_:titleForHeaderInSection:)` 또는 `tableView(_:titleForFooterInSection:)` 메서드를 오버라이드 하라. 테이블 뷰는 표준 헤더 또는 푸터를 생성해 지정된 위치에 있는 테이블에 삽입한다.
 
@@ -108,7 +108,7 @@ override func tableView(_ tableView: UITableView,
 
 다음 이미지는 결과 헤더를 보여준다.
 
-![tableview\_resulting\_headers](../.gitbook/assets/tableview_resulting_headers.png)
+![tableview\_resulting\_headers](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_resulting_headers.png)
 
 ## Change the Height of Headers and Footers
 

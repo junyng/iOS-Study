@@ -46,5 +46,5 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
 
 테이블 뷰는 `NSIndexPath` 객체의 로우 및 섹션 프로퍼티를 사용하여 셀 위치를 사용자에게 전달한다. 로우와 섹션 인덱스는 0을 기반으로 하기 때문에 첫 번째 구간은 인덱스 0, 두 번째 구간은 인덱스 1 등에 있다. 마찬가지로, 각 섹션의 첫 번째 로우는 인덱스 0에 있으며, 이는 열을 고유하게 식별하기 위해 섹션과 행 값을 모두 필요로 한다는 것을 의미한다. 테이블에 섹션이 없는 경우 행 값만 있으면 된다.
 
-![tableview\_rows\_and\_sections](../.gitbook/assets/tableview_rows_and_sections.png)
+![tableview\_rows\_and\_sections](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_rows_and_sections.png)
 

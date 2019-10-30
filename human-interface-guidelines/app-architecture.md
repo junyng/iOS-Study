@@ -8,19 +8,19 @@
 
 목적 화면에 도달할 때까지 화면을 하나씩 선택하는 구조입니다. 다른 목적지로 가려면, 한 스텝 되돌아가거나 처음부터 다시 시작해 다른 선택을 해야합니다. 설정 및 메일에서 이 네비게이션 방식을 사용합니다.
 
-![navigation\_hierarchical](../.gitbook/assets/navigation_hierarchical.png)
+![navigation\_hierarchical](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/navigation_hierarchical.png)
 
 ### Flat Navigation
 
 여러 콘텐츠 항목간 화면 전환을 할 수 있습니다. 뮤직앱, 앱스토어 앱이 위의 네비게이션 방식을 사용합니다.
 
-![navigation\_flat](../.gitbook/assets/navigation_flat.png)
+![navigation\_flat](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/navigation_flat.png)
 
 ### Content-Driven or Experience-Driven Navigation
 
 콘텐츠를 통해서 자유롭게 이동합니다. 혹은 콘텐츠 자체가 네비게이션을 정의 합니다. 게임, books 앱 그리고 다른 몰입형 앱은 일반적으로 이 네비게이션 방식을 사용합니다.
 
-![navigation\_experience\_driven](../.gitbook/assets/navigation_experience_driven.png)
+![navigation\_experience\_driven](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/navigation_experience_driven.png)
 
 몇몇 앱은 위의 세가지 방식을 결합하여 구성하기도 합니다. 예를 들어, 카테고리 화면을 나누기 위해 사용하는 플랫 네비게이션 방식과 각 화면별 계층 네비게이션을 결합해 사용합니다.
 

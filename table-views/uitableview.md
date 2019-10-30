@@ -12,7 +12,7 @@ class UITableView : UIScrollView
 
 iOS의 테이블 뷰는 수직으로 스크롤되는 콘텐츠의 단일 열이 행으로 구분되어 표시된다. 테이블의 각 행에는 앱 컨텐츠의 한 부분이 포함되어 있다. 예를 들어, 연락처 앱은 각 연락처의 이름을 별도의 행에 표시하며, 설정 앱의 메인 페이지에는 사용 가능한 설정 그룹이 표시된다. 하나의 긴 행 목록을 표시하도록 테이블을 구성하거나 관련 행을 섹션으로 그룹화하여 내용을 쉽게 탐색할 수 있다.
 
-![uitableview](../.gitbook/assets/uitableview.png)
+![uitableview](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/uitableview.png)
 
 테이블은 데이터가 고도로 구조화되거나 계층적으로 조직된 앱에 의해 일반적으로 사용된다. 계층적 데이터를 포함하는 앱은 종종 네비게이션 뷰 컨트롤러와 함께 테이블을 사용하므로 계층의 다른 레벨 간의 탐색이 용이하다. 예를 들어 Settings 앱은 테이블과 네비게이션 컨트롤러를 사용하여 시스템 설정을 구성한다.
 

@@ -6,7 +6,7 @@ iCloud Photos 및 Live Photos를 포함하여 사진 앱에서 관리하는 이�
 
 iOS와 macOS에서 PhotoKit은 포토 앱의 사진 편집 확장 구축을 지원하는 클래스를 제공한다. iOS와 tvOS에서도 PhotoKit은 포토 앱이 관리하는 포토, 비디오 자산에 직접 접근할 수 있다.
 
-![photokit](../.gitbook/assets/photokit.png)
+![photokit](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/photokit.png)
 
 PhotoKit를 사용하여 디스플레이 및 재생, 이미지 및 비디오 콘텐츠 편집, 앨범, 모멘트, 공유 앨범 등의 자산 컬렉션을 관리할 수 있다.
 

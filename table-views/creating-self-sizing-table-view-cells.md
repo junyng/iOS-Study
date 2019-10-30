@@ -75,7 +75,7 @@ bodyLabel.firstBaselineAnchor.constraintEqualToSystemSpacingBelow(headlineLabel.
 
 시스템 간격 제약조건이 있는 상태에서 시스템은 텍스트 크기에 따라 두 라벨을 둘러싼 간격을 자동으로 조정한다.
 
-![tableview\_system\_spacing\_constraints](../.gitbook/assets/tableview_system_spacing_constraints.png)
+![tableview\_system\_spacing\_constraints](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/tableview_system_spacing_constraints.png)
 
 ## Test with Accessibility Inspector
 
