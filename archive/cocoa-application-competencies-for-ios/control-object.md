@@ -2,7 +2,7 @@
 
 컨트롤은 사용자가 버튼을 누르거나 슬라이더를 끄는 등 특정 방으로 조작할 때 다른 객체에 메시지를 보내는 사용자 인터페이스 뷰 유형이다. 컨트롤은 타겟-액션 모델의 중개인이다. 컨트롤 \(또는 OS X에서 control's cell\)은 메시지를 수신할 객체\(타겟\)에 대한 참조와 타겟에서 호출하는 메서드를 식별하는 셀렉터\(액션\) 등 메시지 전송에 필요한 정보를 저장한다. 사용자가 특정한 방법으로 컨트롤을 조작할 때, 그것은 애플리케이션 객체로 메시지를 전송하고, 그 후 액션 메시지를 타겟에 전달한다.
 
-![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/target_action.jpg)
+![](../../.gitbook/assets/target_action.jpg)
 
 컨트롤에 대한 추상 기본 클래스는 UIKit 프레임워크의 [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol)과 AppKit 프레임워크의 [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol)이다. 모든 컨트롤은 이러한 기본 클래스의 구체적인 하위 클래스 인스턴스이다. 이러한 프레임워크에서 일반적인 유형의 컨트롤은 버튼, 슬라이더 및 텍스트 필드이다. UIKit과 AppKit은 플랫폼에 특정한 컨트롤 예를 들어 페이지 컨트롤\(UIKit\)과 컬러 웰\(OS X\) 또한 가지고 있다.
 

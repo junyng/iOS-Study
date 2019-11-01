@@ -4,6 +4,8 @@
 
 뷰 계층은 응답자 체인의 주요 부분이며, 애플리케이션 프레임워크가 drawing pass에서 윈도우 내용을 렌더링할 때 뷰의 계층화 순서를 결정하는 데 사용하는 것이다. 뷰 계층은 뷰 구성 뒤에 있는 관리 개념이기도 하다: 슈퍼 뷰에 하위 뷰를 추가하여 복합 뷰를 구성한. 마지막으로, 뷰 계층은 윈도우에서 발견된 여러 좌표계의 핵심적인 요소이다.
 
+![](../../.gitbook/assets/view_hierarchy_enclose.jpg)
+
 ![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/view_hierarchy_enclose.jpg)
 
 ## Three View Properties Define Relationships in the Hierarchy
@@ -12,6 +14,8 @@
 
 * [`superview`](https://developer.apple.com/documentation/uikit/uiview/1622474-superview) - 계층에서 지정된 뷰 위에 있는 뷰; 이것이 해당 뷰를 둘러싸는 뷰이다. 맨 위 뷰를 제외한 모든 뷰에는 슈퍼뷰가 있어야 한다.
 * [`subviews`](https://developer.apple.com/documentation/uikit/uiview/1622614-subviews) - 계층에서 지정된 뷰 아래의 뷰. 이들은 둘러싸여 있는 뷰이다. 뷰는 몇 개의 하위 뷰를 가질 수 있으며, 또는 뷰가 없을 수 있다.
+
+![](../../.gitbook/assets/view_hierarchy_relationships.jpg)
 
 ![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/view_hierarchy_relationships.jpg)
 

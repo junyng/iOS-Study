@@ -6,7 +6,7 @@
 
 외부 이벤트가 애플리케이션 자체에 영향을 미칠 때, 애플리케이션 객체는 또한 운영 체제로부터 알림을 수신한다. \(예를 들어, 사용자가 컴퓨터를 종료하거나 사용 가능한 메모리가 부족할 때\) 애플리케이션 객체는 이러한 외부 이벤트 및 애플리케이션의 라이프 사이클과 관련된 이벤트를 관리하는데 있어 델리게이트에 도움을 요청한다. 이는 이러한 이벤트를 델리게이트에 알리고, 경우에 따라 델리게이트 메시지에 응답하여 행동한다.
 
-![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/application_object.jpg)
+![](../../.gitbook/assets/application_object.jpg)
 
 ## An Application Has a Single Application Object
 

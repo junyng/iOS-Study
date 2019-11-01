@@ -4,6 +4,8 @@
 
 Xcode는 스토리보드에 대한 시각적 편집기를 제공하며, 버튼, 테이블 뷰, 텍스트 뷰 등의 뷰를 씬에 추가하여 애플리케이션의 사용자 인터페이스를 배치하고 설계할 수 있다. 또한 스토리보드를 통해 뷰 컨트롤러 객체에 연결하고 뷰 컨트롤러간 데이터 전송을 관리할 수 있다. 스토리보드를 사용하면 사용자 인터페이스의 모양과 흐름을 하나의 캔버스에서 시각화할 수 있기 때문에 애플리케이션의 사용자 인터페이스를 설계하는 데 권장되는 방법이다.
 
+![](../../.gitbook/assets/storyboard.jpg)
+
 ![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/storyboard.jpg)
 
 ## A Scene Corresponds to a Single View Controller and Its Views
@@ -20,7 +22,7 @@ iPhone에서는 각 씬이 전체 화면의 콘텐츠에 해당하며, iPad에�
 
 ### Prerequisite Articles
 
-* \(None\)
+\(None\)
 
 ### Related Articles
 

@@ -2,6 +2,8 @@
 
 좌표계는 애플리케이션의 가시적 객체를 배치, 크기 조정, 변환 및 그리고 사용자 이벤트를 찾는 2차원 공간이다. iOS와 OS X에 애플리케이션은 공통 원점\(0.0, 0.0\)에서 교차하는 수평축과 수직축\(즉, x축과 y축\)을 사용하여 점을 찾는 좌표계에 의존한다. 원점에서 양수 값은 두어느 한 축을 따라 한 방향으로 증가하고, 음수 값은 반대 방향으로 증가한다. 이 좌표 공간의 점을 픽셀과 같은 장치 공간에 고정되지 않은 사용자-공간 단위의 부동 소수 쌍으로 표현한다. 이는 픽셀과 같은 장치 공간에 있는 장치에 고정되지 않는다. 그리기는 거의 항상 x축과 y축 값이 모두 양인 좌표공간의 영역에서 발생한다.
 
+![](../../.gitbook/assets/window_coordinate.jpg)
+
 ## Coordinate Systems Can Have Different Drawing Orientations
 
 iOS 및 OS X의 뷰에 대한 기본 좌표계는 수직축 방향이 다르다:
@@ -9,7 +11,7 @@ iOS 및 OS X의 뷰에 대한 기본 좌표계는 수직축 방향이 다르다:
 * **OS X.** 기본 좌표계는 그리기 영역의 왼쪽 하단에 원점이 있으며, 양수 값은 도면으로부터 위로 오른쪽으로 확장된다. OS X에서 뷰의 좌표계를 프로그래밍 방식으로 "뒤집기" 할 수 있다.
 * **iOS.** 기본 좌표계에 그리기 영역의 왼쪽 상단에 원점이 있으며, 양수 값은 도면으로부터 아래쪽, 오른쪽으로 확장된. iOS에서 뷰 좌표계의 기본 방향을 변경할 수 없다. 즉 뷰의 "뒤집기"를 할 수 없다.
 
-![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/flipped_coordinates.jpg)
+![](../../.gitbook/assets/flipped_coordinates.jpg)
 
 ## Windows and Views Have Their Own Coordinate Systems
 

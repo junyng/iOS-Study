@@ -2,6 +2,8 @@
 
 타겟-액션은 이벤트가 발생했을 때 다른 객체에 메시지를 보내는데 필요한 정보를 객체가 보유하는 설계 패턴이다. 저장된 정보는 두 개의 데이터 항목으로 구성된다: 이는 호출할 메서드를 식별하는 액션 셀렉터와 메시지를 수신할 타겟 객체이다. 이벤트가 발생할 때 전송되는 메시지를 액션 메시지라고 한다. 타겟은 어떤 객체, 심지어 프레임워크 객체라도 될 수 있지만, 그것은 일반적으로 애플리케이션 특정 방식으로 액션 메시지를 처리하는 사용자 정의 컨트롤러이다.
 
+![](../../.gitbook/assets/target_action%20%281%29.jpg)
+
 ![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/target_action%20%281%29.jpg)
 
 메시지를 보내는 객체가 어떤 객체가 될 수 있는 것처럼 액션 메시지를 트리거하는 이벤트는 무엇이든 될 수 있다. 예를 들어, 제스처 인식기 객체는 제스처를 인식할 때 다른 객체에 액 메시지를 보낼 수 있다. 그러나 타겟-액션 패러다임은 버튼이나 슬라이더와 같은 컨트롤에서 가장 흔히 발견된다. 사용자가 컨트롤 객체를 조작할 때 지정된 객체로 메시지를 전송한다. 컨트롤 객체는 [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol)\(iOS\) 또는 [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol)\(OS X\)의 하위 클래스 인스턴스이다. 액션 셀렉터와 타겟 객체는 컨트롤 객체의 프로퍼티 또는 AppKit 프레임워크에서 컨트롤 셀 객체의 프로퍼티이다.

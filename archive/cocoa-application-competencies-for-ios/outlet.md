@@ -2,7 +2,7 @@
 
 아울렛은 IBOutlet 기호와 함께 주석을 달고 nib 파일이나 스토리보드에서 그래픽으로 설정할 수 있는 프로퍼티이다. 클래스의 인터페이스에 아울렛을 선언하고, 아울렛을 nib 파일이나 스토리보드의 다른 객체와 연결한다. 파일이 로드되면 연결이 설정된다.
 
-![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/outlet_generic.jpg)
+![](../../.gitbook/assets/outlet_generic.jpg)
 
 아울렛 프로퍼티를 `IBOutlet` 타입 한정자 프로퍼티로 정의하라.
 

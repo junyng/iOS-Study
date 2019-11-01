@@ -28,6 +28,8 @@ iOS의 이벤트는 손가락으로 터치한 애플리케이션 또는 사용�
 
 터치 객체는 정지 단계일 수도 있고 취소될 수도 있다. 터치 객체는 멀티터치 시퀀스를 통해 지속되지만 상태는 변한다. 애플리케이션 패키지는 객체를 다루기 위해 뷰에 전송 때, [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) 객체안의 객체를 터치한다.
 
+![](../../.gitbook/assets/event_delivery.jpg)
+
 ## The Delivery of Touch Objects Follows a Defined Path
 
 메인 이벤트 루프에서 애플리케이션 객체는 이벤트 큐의 \(날것의\) 터치 이벤트를 얻고 `UIEvent`객체의 `UITouch`객체로 패키지화하여 터치가 발생한 뷰의 윈도우로 전송한다. 윈도우 객체는 차례로 _hit-test_ 뷰로 알려진 객체를 이 뷰로 전송한다. 이 뷰가 터치 이벤트를 처리할 수 없는 경우\(보통 필요한 이벤트 처리 메서드를 구현하지 않았기 때문에\), 이벤트는 처리되거나 폐기될 때까지 응답자 체인 위로 이동한다.
