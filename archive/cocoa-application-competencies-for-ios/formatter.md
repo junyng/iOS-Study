@@ -4,8 +4,6 @@
 
 ![](../../.gitbook/assets/formatter.jpg)
 
-![](https://github.com/junyng/study-apple-docs/tree/c4b292b17da2edc8670232ab9689281024a64f04/.gitbook/assets/formatter.jpg)
-
 ## Configuring and Applying a Formatter
 
 날짜나 숫자 포맷터 객체를 만들 때 여러 가지 방법으로 구성할 수 있지만, 주요 특성은 포맷터 스타일과 로케일이다. `NSNumberFormatter` 객체에 소수, 통화, 백분율, 과학적 또는 "spell-out" 스타일을 부여할 수 있다. \(예를 들어, "25"에서 "twenty-five"\) `NSDateFormatter` 객체는 다양한 범위의 날짜와 시간 스타일을 모두 포함한다. 예를 들어 "11/22/2009" 부터 "Sunday, November 22, 2009 AD"

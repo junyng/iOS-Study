@@ -31,25 +31,13 @@
 사용자가 행을 탭할 때, 테이블 뷰는 delegate 메서드 `tableView(_:didSelectRowAt:)` 를 호출한다. 이 때 앱은 선택된 항목의 세부사항을 표시하는 등의 동작을 수행한다.
 
 ```swift
-func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let selectedTrail = trails[indexPath.row]
-
-    if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {
-        viewController.trail = selectedTrail
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-}
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    let selectedTrail = trails[indexPath.row]    if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {        viewController.trail = selectedTrail        navigationController?.pushViewController(viewController, animated: true)    }}
 ```
 
 새로운 뷰 컨트롤러를 네비게이션 스택에 push하여 셀 선택에 응답하는 경우, 뷰 컨트롤러가 스택에서 pop 될 때 셀의 선택을 취소하라. `UITableViewController` 를 사용하여 테이블 뷰를 표시하는 경우, `clearsSelectionOnViewWillAppear` 프로퍼티를 `true`로 설정함으로써 행동을 취할 수 있다. 그렇지 않으면 뷰 컨트롤러의 `viewWillAppear(_:)` 메서드에서 선택 항목을 clear 할 수 있다.
 
 ```swift
-override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    if let selectedIndexPath = tableView.indexPathForSelectedRow {
-        tableView.deselectRow(at: selectedIndexPath, animated: animated)
-    }
-}
+override func viewWillAppear(_ animated: Bool) {    super.viewWillAppear(animated)    if let selectedIndexPath = tableView.indexPathForSelectedRow {        tableView.deselectRow(at: selectedIndexPath, animated: animated)    }}
 ```
 
 행에 detail 버튼 accessory 뷰가 표시되고 사용자가 이를 탭하는 경우 테이블 뷰는 "did select row" 메서드 대신에 `tableView(_:accessoryButtonTappedForRowWith:)` 메서드를 호출한다. accessory 뷰에 대한 자세한 내용은 Configuring the Cells for Your Table을 참조 하라.
@@ -71,25 +59,7 @@ override func viewWillAppear(_ animated: Bool) {
 예를들어, 배낭여행자를 위한 앱 사용자가 패킹 리스트를 만들 수 있다. 여기에는 침낭이나 텐트와 같은 캠핑 장비 목록이 포함된다. 사용자가 해당 기어를 포장했음을 표시하기 위해 항목을 탭하면, 앱은 행을 선택 해제하고 항목의 데이터 모델을 업데이트하며 포장된 품목에 대한 체크마크를 행에 표시한다. 항목을 다시 누르면 항목이 포장되지 않은 것으로 표시되고 체크마크가 제거된다. 예제는 다음과 같다.
 
 ```swift
-func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // Unselect the row, and instead, show the state with a checkmark.
-    tableView.deselectRow(at: indexPath, animated: false)
-
-    guard let cell = tableView.cellForRow(at: indexPath) else { return }
-
-    // Update the selected item to indicate whether the user packed it or not.
-    let item = packingList[indexPath.row]
-    let newItem = PackingItem(name: item.name, isPacked: !item.isPacked)
-    packingList.remove(at: indexPath.row)
-    packingList.insert(newItem, at: indexPath.row)
-
-    // Show a check mark next to packed items.
-    if newItem.isPacked {
-        cell.accessoryType = .checkmark
-    } else {
-        cell.accessoryType = .none
-    }
-}
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    // Unselect the row, and instead, show the state with a checkmark.    tableView.deselectRow(at: indexPath, animated: false)    guard let cell = tableView.cellForRow(at: indexPath) else { return }    // Update the selected item to indicate whether the user packed it or not.    let item = packingList[indexPath.row]    let newItem = PackingItem(name: item.name, isPacked: !item.isPacked)    packingList.remove(at: indexPath.row)    packingList.insert(newItem, at: indexPath.row)    // Show a check mark next to packed items.    if newItem.isPacked {        cell.accessoryType = .checkmark    } else {        cell.accessoryType = .none    }}
 ```
 
 독점 목록을 관리하는것은 유사하다. 선택한 상태를 가리키기 위해 행을 선택을 취소하고 체크마크 또는 accessory 뷰를 표시한다. 하지만 포함 목록과는 달리 독점 목록을 한 번에 하나의 선택된 항목으로만 제한하라.
@@ -97,28 +67,6 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 예를 들어, 배낭여행자 앱은 사용자가 쉽게, 보통 그리고 어려운 단계 중 단 하나의 레벨에 따라 등산로를 필터링할 수 있도록 할 수 있다. 이와 같은 독점 목록을 사용하여 앱은 이전 선택 항목에서 체크마크를 제거하고 현재 선택 항목에 대한 체크마크를 표시해야 한다. 앱은 또한 어느 항목이 현재 선택되었는지 기억해야 한다. 예제는 다음과 같다.
 
 ```swift
-func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    // Unselect the row.
-    tableView.deselectRow(at: indexPath, animated: false)
-
-    // Did the user tap on a selected filter item? If so, do nothing.
-    let selectedFilterRow = selectedFilters[indexPath.section]
-    if selectedFilterRow == indexPath.row {
-        return
-    }
-
-    // Remove the checkmark from the previously selected filter item.
-    if let previousCell = tableView.cellForRow(at: IndexPath(row: selectedFilterRow, section: indexPath.section)) {
-        previousCell.accessoryType = .none
-    }
-
-    // Mark the newly selected filter item with a checkmark.
-    if let cell = tableView.cellForRow(at: indexPath) {
-        cell.accessoryType = .checkmark
-    }
-
-    // Remember this selected filter item.
-    selectedFilters[indexPath.section] = indexPath.row
-}
+func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    // Unselect the row.    tableView.deselectRow(at: indexPath, animated: false)    // Did the user tap on a selected filter item? If so, do nothing.    let selectedFilterRow = selectedFilters[indexPath.section]    if selectedFilterRow == indexPath.row {        return    }    // Remove the checkmark from the previously selected filter item.    if let previousCell = tableView.cellForRow(at: IndexPath(row: selectedFilterRow, section: indexPath.section)) {        previousCell.accessoryType = .none    }    // Mark the newly selected filter item with a checkmark.    if let cell = tableView.cellForRow(at: indexPath) {        cell.accessoryType = .checkmark    }    // Remember this selected filter item.    selectedFilters[indexPath.section] = indexPath.row}
 ```
 

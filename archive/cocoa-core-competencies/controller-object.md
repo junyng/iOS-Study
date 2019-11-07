@@ -2,7 +2,7 @@
 
 컨트롤러 객체는 하나 이상의 뷰 객체와 하나 이상의 모델 객체사이에서 중재자 또는 중간 역할을 한다. 모델-뷰-컨트롤러 설계 패턴에서 컨트롤러 객체\(또는 단순히 컨트롤러\)는 뷰 객체에서 이루어진 사용자 행동과 의도\(예를 들어 사용자가 컨트롤을 누르거나 클릭하거나 텍스트 필드에 텍스트를 입력하여 새 데이터 또는 변경된 데이터를 모델 객체에 전달하는 경우\)를 해석한다. 모델 객체가 변경될 때 예를 들어, 사용자가 파일 시스템에 저장된 문서를 열 때 새 모델 데이터를 뷰 객체에 전달하여 표시할 수 있도록 한다. 따라서 컨트롤러는 뷰 객체가 모델 객체의 변화에 대해 배우고 그 반대의 경우도 학습하는 통로이다. 컨트롤러 객체는 또한 애플리케이션에 대한 작업을 설정하고 조정할 수 있으며 다른 객체의 생명 주기를 관리할 수 있다. Cocoa 프레임워크는 컨트롤러 조정, 컨트롤러 뷰\(iOS\) 및 컨트롤러 중재\(OS X\)의 세 가지 주요 컨트롤러 타입을 제공한다.
 
-![](file:///Users/BLU/TIL/iOS/Cocoa-Core-Competencies/Images/controller_object_2x.png?lastModify=1572840714)
+![](../../.gitbook/assets/controller_object_2x.png)
 
 ### Coordinating Controllers
 
@@ -29,16 +29,16 @@ iOS의 뷰 컨트롤러는 `UIViewController`의 서브 클래스 인스턴스�
 
 #### Prerequisite Articles
 
-* Model-View-Controller
-* Message
+[Model-View-Controller](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html#//apple_ref/doc/uid/TP40008195-CH32-SW1)  
+[Message](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Message.html#//apple_ref/doc/uid/TP40008195-CH59-SW1)
 
 #### Related Articles
 
-* Model object
-* Delegation
-* Notification
+[Model object](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/ModelObject.html#//apple_ref/doc/uid/TP40008195-CH31-SW1)  
+[Delegation](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html#//apple_ref/doc/uid/TP40008195-CH14-SW1)  
+[Notification](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Notification.html#//apple_ref/doc/uid/TP40008195-CH35-SW1)
 
 #### Definitive Discussion
 
-* Model-View-Controller
+[Model-View-Controller](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14)
 

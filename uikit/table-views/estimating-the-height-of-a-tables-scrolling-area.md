@@ -21,31 +21,7 @@
 아래의 예제 코드는 높이가 다른 테이블 행의 추정 높이를 계산한다. 첫 번째 행의 셀은 항상 여러 행의 텍스트를 포함하는 사용자 지정 스타일을 사용한다. 다른 모든 행은 테이블 뷰에서 제공하는 기본 스타일을 사용한다.
 
 ```swift
-let cellMarginSize :CGFloat  = 4.0
-override func tableView(_ tableView: UITableView, 
-         estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-   // Choose an appropriate default cell size.
-   var cellSize = UITableView.automaticDimension
-
-   // The first cell is always a title cell. Other cells use the Basic style.
-   if indexPath.row == 0 {
-      //Title cells consist of one large title row and two body text rows.
-      let largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
-      let bodyFont = UIFont.preferredFont(forTextStyle: .body)
-
-      // Get the height of a single line of text in each font.
-      let largeTitleHeight = largeTitleFont.lineHeight + largeTitleFont.leading
-      let bodyHeight = bodyFont.lineHeight + bodyFont.leading
-
-      // Sum the line heights plus top and bottom margins to get the final height.
-      let titleCellSize = largeTitleHeight + (bodyHeight * 2.0) + (cellMarginSize * 2)
-
-      // Update the estimated cell size.
-      cellSize = titleCellSize
-   }
-
-   return cellSize
-}
+let cellMarginSize :CGFloat  = 4.0override func tableView(_ tableView: UITableView,          estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {   // Choose an appropriate default cell size.   var cellSize = UITableView.automaticDimension   // The first cell is always a title cell. Other cells use the Basic style.   if indexPath.row == 0 {      //Title cells consist of one large title row and two body text rows.      let largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)      let bodyFont = UIFont.preferredFont(forTextStyle: .body)      // Get the height of a single line of text in each font.      let largeTitleHeight = largeTitleFont.lineHeight + largeTitleFont.leading      let bodyHeight = bodyFont.lineHeight + bodyFont.leading      // Sum the line heights plus top and bottom margins to get the final height.      let titleCellSize = largeTitleHeight + (bodyHeight * 2.0) + (cellMarginSize * 2)      // Update the estimated cell size.      cellSize = titleCellSize   }   return cellSize}
 ```
 
 테이블 뷰가 높이 추정치를 사용할 때 스크롤 뷰에서 상속된 `contentOffset` 및 `contentSize` 프로퍼티를 적극적으로 관리한다. 이러한 프로퍼티를 직접 읽거나 수정하려고 하면 안된다. 이 값은 `UITableView` 에만 의미가 있다.
