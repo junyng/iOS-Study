@@ -21,7 +21,21 @@ protocol UITalbeViewDataSource
 이 프로토콜의 두 가지 메서드만 필요하며, 다음 예시 코드에 제시되어 있다.
 
 ```swift
-// Return the number of rows for the table.     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {   return 0}// Provide a cell object for each row.override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Fetch a cell of the appropriate type.   let cell = tableView.dequeueReusableCell(withIdentifier: "cellTypeIdentifier", for: indexPath)   // Configure the cell’s contents.   cell.textLabel!.text = "Cell text"   return cell}
+// Return the number of rows for the table.     
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   return 0
+}
+
+// Provide a cell object for each row.
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   // Fetch a cell of the appropriate type.
+   let cell = tableView.dequeueReusableCell(withIdentifier: "cellTypeIdentifier", for: indexPath)
+
+   // Configure the cell’s contents.
+   cell.textLabel!.text = "Cell text"
+
+   return cell
+}
 ```
 
 이 프로토콜의 다른 메서드를 사용하여 테이블에 대한 특정 기능을 활성화하라. 예를 들어 행에 대해 swipe-to-delete 기능을 활성화하려면 `tableView(_:commit:forRowAt:)` 메서드를 구현해야 한다.

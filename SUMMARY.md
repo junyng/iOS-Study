@@ -1,9 +1,9 @@
 # Table of contents
 
 * [Initial page](README.md)
-* [Human-Interface-Guidelines](human-interface-guidelines/README.md)
+* [Human Interface Guidelines](human-interface-guidelines/README.md)
   * [README](human-interface-guidelines/app-architecture.md)
-* [Concurrency-Programming-Guide](concurrency-programming-guide/README.md)
+* [Concurrency Programming Guide](concurrency-programming-guide/README.md)
   * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
   * [Concurrency and Application Design](concurrency-programming-guide/concurrency-and-application-design.md)
   * [Operation Queues](concurrency-programming-guide/operation-queues.md)
@@ -59,7 +59,7 @@
 
 ## Archive
 
-* [Cocoa-Application-Competencies-for-iOS](archive/cocoa-application-competencies-for-ios/README.md)
+* [Cocoa Application Competencies-for iOS](archive/cocoa-application-competencies-for-ios/README.md)
   * [Animation](archive/cocoa-application-competencies-for-ios/animation.md)
   * [Application object](archive/cocoa-application-competencies-for-ios/application-object.md)
   * [Control object](archive/cocoa-application-competencies-for-ios/control-object.md)
@@ -78,7 +78,7 @@
   * [Pasteboard](archive/cocoa-application-competencies-for-ios/pasteboard.md)
   * [Preferences](archive/cocoa-application-competencies-for-ios/preferences.md)
   * [Responder object](archive/cocoa-application-competencies-for-ios/responder-object.md)
-* [Cocoa-Core-Competencies](archive/cocoa-core-competencies/README.md)
+* [Cocoa Core Competencies](archive/cocoa-core-competencies/README.md)
   * [App ID](archive/cocoa-core-competencies/app-id.md)
   * [Application Code Signing](archive/cocoa-core-competencies/application-code-signing.md)
   * [Block object](archive/cocoa-core-competencies/block-object.md)

@@ -11,7 +11,17 @@
 텍스트 라벨을 사용하여 기본 헤더 또는 푸터를 생성하려면 테이블의 데이터 소스 객체의 `tableView(_:titleForHeaderInSection:)` 또는 `tableView(_:titleForFooterInSection:)` 메서드를 오버라이드 하라. 테이블 뷰는 표준 헤더 또는 푸터를 생성해 지정된 위치에 있는 테이블에 삽입한다.
 
 ```swift
-// Create a standard header that includes the returned text.override func tableView(_ tableView: UITableView, titleForHeaderInSection                             section: Int) -> String? {   return "Header \(section)"}// Create a standard footer that includes the returned text.override func tableView(_ tableView: UITableView, titleForFooterInSection                             section: Int) -> String? {   return "Footer \(section)"}
+// Create a standard header that includes the returned text.
+override func tableView(_ tableView: UITableView, titleForHeaderInSection 
+                            section: Int) -> String? {
+   return "Header \(section)"
+}
+
+// Create a standard footer that includes the returned text.
+override func tableView(_ tableView: UITableView, titleForFooterInSection 
+                            section: Int) -> String? {
+   return "Footer \(section)"
+}
 ```
 
 > **Note**
@@ -33,19 +43,67 @@
 `UITableViewHeaderFooterView` 객체를 그대로 사용하여 해당 `contentView` 프로퍼티에 뷰 추가 또는 뷰를 하위 분류하고 추가할 수 있다. 스택 뷰 또는 오토레이아웃 제약 조건을 사용하여 컨텐츠 뷰 내부에 하위 뷰를 배치하라. 컨텐츠의 배경을 변경하려면 헤더-푸터 뷰의 `backgroundView` 프로퍼티를 수정하라. 다음 예제 코드는 생성 시 이미지 및 라벨 뷰를 배치하는 사용자 정의 헤더 뷰를 보여준다.
 
 ```swift
-class MyCustomHeader: UITableViewHeaderFooterView {    let title = UILabel()    let image = UIImageView()    override init(reuseIdentifier: String?) {        super.init(reuseIdentifier: reuseIdentifier)        configureContents()    }    func configureContents() {        image.translatesAutoresizingMaskIntoConstraints = false        title.translatesAutoresizingMaskIntoConstraints = false        contentView.addSubview(image)        contentView.addSubview(title)        // Center the image vertically and place it near the leading        // edge of the view. Constrain its width and height to 50 points.        NSLayoutConstraint.activate([            image.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),            image.widthAnchor.constraint(equalToConstant: 50),            image.heightAnchor.constraint(equalToConstant: 50),            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),            // Center the label vertically, and use it to fill the remaining            // space in the header view.             title.heightAnchor.constraint(equalToConstant: 30),            title.leadingAnchor.constraint(equalTo: image.trailingAnchor,                    constant: 8),            title.trailingAnchor.constraint(equalTo:                    contentView.layoutMarginsGuide.trailingAnchor),            title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)        ])    }}
+class MyCustomHeader: UITableViewHeaderFooterView {
+    let title = UILabel()
+    let image = UIImageView()
+
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        configureContents()
+    }
+
+    func configureContents() {
+        image.translatesAutoresizingMaskIntoConstraints = false
+        title.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(image)
+        contentView.addSubview(title)
+
+        // Center the image vertically and place it near the leading
+        // edge of the view. Constrain its width and height to 50 points.
+        NSLayoutConstraint.activate([
+            image.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            image.widthAnchor.constraint(equalToConstant: 50),
+            image.heightAnchor.constraint(equalToConstant: 50),
+            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
+            // Center the label vertically, and use it to fill the remaining
+            // space in the header view. 
+            title.heightAnchor.constraint(equalToConstant: 30),
+            title.leadingAnchor.constraint(equalTo: image.trailingAnchor, 
+                   constant: 8),
+            title.trailingAnchor.constraint(equalTo: 
+                   contentView.layoutMarginsGuide.trailingAnchor),
+            title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+    }
+}
 ```
 
 테이블 뷰 구성의 일부로 헤더 뷰를 등록하라.
 
 ```swift
-override func viewDidLoad() {   super.viewDidLoad()   // Register the custom header view.   tableView.register(MyCustomHeader.self,        forHeaderFooterViewReuseIdentifier: “sectionHeader")}
+override func viewDidLoad() {
+   super.viewDidLoad()
+
+   // Register the custom header view.
+   tableView.register(MyCustomHeader.self, 
+       forHeaderFooterViewReuseIdentifier: “sectionHeader")
+}
 ```
 
 delegate의 `tableView(_:viewForHeaderInSection:)` 메서드에서 사용자 정의 뷰를 생성하고 구성하라. 다음 예제 코드는 등록된 사용자 정의 헤더를 삭제하고 제목과 이미지 프로퍼티를 구성한다.
 
 ```swift
-override func tableView(_ tableView: UITableView,         viewForHeaderInSection section: Int) -> UIView? {   let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:               "sectionHeader") as! MyCustomHeader   view.title.text = sections[section]   view.image.image = UIImage(named: sectionImages[section])   return view}
+override func tableView(_ tableView: UITableView, 
+        viewForHeaderInSection section: Int) -> UIView? {
+   let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+               "sectionHeader") as! MyCustomHeader
+   view.title.text = sections[section]
+   view.image.image = UIImage(named: sectionImages[section])
+
+   return view
+}
 ```
 
 다음 이미지는 결과 헤더를 보여준다.

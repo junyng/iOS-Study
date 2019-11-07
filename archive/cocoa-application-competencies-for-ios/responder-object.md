@@ -11,7 +11,11 @@
 앱에서, 많은 종류의 이벤트를 처음 받는 응답자 객체는 _first responder_로 알려져 있다. 이는 주요 이벤트, 모션 이벤트 액션 메시지를 수신한다. \(마우스 이벤트 및 멀티터치 이벤트가 먼저 마우스 포인터 또는 손가락 아래에 있는 뷰로 이동한다; 해당 뷰는 첫 번째 응답자일 수도 있고 아닐 수도 있다.\) 첫 번째 응답자는 일반적으로 앱이 이벤트를 처리하는데 가장 적합하다고 판단하는 윈도우의 뷰이다. 이벤트를 수신하려면, 응답자가 첫 번째 응답자가 되겠다는 의사도 표시해야 한다; 각 플랫폼에 대해 다양한 방식으로 이 작업을 수행한다:
 
 ```objectivec
-// OS X- (BOOL)acceptsFirstResponder { return YES; } //iOS- (BOOL)canBecomeFirstResponder { return YES; }
+// OS X
+- (BOOL)acceptsFirstResponder { return YES; }
+ 
+//iOS
+- (BOOL)canBecomeFirstResponder { return YES; }
 ```
 
 응답자는 이벤트 메시지를 수신하는 것 외에 타겟이 지정되지 않은 액션 메시지를 수신할 수 있다. \(액션 메시지는 버튼이나 컨트롤을 사용자가 조작할 때 전송된다.\)

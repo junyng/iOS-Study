@@ -9,7 +9,8 @@
 키-값 쌍의 예시이다.
 
 ```text
-<key>CFBundleDisplayName</key><string>Mail</string>
+<key>CFBundleDisplayName</key>
+<string>Mail</string>
 ```
 
 정보 프로퍼티 목록 파일의 이름은 Info.plist 여야 하며 그림과 같이 소문자 또는 대문자로 되어 있어야 한다. 파일의 텍스트는 유니코드 UTF-8로 인코딩되어 있다. 애플리케이션이나 다른 번들을 만들 때, 파일의 번들은 특정 위치에 저장된다. 애플리케이션이나 다른 번들을 만들 때, 파일은 번들의 특정 위치에 저장된다.

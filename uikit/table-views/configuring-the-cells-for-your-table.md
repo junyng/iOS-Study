@@ -33,7 +33,16 @@ var cell = tableView.dequeueReusableCell(withIdentifier: “myCellType”, for: 
 `tableView(_:cellForRowAt:)` 메서드에서 `UITableViewCell` 의 `textLabel`, `detailTextLabel` 및 `imageView` 프로퍼티를 사용하여 셀 내용을 구성하라. 이러한 프로퍼티는 뷰를 포함하지만, 셀 객체는 스타일이 해당 내용은 지원하는 경우에만 뷰를 할당한다. 예를 들어, 기본 셀 스타일은 상세 문자열을 지원하지 않으므로 `detailTextLabel` 프로퍼티는 해당 스타일에 대해 0이 된다. 다음 예제 코드는 기본 셀 스타일을 사용하는 셀을 구성하는 방법을 보여준다.
 
 ```swift
-override func tableView(_ tableView: UITableView,              cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Reuse or create a cell.    let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)   // For a standard cell, use the UITableViewCell properties.   cell.textLabel!.text = "Title text"   cell.imageView!.image = UIImage(named: "bunny")   return cell}
+override func tableView(_ tableView: UITableView, 
+             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   // Reuse or create a cell. 
+   let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyle", for: indexPath)
+
+   // For a standard cell, use the UITableViewCell properties.
+   cell.textLabel!.text = "Title text"
+   cell.imageView!.image = UIImage(named: "bunny")
+   return cell
+}
 ```
 
 ## Configure a Cell with Custom Views
@@ -47,13 +56,33 @@ override func tableView(_ tableView: UITableView,              cellForRowAt inde
 사용자 지정 셀의 경우, 셀의 뷰에 접근하기 위해 `UITableViewCell` 하위 클래스를 정의해야 한다. 하위 클래스에 아울렛을 추가하고 해당 아울렛을 프로토타입 셀의 해당 뷰에 연결하라.
 
 ```swift
-class FoodCell: UITableViewCell {    @IBOutlet var name : UILabel?    @IBOutlet var plantDescription : UILabel?    @IBOutlet var picture : UIImageView?}
+class FoodCell: UITableViewCell {
+    @IBOutlet var name : UILabel?
+    @IBOutlet var plantDescription : UILabel?
+    @IBOutlet var picture : UIImageView?
+}
 ```
 
 `tableView(_:cellForRowAt:)` 데이터 소스 메서드에서 셀의 아울렛 값을 사용해 모든 뷰에 할당하라.
 
 ```swift
-override func tableView(_ tableView: UITableView,              cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Reuse or create a cell of the appropriate type.   let cell = tableView.dequeueReusableCell(withIdentifier: "foodCellType",                          for: indexPath) as! FoodCell   // Fetch the data for the row.   let theFood = foods[indexPath.row]   // Configure the cell’s contents with data from the fetched object.   cell.name?.text = theFood.name   cell.plantDescription?.text = theFood.description   cell.picture?.image = theFood.picture   return cell}
+override func tableView(_ tableView: UITableView, 
+             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+   // Reuse or create a cell of the appropriate type.
+   let cell = tableView.dequeueReusableCell(withIdentifier: "foodCellType", 
+                         for: indexPath) as! FoodCell
+
+   // Fetch the data for the row.
+   let theFood = foods[indexPath.row]
+
+   // Configure the cell’s contents with data from the fetched object.
+   cell.name?.text = theFood.name
+   cell.plantDescription?.text = theFood.description
+   cell.picture?.image = theFood.picture
+
+   return cell
+}
 ```
 
 ## Change the Height of Rows
@@ -63,7 +92,16 @@ override func tableView(_ tableView: UITableView,              cellForRowAt inde
 행 높이가 모두 동일하지 않거나 동적으로 변경할 수 있는 경우, delegate 객체의 `tableView(_:heightForRowAt:)` 메서드를 사용하여 높이를 지정하라. 이 메서드를 구현할 때 테이블의 모든 행에 대한 값을 제공해야 한다. 다음 예제 코드는 각 섹션의 첫 번째 행에 대해 사용자 정의 높이를 반환하고 다른 모든 행에 대해 기본 높이를 사용하는 방법을 보여준다.
 
 ```swift
-override func tableView(_ tableView: UITableView,            heightForRowAt indexPath: IndexPath) -> CGFloat {   // Make the first row larger to accommodate a custom cell.  if indexPath.row == 0 {      return 80   }   // Use the default size for all other rows.   return UITableView.automaticDimension}
+override func tableView(_ tableView: UITableView, 
+           heightForRowAt indexPath: IndexPath) -> CGFloat {
+   // Make the first row larger to accommodate a custom cell.
+  if indexPath.row == 0 {
+      return 80
+   }
+
+   // Use the default size for all other rows.
+   return UITableView.automaticDimension
+}
 ```
 
 테이블 뷰는 보이는 행의 높이만 요청한다. 사용자가 스크롤할 때 테이블 뷰는 화면 밖으로 이동한 다음 다시 화면으로 이동하는 경우를 포함하여 나타나는 각 행에 대한 높이를 제공하도록 요청한다.

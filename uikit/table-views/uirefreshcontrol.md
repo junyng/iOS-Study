@@ -17,7 +17,22 @@ class UIRefreshControl : UIControl
 리프레쉬 컨트롤은 `UIControl` 의 target-action 메커니즘을 사용하여 컨텐츠를 업데이트할 시기를 알려준다. 활성화시 리프레쉬 컨트롤은 구성 시간에 제공한 액션 메서드를 호출한다. 액션 메서드를 추가할 때, 다음 예제 코드와 같이 `valueChanged` 이벤트를 수신하도록 구성하라. 액션 메서드를 사용하여 내용을 업데이트하고, 완료되면 리프레쉬 컨트롤의 `endRefreshing()` 메서드를 호출하라.
 
 ```swift
-func configureRefreshControl () {   // Add the refresh control to your UIScrollView object.   myScrollingView.refreshControl = UIRefreshControl()   myScrollingView.refreshControl?.addTarget(self, action:                                      #selector(handleRefreshControl),                                      for: .valueChanged)}@objc func handleRefreshControl() {   // Update your content…   // Dismiss the refresh control.   DispatchQueue.main.async {      self.myScrollingView.refreshControl?.endRefreshing()   }}
+func configureRefreshControl () {
+   // Add the refresh control to your UIScrollView object.
+   myScrollingView.refreshControl = UIRefreshControl()
+   myScrollingView.refreshControl?.addTarget(self, action:
+                                      #selector(handleRefreshControl),
+                                      for: .valueChanged)
+}
+
+@objc func handleRefreshControl() {
+   // Update your content…
+
+   // Dismiss the refresh control.
+   DispatchQueue.main.async {
+      self.myScrollingView.refreshControl?.endRefreshing()
+   }
+}
 ```
 
 > **Note**

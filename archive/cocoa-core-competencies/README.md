@@ -1,2 +1,2 @@
-# Cocoa-Core-Competencies
+# Cocoa Core Competencies
 

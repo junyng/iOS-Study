@@ -15,6 +15,20 @@ class UILocalizedIndexedCollation : NSObject
 섹션 인덱스에 대한 데이터를 준비하기 위해, 각 모델 객체 인덱싱 되기를 한 indexed-collation 객체를 만들고 각각의 인덱싱 모델 객체를 위해 `section(for:collationStringSelector)` 를 호출하라. 이 메서드는 이러한 각 객체가 표시되어야하는 섹션을 결정하고 섹션을 식별하는 정수를 반환한다. 그런 다음 테이블 뷰 컨트롤러는 각 객체를 해당 섹션의 로컬 배열에 넣는다. 각각의 섹션 배열에 대해서 컨트롤러는 `sortedArray(from:collationStringSelector:)` 메서드를 호출해 섹션의 모든 객체를 정렬한다. indexed-collation 객체는 다음 예제 코드와 같이 테이블 뷰 컨트롤러가 테이블 뷰에 횡단 색인 데이터를 제공하는 데 사용하는 데이터 저장소이다.
 
 ```swift
-func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation    let sectionTitles = currentCollation.sectionTitles as NSArray    return sectionTitles.objectAtIndex(section) as String}func sectionIndexTitlesForTableView(tableView: UITableView!) -> NSArray! {    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation    return currentCollation.sectionIndexTitles as NSArray}func tableView(tableView: UITableView!, sectionForSectionIndexTitle title: String!, atIndex index: Int) -> Int {    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation    return currentCollation.sectionForSectionIndexTitleAtIndex(index)}
+func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+    let sectionTitles = currentCollation.sectionTitles as NSArray
+    return sectionTitles.objectAtIndex(section) as String
+}
+
+func sectionIndexTitlesForTableView(tableView: UITableView!) -> NSArray! {
+    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+    return currentCollation.sectionIndexTitles as NSArray
+}
+
+func tableView(tableView: UITableView!, sectionForSectionIndexTitle title: String!, atIndex index: Int) -> Int {
+    let currentCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+    return currentCollation.sectionForSectionIndexTitleAtIndex(index)
+}
 ```
 

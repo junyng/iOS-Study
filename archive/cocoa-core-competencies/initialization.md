@@ -25,7 +25,12 @@
 다음 단계에 따라 날짜 인스턴스 변수를 현재 날짜로 초기화하는 간단한 이니셜라이저이다.
 
 ```text
-- (id)init {    if (self = [super init]) { // equivalent to "self does not equal nil"        date = [[NSDate date] retain];    }    return self;}
+- (id)init {
+    if (self = [super init]) { // equivalent to "self does not equal nil"
+        date = [[NSDate date] retain];
+    }
+    return self;
+}
 ```
 
 한 클래스에 여러 이니셜라이저가 있을 수 있다. 이는 초기화 데이터가 다양한 형태를 취할 수 있거나 편의상 특정 이니셜라이저가 기본 값을 제공하는 경우에 발생한다. 이 경우 이니셜라이저 방법 중 하나로 초기화 파라미터의 완전한 보완을 필요로 하는 지정된 이니셜라이저라고 한다.

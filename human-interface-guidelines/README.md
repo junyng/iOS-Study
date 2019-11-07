@@ -1,2 +1,2 @@
-# Human-Interface-Guidelines
+# Human Interface Guidelines
 

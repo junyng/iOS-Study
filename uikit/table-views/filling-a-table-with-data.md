@@ -15,7 +15,8 @@
 화면에 나타나기 전에 테이블 뷰는 행과 섹션의 총 개수를 지정하도록 요청한다. 데이터 소스 객체는 다음 두 가지 방법을 사용하여 이 정보를 제공한다.
 
 ```swift
-func numberOfSections(in tableView: UITableView) -> Int  // Optional func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+func numberOfSections(in tableView: UITableView) -> Int  // Optional 
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 ```
 
 이러한 메서드를 구현할 때 행 및 섹션 수를 가능한 한 빨리 반환하라. 이렇게 하려면 행과 섹션 정보를 쉽게 검색할 수 있도록 데이터를 구성해야 할 수 있다. 예를 들어, 배열을 사용하여 테이블의 데이터를 관리하는 것을 고려하라. 배열이 테이블 뷰 자체와 일치하기 때문에 행과 섹션을 모두 관리하는데 좋은 도구이다.
@@ -23,7 +24,16 @@ func numberOfSections(in tableView: UITableView) -> Int  // Optional func tableV
 아래 예제 코드는 다중 섹션 테이블에서 행 및 섹션 수를 반환하는 데이터 소스 메서드의 구현을 보여준다. 이 테이블에서는 각 행에 문자열이 표시되므로 구현에는 각 섹션에 대한 문자열이 저장된다. 섹션을 관리하기 위해 구현에서는 배열의 배열\(계층적 데이터\)를 사용한다. 섹션 수를 가져오기 위해 데이터 소스는 계층 데이터 배열의 항목 수를 반환한다. 특정 섹션의 행 수를 가져오기 위해 데이터 소스는 각 하위 배열의 항목 수를 반환한다.
 
 ```swift
-var hierarchicalData = [[String]]() override func numberOfSections(in tableView: UITableView) -> Int {   return hierarchicalData.count}override func tableView(_ tableView: UITableView,                         numberOfRowsInSection section: Int) -> Int {   return hierarchicalData[section].count}
+var hierarchicalData = [[String]]() 
+
+override func numberOfSections(in tableView: UITableView) -> Int {
+   return hierarchicalData.count
+}
+
+override func tableView(_ tableView: UITableView, 
+                        numberOfRowsInSection section: Int) -> Int {
+   return hierarchicalData[section].count
+}
 ```
 
 ### Define the Appearance of Rows
@@ -60,7 +70,16 @@ var hierarchicalData = [[String]]() override func numberOfSections(in tableView:
 아래의 예제 코드는 단일 텍스트 라벨을 포함하는 셀을 구성하는 데이터 소스 메서드의 버전을 보여준다. 셀은 표준 셀 스타일 중 하나인 기본 스타일을 사용한다. 기본 스타일 셀의 경우 `UITableViewCell`의 `textLabel` 속성은 데이터로 구성하는 레이블 뷰를 포함한다.
 
 ```swift
-override func tableView(_ tableView: UITableView,                        cellForRowAt indexPath: IndexPath) -> UITableViewCell {   // Ask for a cell of the appropriate type.   let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyleCell", for: indexPath)   // Configure the cell’s contents with the row and section number.   // The Basic cell style guarantees a label view is present in textLabel.   cell.textLabel!.text = "Row \(indexPath.row)"   return cell}
+override func tableView(_ tableView: UITableView,
+                        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   // Ask for a cell of the appropriate type.
+   let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyleCell", for: indexPath)
+
+   // Configure the cell’s contents with the row and section number.
+   // The Basic cell style guarantees a label view is present in textLabel.
+   cell.textLabel!.text = "Row \(indexPath.row)"
+   return cell
+}
 ```
 
 테이블 뷰는 테이블의 각 행에 대해 셀을 생성하도록 요청하지 않는다. 대신, 테이블 뷰는 테이블의 보이는 부분이나 근처에 있는 셀에 대해서만 질문하면서 셀을 느슨하게 관리한다.
