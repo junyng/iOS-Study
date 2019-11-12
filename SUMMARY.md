@@ -1,8 +1,9 @@
 # Table of contents
 
 * [Initial page](README.md)
-* [Human Interface Guidelines](human-interface-guidelines/README.md)
-  * [README](human-interface-guidelines/app-architecture.md)
+
+## Human Interface Guidelines
+
 * [Concurrency Programming Guide](concurrency-programming-guide/README.md)
   * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
   * [Concurrency and Application Design](concurrency-programming-guide/concurrency-and-application-design.md)
