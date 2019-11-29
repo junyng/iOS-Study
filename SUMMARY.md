@@ -107,3 +107,7 @@
   * [Singleton](archive/cocoa-core-competencies/singleton.md)
   * [Value object](archive/cocoa-core-competencies/value-object.md)
 
+## Foundation
+
+* [URLSessionWebSocketTask](foundation/urlsessionwebsockettask.md)
+
