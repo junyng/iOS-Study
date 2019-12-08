@@ -114,4 +114,5 @@
   * [Building a Basic Playback App](media-playback-programming-guide/building-a-basic-playback-app.md)
   * [Configuring Audio Settings for iOS and tvOS](media-playback-programming-guide/configuring-audio-settings-for-ios-and-tvos.md)
   * [Exploring AVFoundation](media-playback-programming-guide/exploring-avfoundation.md)
+  * [Refining The User Experience](media-playback-programming-guide/refining-the-user-experience.md)
 
