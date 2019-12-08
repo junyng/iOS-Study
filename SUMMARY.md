@@ -116,5 +116,6 @@
   * [Exploring AVFoundation](media-playback-programming-guide/exploring-avfoundation.md)
   * [Refining The User Experience](media-playback-programming-guide/refining-the-user-experience.md)
   * [Working with HTTP Live Streaming](media-playback-programming-guide/working-with-http-live-streaming.md)
-* [HTTP Live Streaming Overview](http-live-streaming-overview.md)
+* [HTTP Live Streaming Overview](http-live-streaming-overview/README.md)
+  * [HTTP Streaming Architecture](http-live-streaming-overview/http-streaming-architecture.md)
 
