@@ -5,9 +5,9 @@
 ## Human Interface Guidelines
 
 * [Concurrency Programming Guide](concurrency-programming-guide/README.md)
-  * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
   * [Concurrency and Application Design](concurrency-programming-guide/concurrency-and-application-design.md)
   * [Operation Queues](concurrency-programming-guide/operation-queues.md)
+  * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
 
 ## Photos
 
@@ -118,4 +118,5 @@
   * [Working with HTTP Live Streaming](media-playback-programming-guide/working-with-http-live-streaming.md)
 * [HTTP Live Streaming Overview](http-live-streaming-overview/README.md)
   * [HTTP Streaming Architecture](http-live-streaming-overview/http-streaming-architecture.md)
+* [Registering for Key-Value Observing](registering-for-key-value-observing.md)
 

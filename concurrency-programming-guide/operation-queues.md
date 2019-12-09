@@ -10,21 +10,86 @@ Cocoa 오퍼레이션은 비동기적으로 수행하고자 하는 작업을 캡
 
 **Table 2-1** Operation classes of the Foundation framework
 
-| Class | Description |
-| :--- | :--- |
-| `NSInvocationOperation` | 애플리케이션에서 객체와 `selector`에 기반으로 오퍼레이션 객체를 생성하기 위해 사용하는 클래스이다. 필요한 태스크를 이미 수행하는 기존 메서드가 있는 경우 이 클래스를 사용할 수 있다. 서브 클래싱이 필요 없기 때문에 이 클래스를 사용하여 보다 동적인 방식으로 오퍼레이션 객체를 만들 수도 있다. 이 클래스를 사용하는 방법에 대한 자세한 정보는 Creating an NSInvocationOperation Object를 참조하라. |
-| `NSBlockOperation` | 하나 이상의 block object를 동시에 실행하기 위해 사용하는 클래스이다. 블록은 둘 이상 실행할 수 있기 때문에 블록 작업 객체는 그룹 의미를 사용하여 작동한다. 모든 연관된 블록의 실행을 완료한 경우에만 작업 자체가 완료된것으로 간주된다. 이 클래스는 OS X v10.6 이상에서 사용할 수 있다. 블록에 대한 자세한 내용은 Blocks Programming Topics를 참조하라. |
-| `NSOperation` | 사용자 지정 작업 객체를 정의하기 위한 기본 클래스이다. `NSOperation` 서브클래싱은 작업이 실행되고 상태를 보고하는 기본 방식을 변경할 수 있는 기능을 포함하여 자신의 작업 구현에 대한 완전한 제어를 제공한다. 사용자 정의 오퍼레이션 객체에 대한 자세한 정보를 Defining a Custom Operation Object를 참조하라. |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Class</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><a href="https://developer.apple.com/documentation/foundation/nsinvocationoperation">NSInvocationOperation</a>
+      </td>
+      <td style="text-align:left">&#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; &#xAC1D;&#xCCB4;&#xC640; <code>selector</code>&#xC5D0;
+        &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC624;&#xD37C;&#xB808;&#xC774;&#xC158;
+        &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xAE30; &#xC704;&#xD574;
+        &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD074;&#xB798;&#xC2A4;&#xC774;&#xB2E4;.
+        &#xD544;&#xC694;&#xD55C; &#xD0DC;&#xC2A4;&#xD06C;&#xB97C; &#xC774;&#xBBF8;
+        &#xC218;&#xD589;&#xD558;&#xB294; &#xAE30;&#xC874; &#xBA54;&#xC11C;&#xB4DC;&#xAC00;
+        &#xC788;&#xB294; &#xACBD;&#xC6B0; &#xC774; &#xD074;&#xB798;&#xC2A4;&#xB97C;
+        &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC11C;&#xBE0C; &#xD074;&#xB798;&#xC2F1;&#xC774;
+        &#xD544;&#xC694; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774; &#xD074;&#xB798;&#xC2A4;&#xB97C;
+        &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBCF4;&#xB2E4; &#xB3D9;&#xC801;&#xC778;
+        &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xC624;&#xD37C;&#xB808;&#xC774;&#xC158;
+        &#xAC1D;&#xCCB4;&#xB97C; &#xB9CC;&#xB4E4; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.
+        &#xC774; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;
+        &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xC815;&#xBCF4;&#xB294;
+        <a
+        href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW6">Creating an NSInvocationOperation Object</a>&#xB97C; &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="https://developer.apple.com/documentation/foundation/blockoperation">NSBlockOperation</a>
+      </td>
+      <td style="text-align:left">
+        <p>&#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; block object&#xB97C; &#xB3D9;&#xC2DC;&#xC5D0;
+          &#xC2E4;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xD558;&#xB294;
+          &#xD074;&#xB798;&#xC2A4;&#xC774;&#xB2E4;. &#xBE14;&#xB85D;&#xC740; &#xB458;
+          &#xC774;&#xC0C1; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;
+          &#xBE14;&#xB85D; &#xC791;&#xC5C5; &#xAC1D;&#xCCB4;&#xB294; &#xADF8;&#xB8F9;
+          &#xC758;&#xBBF8;&#xB860;&#xC801;&#xC73C;&#xB85C; &#xC791;&#xB3D9;&#xD55C;&#xB2E4;.
+          &#xBAA8;&#xB4E0; &#xC5F0;&#xAD00;&#xB41C; &#xBE14;&#xB85D;&#xC774; &#xC2E4;&#xD589;&#xC744;
+          &#xC644;&#xB8CC;&#xD588;&#xC744; &#xACBD;&#xC6B0;&#xC5D0; &#xC791;&#xC5C5;
+          &#xC790;&#xCCB4;&#xAC00; &#xC644;&#xB8CC;&#xB41C; &#xAC83;&#xC73C;&#xB85C;
+          &#xAC04;&#xC8FC; &#xB41C;&#xB2E4;.</p>
+        <p>&#xC774; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;
+          &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740;
+          <a
+          href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW2">Creating an NSBlockOperation Object</a>&#xB97C; &#xCC38;&#xC870;&#xD558;&#xB77C;.
+            &#xC774; &#xD074;&#xB798;&#xC2A4;&#xB294; OS X v10.6 &#xC774;&#xC0C1;&#xC5D0;&#xC11C;
+            &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xBE14;&#xB85D;&#xC5D0;
+            &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740; <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007502"><em>Blocks Programming Topics</em></a> &#xB97C;
+            &#xCC38;&#xC870;&#xD558;&#xB77C;.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><a href="https://developer.apple.com/documentation/foundation/nsoperation">NSOperation</a>
+      </td>
+      <td style="text-align:left">
+        <p>&#xC0AC;&#xC6A9;&#xC790; &#xC9C0;&#xC815; &#xC791;&#xC5C5; &#xAC1D;&#xCCB4;&#xB97C;
+          &#xC815;&#xC758;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xAE30;&#xBCF8; &#xD074;&#xB798;&#xC2A4;&#xC774;&#xB2E4;. <code>NSOperation</code> &#xC11C;&#xBE0C;&#xD074;&#xB798;&#xC2F1;&#xC740;
+          &#xC791;&#xC5C5;&#xC774; &#xC2E4;&#xD589;&#xB418;&#xACE0; &#xC0C1;&#xD0DC;&#xB97C;
+          &#xBCF4;&#xACE0;&#xD558;&#xB294; &#xAE30;&#xBCF8; &#xBC29;&#xC2DD;&#xC744;
+          &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xB294; &#xAE30;&#xB2A5;&#xC744;
+          &#xD3EC;&#xD568;&#xD558;&#xC5EC; &#xC790;&#xC2E0;&#xC758; &#xC791;&#xC5C5;
+          &#xAD6C;&#xD604;&#xC5D0; &#xB300;&#xD55C; &#xC644;&#xC804;&#xD55C; &#xC81C;&#xC5B4;
+          &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.</p>
+        <p>&#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xC624;&#xD37C;&#xB808;&#xC774;&#xC158;
+          &#xAC1D;&#xCCB4;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xC815;&#xBCF4;&#xB97C;
+          <a
+          href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW16">Defining a Custom Operation Object</a>&#xB97C; &#xCC38;&#xC870;&#xD558;&#xB77C;.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>모든 오퍼레이션 객체는 다음과 같은 주요 기능을 지원한다.
 
-모든 오퍼레이션 객체는 다음과 같은 주요 기능을 지원한다.
+* 오퍼레이션 객체 간의 그래프 기반 종속성 설정을 지원한다. 이러한 종속성으로 인해 해당 작업이 종속된 모든 작업이 실행될때까지 해당 작업이 실행되지 않는다. 종속성을 구성하는 방법에 대한 자세한 내용은 [Configuring Interoperation Dependencies](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW17) 를 참조하라.
+* 오퍼레이션의 메인 태스크가 완료된 후 실행되는 선택적 완료 블록을 지원한다. \(OS X v10.6 이상\) 완료 블록 설정 방법에 대한 자세한 내용은 [Setting Up a Completion Block](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW33) 을 참조하라.
+* KVO 알림을 사용하여 작업 실행 상태에 대한 변경 사항을 모니터링할 수 있도록 지원한다. KVO 알림을 관찰하는 방법에 대한 자세한 내용은 [_Key-Value Observing Programming Guide_](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i) __를 참조하라.
+* 상대적 실행 순서에 영향을 미치는 작업 우선 순위 지정을 지원한다. 자세한 내용은 [Changing an Operation’s Execution Priority](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW31) 를 참조하라.
+* 작업을 실행하는 동안 작업을 중지할 수 있는 취소를 지원한다. 작업을 취소하는 방법에 대한 자세한 내용은 [Canceling Operations](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW39) 를 참조하라. 자체 오퍼레이션에서 취소 지원 방법에 대한 자세한 내용은 [Responding to Cancellation Events](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW24) 를 참조하라.
 
-* 오퍼레이션 객체 간의 그래프 기반 종속성 설정을 지원한다. 이러한 종속성으로 인해 해당 작업이 종속된 모든 작업이 실행될때까지 해당 작업이 실행되지 않는다. 종속성을 구성하는 방법에 대한 자세한 내용은 Configuring Interoperation Dependencies를 참조하라.
-* 오퍼레이션의 메인 태스크가 완료된 후 실행되는 선택적 완료 블록을 지원한다. \(OS X v10.6 이상\) 완료 블록 설정 방법에 대한 자세한 내용은 Setting Up a Completion Block을 참조하라.
-* KVO 알림을 사용하여 작업 실행 상태에 대한 변경 사항을 모니터링할 수 있도록 지원한다. KVO 알림을 관찰하는 방법에 대한 자세한 내용은 Key-Value Observing Programming Guide를 참조하라.
-* 상대적 실행 순서에 영향을 미치는 작업 우선 순위 지정을 지원한다. 자세한 내용은 Changing an Operation's Execution Priority를 참조하라.
-* 작업을 실행하는 동안 작업을 중지할 수 있는 취소를 지원한다. 작업을 취소하는 방법에 대한 자세한 내용은 Canceling Operations를 참조하라. 자체 오퍼레이션에서 취소 지원 방법에 대한 자세한 내용은 Responding to Cancellation Events를 참조하라.
-
-오퍼레이션은 애플리케이션의 동시성 수준을 향상시키는 데 도움이 되도록 설계되어 있다. 오퍼레이션은 또한 프로그램의 동작을 간단한 개별적인 덩어리로 구성하고 캡슐화하는 좋은 방법이다. 애플리케이션의 메인 스레드에서 일부 코드를 실행하는 대신, 하나 이상의 작업 객체를 대기열에 제출하고 하나 이상의 개별 스레드에서 해당 작업을 비동기식으로 수행하도록 할 수 있다.
+오퍼레이션은 애플리케이션의 동시성 수준을 향상시키는 데 도움이 되도록 설계되어 있다. 오퍼레이션은 또한 프로그램의 동작을 간단한 개별적인 덩어리로 구성하고 캡슐화하는 좋은 방법이다. 애플리케이션의 메인 쓰레드에서 일부 코드를 실행하는 대신, 하나 이상의 작업 객체를 대기열에 제출하고 하나 이상의 개별 쓰레드에서 해당 작업을 비동기식으로 수행하도록 할 수 있다.
 
 ## Concurrent Versus Non-concurrent Operations
 
