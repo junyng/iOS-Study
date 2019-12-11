@@ -300,3 +300,58 @@ GCD는 코코아 메모리 관리 기법을 기본적으로 지원하므로, 디
 3. 대기 호출이 반환하면 리소스를 가져와 작업을 수행하라.
 4. 리소스가 완료되면 해당 리소스를 해제하고 [`dispatch_semaphore_signal`](https://developer.apple.com/documentation/dispatch/dispatchsemaphore/1452919-signal)  함수를 호출하여 세마포어 신호를 보내라.
 
+이러한 단계가 작동하는 방법의 예를 들어 시스템에서 파일 설명자의 사용을 고려하라. 각 애플리케이션에는 사용할 파일 설명자의 수가 제한되어 있다. 많은 수의 파일을 처리하는 태스크가 있는 경우 파일 설명자가 다 떨어지도록 한 번에 한 번에 너무 많은 파일을 열지 않아야 한다. 대신 세마포어를 사용하여 파일 처리 코드로 언제든지 사용 중인 파일 설명자 수를 제한할 수 있다. 태스크에 통합할 코드 조각의 기본 내용은 다음과 같다. 세마포어를 기다릴 때마다 `dispatch_semaphore_wait` 함수는 변수를 1씩 카운트한다. 결과 값이 음수일 경우 함수는 커널에게 쓰레드를 차단하라고 지시한다. 반면에, `dispatch_semaphore_signal` 함수는 카운트 변수를 1씩 증가시켜 리소스가 풀렸음을 나타낸다. 
+
+```objectivec
+// Creabete the semaphore, specifying the initial pool size
+dispatch_semaphore_t fd_sema = dispatch_semaphore_create(getdtablesize() / 2);
+ 
+// Wait for a free file descriptor
+dispatch_semaphore_wait(fd_sema, DISPATCH_TIME_FOREVER);
+fd = open("/etc/services", O_RDONLY);
+ 
+// Release the file descriptor when done
+close(fd);
+dispatch_semaphore_signal(fd_sema);
+```
+
+세마포어를 생성할 때 사용 가능한 리소스 수를 지정하라. 이 값은 세마포어의 초기 카운트 변수가 된다. 리소스가 차단되고 대기 중인 태스크가 있는 경우 해당 태스크 중 하나는 나중에 차단 해제되어 작업을 수행할 수 있게 된다.
+
+### Waiting on Groups of Queued Tasks
+
+디스패치 그룹은 하나 이상의 태스크가 실행을 마칠 때까지 쓰레드를 차단하는 방법이다. 이 동작은 지정된 모든 태스크가 완료될 때까지 진행할 수 없는 곳에서 사용할 수 있다. 예를 들어, 일부 데이터를 계산하기 위해 여러 태스크를 전송한 후 그룹을 사용하여 해당 태스크에서 대기한 다음 완료되었을 때 결과를 처리할 수 있다. 쓰레드 조인의 대안으로 디스패치 그룹을 사용하는 또 다른 방법이 있다. 여러 개의 하위 쓰레드를 시작한 다음 각 쓰레드와 결합하는 대신, 해당 태스크를 디스패치 그룹에 추가하고 그룹 전체에서 대기할 수 있다.
+
+Listing 3-6 은 그룹 설정, 태스크 전송, 결과 대기를 위한 기본 프로세스를 보여준다. [`dispatch_async`](https://developer.apple.com/documentation/dispatch/1453057-dispatch_async) 함수를 사용하여 큐에 태스크를 전송하는 대신 [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/1453084-dispatch_group_async) 함수를 사용하라. 이 함수는 태스크를 그룹과 연결하고 실행을 위해 큐에 넣어라. 태스크 그룹이 완료될 때까지 기다리려면 해당 그룹을 전달하면서 [`dispatch_group_wait`](https://developer.apple.com/documentation/dispatch/1452794-dispatch_group_wait) 함수를 사용하라.
+
+**Listing 3-6**  Waiting on asynchronous tasks
+
+```text
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_group_t group = dispatch_group_create();
+ 
+// Add a task to the group
+dispatch_group_async(group, queue, ^{
+   // Some asynchronous work
+});
+ 
+// Do some other work while the tasks execute.
+ 
+// When you cannot make any more forward progress,
+// wait on the group to block the current thread.
+dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+ 
+// Release the group when it is no longer needed.
+dispatch_release(group);
+```
+
+### Dispatch Queues and Thread Safety
+
+디스패치 큐의 컨텍스트에서 쓰레드 안전성에 대해 말하는 것이 이상하게 보일 수 있지만, 쓰레드 안전성은 여전히 관련 주제이다. 애플리케이션에서 동시성을 구현할 때마다 몇 가지 알아야 할 사항이 있다.
+
+* 디스패치 큐 자체는 쓰레드에 안전하다. 즉, 먼저 큐에 대한 접근에 락을 걸거나 동기화하지 않고 시스템의 쓰레드에서 디스패치 큐에 태스크를 제출할 수 있다.
+* 함수 호출에 전달된 것과 동일한 큐에서 실행 중인 태스크에서 [`dispatch_sync`](https://developer.apple.com/documentation/dispatch/1452870-dispatch_sync) 함수를 호출하지 않아야 한다. 이렇게 하면 큐가 교착 상태가 된다. 현재 큐로 발송해야 하는 경우 [`dispatch_async`](https://developer.apple.com/documentation/dispatch/1453057-dispatch_async) 함수를 사용하여 비동기식으로 발송하라.
+* 디스패치 큐에 제출한 태스크에서 락을 사용하지 마라. 태스크에서 락을 사용하는 것은 안전하지만 락을 획득할 때 해당 락을 사용할 수 없는 경우 시리얼 큐를 완전히 차단할 위험이 있다. 마찬가지로 콘커런트 큐의 경우 락을 대기하면 다른 태스크가 대신 실행되지 않을 수 있다. 코드의 일부를 동기화해야 하는 경우 락 대신 시리얼 큐를 사용하라.
+* 태스크를 실행하는 메인 쓰레드에 대한 정보를 얻을 수 있지만 그렇게 하지 않는 것이 좋다. 디스패치 큐와 쓰레드의 호환성에 대한 자세한 정보는 [Compatibility with POSIX Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW18) 를 참조하라.
+
+디스패치 큐를 사용하도록 기존 쓰레드 코드를 변경하는 방법에 대한 추가 팁은 [Migrating Away from Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW1) 을 참조하라.
+
