@@ -109,6 +109,7 @@
 
 ## Foundation
 
+* [URLSession](foundation/urlsession.md)
 * [URLSessionWebSocketTask](foundation/urlsessionwebsockettask.md)
 * [Media Playback Programming Guide](media-playback-programming-guide/README.md)
   * [Building a Basic Playback App](media-playback-programming-guide/building-a-basic-playback-app.md)
