@@ -1,9 +1,9 @@
 # Table of contents
 
 * [Initial page](README.md)
+* [AVAsset](avasset.md)
 * [AVPlayer](avplayer.md)
 * [AVPlayerItem](avplayeritem.md)
-* [AVAsset](avasset.md)
 
 ## Human Interface Guidelines
 
