@@ -1,6 +1,9 @@
 # Table of contents
 
 * [Initial page](README.md)
+* [AVPlayer](avplayer.md)
+* [AVPlayerItem](avplayeritem.md)
+* [AVAsset](avasset.md)
 
 ## Human Interface Guidelines
 
@@ -110,6 +113,7 @@
 ## Foundation
 
 * [URLSession](foundation/urlsession.md)
+* [URLSessionDataTask](foundation/urlsessiondatatask.md)
 * [URLSessionWebSocketTask](foundation/urlsessionwebsockettask.md)
 * [Media Playback Programming Guide](media-playback-programming-guide/README.md)
   * [Building a Basic Playback App](media-playback-programming-guide/building-a-basic-playback-app.md)
@@ -120,4 +124,9 @@
 * [HTTP Live Streaming Overview](http-live-streaming-overview/README.md)
   * [HTTP Streaming Architecture](http-live-streaming-overview/http-streaming-architecture.md)
 * [Registering for Key-Value Observing](registering-for-key-value-observing.md)
+
+## Article
+
+* [Fetching Website Data into Memory](article/fetching-website-data-into-memory.md)
+* [Uploading Data to a Website](article/uploading-data-to-a-website.md)
 
