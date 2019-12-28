@@ -131,4 +131,5 @@
 * [Uploading Data to a Website](article/uploading-data-to-a-website.md)
 * [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
   * [Playback](avfoundation-programming-guide/playback.md)
+* [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
 
