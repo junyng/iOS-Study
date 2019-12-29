@@ -133,4 +133,5 @@
 * [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
   * [Playback](avfoundation-programming-guide/playback.md)
 * [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
+* [HTTP Live Streaming](http-live-streaming.md)
 
