@@ -4,6 +4,7 @@
 * [AVAsset](avasset.md)
 * [AVPlayer](avplayer.md)
 * [AVPlayerItem](avplayeritem.md)
+* [AVPlayerLayer](avplayerlayer.md)
 
 ## Human Interface Guidelines
 
