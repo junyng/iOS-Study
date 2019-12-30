@@ -136,4 +136,5 @@
 * [HTTP Live Streaming](http-live-streaming.md)
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)
 * [Responding to Playback State Changes](responding-to-playback-state-changes.md)
+* [Seeking Through Media](seeking-through-media.md)
 
