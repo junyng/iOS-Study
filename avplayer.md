@@ -40,3 +40,154 @@ AVKit 또는 AVPlayerLayer가 제공되는 시각적 콘텐츠와 함께 [`AVSyn
 
 외부 재생 모드는 AirPlay를 통해 Apple TV와 같은 외부 장치에 비디오 데이터를 전송하거나 미니 커넥터 기반 HDMI/VGA 어댑터를 통해 원래의 정확도로 전체 화면을 재생하는 것을 말한다. "외부 화면" 모드\(미러링 및 두 번째 디스플레이라고도 함\)에서 호스트 디바이스가 비디오 데이터를 렌더링한다. 호스트 장치는 렌더링된 비디오를 외부 장치로 재압축 및 전송하고, 외부 장치는 비디오를 압축 해제하여 표시한다. 외부 재생 속성은 AirPlay 비디오 재생에 영향을 미치며 사용되지 않는 AirPlay 지원 속성의 대체이다.
 
+### Topics
+
+#### Creating a Player
+
+* [`init(url: URL)`](https://developer.apple.com/documentation/avfoundation/avplayer/1385706-init)  지정된 URL에서 참조하는 단일 시청각 리소스를 재생할 새 플레이어를 생성하라.
+* [`init(playerItem: AVPlayerItem?)`](https://developer.apple.com/documentation/avfoundation/avplayer/1387104-init)  지정된 플레이어 항목을 재생할 새 플레이어 만들기
+
+#### Managing Playback
+
+* [`func play()`](https://developer.apple.com/documentation/avfoundation/avplayer/1386726-play)  현재 항목의 재생을 시작한다.
+* [`func pause()`](https://developer.apple.com/documentation/avfoundation/avplayer/1387895-pause)  현재 항목의 재생을 일시 중지한다.
+* [`var rate: Float`](https://developer.apple.com/documentation/avfoundation/avplayer/1388846-rate)  현재 재생률.
+* [`var actionAtItemEnd: AVPlayer.ActionAtItemEnd`](https://developer.apple.com/documentation/avfoundation/avplayer/1387376-actionatitemend)  현재 플레이어 항목의 재생이 완료되면 수행하는 작업.
+* [`enum AVPlayer.ActionAtItemEnd`](https://developer.apple.com/documentation/avfoundation/avplayer/actionatitemend)  플레이를 마치면 플레이어가 취해야 할 액션.
+* [`func replaceCurrentItem(with: AVPlayerItem?)`](https://developer.apple.com/documentation/avfoundation/avplayer/1390806-replacecurrentitem)  현재 플레이어 항목을 새 플레이어 항목으로 대체.
+* [`var preventsDisplaySleepDuringVideoPlayback: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/2990522-preventsdisplaysleepduringvideop)  비디오 재생이 디스플레이 및 장치 절전을 방해하는지 여부를 나타내는 불 값.
+
+#### Managing Automatic Waiting Behavior
+
+* [`var automaticallyWaitsToMinimizeStalling: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1643482-automaticallywaitstominimizestal)  플레이어가 스톨을 최소화하기 위해 재생을 자동으로 연기해야 하는지 여부를 나타내는 불 값.
+* [`var reasonForWaitingToPlay: AVPlayer.WaitingReason?`](https://developer.apple.com/documentation/avfoundation/avplayer/1643486-reasonforwaitingtoplay)  플레이어가 현재 재생이 시작 또는 재개되기를 기다리는 WaitingReason.
+* [`struct AVPlayer.WaitingReason`](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason)  플레이어가 대기하고 있는 WaitingReason 시작 또는 재개.
+* [`var timeControlStatus: AVPlayer.TimeControlStatus`](https://developer.apple.com/documentation/avfoundation/avplayer/1643485-timecontrolstatus)  적절한 네트워크 조건을 기다리는 동안 재생이 현재 진행 중인지, 무기한 일시 중지되었는지 또는 일시 중단 되었는지 여부를 나타내는 상태.
+* [`enum AVPlayer.TimeControlStatus`](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus)  재생 속도 변경을 나타내는 플레이어 상태.
+* [`func playImmediately(atRate: Float)`](https://developer.apple.com/documentation/avfoundation/avplayer/1643480-playimmediately)   사용 가능한 미디어 데이터를 지정된 속도로 즉시 재생하라.
+
+#### Managing Time
+
+* [`func currentTime() -> CMTime`](https://developer.apple.com/documentation/avfoundation/avplayer/1390404-currenttime) 현재 플레이어 항목의 현재 시간을 반환한다.
+* [`func seek(to: CMTime)`](https://developer.apple.com/documentation/avfoundation/avplayer/1385953-seek)
+
+  현재 재생 시간을 지정된 시간으로 설정하라.
+
+* [`func seek(to: Date)`](https://developer.apple.com/documentation/avfoundation/avplayer/1386114-seek)
+
+  현재 재생 시간을 날짜 객체가 지정한 시간으로 설정하라.
+
+* [`func seek(to: CMTime, completionHandler: (Bool) -> Void)`](https://developer.apple.com/documentation/avfoundation/avplayer/1387018-seek)
+
+  현재 재생 시간을 지정된 시간으로 설정하고 탐색 작업이 완료되거나 중단될 때 지정된 블록을 실행한다.
+
+* [`func seek(to: Date, completionHandler: (Bool) -> Void)`](https://developer.apple.com/documentation/avfoundation/avplayer/1386108-seek)
+
+  현재 재생 시간을 지정된 시간으로 설정하고 탐색 작업이 완료되거나 중단될 때 지정된 블록을 실행한다.
+
+* [`func seek(to: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime)`](https://developer.apple.com/documentation/avfoundation/avplayer/1387741-seek)  지정된 시간 내에 현재 재생 시간을 설정한다.
+* [`func seek(to: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime, completionHandler: (Bool) -> Void)`](https://developer.apple.com/documentation/avfoundation/avplayer/1388493-seek)
+
+  지정된 시간 내에 현재 재생 시간을 설정하고 탐색 작업이 완료되거나 중단될 때 지정된 블록을 호출한다.
+
+#### Observing Time
+
+* [`func addPeriodicTimeObserver(forInterval: CMTime, queue: DispatchQueue?, using: (CMTime) -> Void) -> Any`](https://developer.apple.com/documentation/avfoundation/avplayer/1385829-addperiodictimeobserver)
+
+  재생하는 동안 특정 블록의 주기적인 호출에 대해 변경 시간을 보고하도록 요청한다.
+
+* [`func addBoundaryTimeObserver(forTimes: [NSValue], queue: DispatchQueue?, using: () -> Void) -> Any`](https://developer.apple.com/documentation/avfoundation/avplayer/1388027-addboundarytimeobserver)
+
+  정상 재생 중에 지정된 시간이 전달될 때 블록의 호출을 요청한다.
+
+* [`func removeTimeObserver(Any)`](https://developer.apple.com/documentation/avfoundation/avplayer/1387552-removetimeobserver)
+
+  이전에 등록된 주기적인 또는 경계 시간 관찰자를 취소한다.
+
+#### Configuring Media Selection Criteria Settings
+
+* [`var appliesMediaSelectionCriteriaAutomatically: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1387178-appliesmediaselectioncriteriaaut)
+
+  수신자가 현재 선택 기준을 플레이어 항목에 자동으로 적용해야 하는지 여부를 나타내는 불 값.
+
+* [`func mediaSelectionCriteria(forMediaCharacteristic: AVMediaCharacteristic) -> AVPlayerMediaSelectionCriteria?`](https://developer.apple.com/documentation/avfoundation/avplayer/1387825-mediaselectioncriteria)
+
+  지정된 미디어 특성을 가진 미디어 항목에 대한 자동 선택 기준을 반환한다.
+
+* [`func setMediaSelectionCriteria(AVPlayerMediaSelectionCriteria?, forMediaCharacteristic: AVMediaCharacteristic)`](https://developer.apple.com/documentation/avfoundation/avplayer/1390563-setmediaselectioncriteria)
+
+  지정된 미디어 특성을 가진 미디어에 대해 자동 선택 기준을 적용한다.[  
+  ](https://developer.apple.com/documentation/avfoundation/avplayer/1390563-setmediaselectioncriteria)
+
+#### Managing External Playback
+
+* [`var allowsExternalPlayback: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1387441-allowsexternalplayback)
+
+  플레이어가 외부 재생 모드로 전환할 수 있는지 여부를 나타내는 불 값.
+
+* [`var isExternalPlaybackActive: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1388982-isexternalplaybackactive)
+
+  플레이어가 현재 외부 재생 모드에서 비디오를 재생하고 있는지 여부를 나타내는 불 값.
+
+* [`var usesExternalPlaybackWhileExternalScreenIsActive: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1624255-usesexternalplaybackwhileexterna)
+
+  외부 화면 모드가 활성화된 상태에서 플레이어가 자동으로 외부 재생 모드로 전환해야 하는지 여부를 나타내는 불 값.
+
+* [`var externalPlaybackVideoGravity: AVLayerVideoGravity`](https://developer.apple.com/documentation/avfoundation/avplayer/1624251-externalplaybackvideogravity)
+
+  외부 재생 모드용인 플레이어의 VideoGravity.
+
+* [`struct AVLayerVideoGravity`](https://developer.apple.com/documentation/avfoundation/avlayervideogravity)
+
+  비디오가 계층의 바운드 직사각형 내에 표시되는 방법을 정의하는 값.
+
+#### Managing Audio Output
+
+* [`var isMuted: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1387544-ismuted)
+
+  플레이어의 오디오 출력이 음소거되는지 여부를 나타내는 불 값.
+
+* [`var volume: Float`](https://developer.apple.com/documentation/avfoundation/avplayer/1390127-volume)
+
+  플레이어의 오디오 재생 볼륨.
+
+* [`var audioOutputDeviceUniqueID: String?`](https://developer.apple.com/documentation/avfoundation/avplayer/1390717-audiooutputdeviceuniqueid)
+
+  오디오 재생에 사용되는 Core Audio 출력 장치의 고유 ID를 지정한다.
+
+#### Getting Player Properties
+
+* [`var status: AVPlayer.Status`](https://developer.apple.com/documentation/avfoundation/avplayer/1388096-status)
+
+  플레이어를 재생에 사용할 수 있는지 여부를 나타내는 상태.
+
+* [`enum AVPlayer.Status`](https://developer.apple.com/documentation/avfoundation/avplayer/status)
+
+  플레이어가 항목을 성공적으로 재생할 수 있는지 여부를 나타내는 상태.
+
+* [`var error: Error?`](https://developer.apple.com/documentation/avfoundation/avplayer/1387764-error)
+
+  실패를 초래한 에러.
+
+* [`var currentItem: AVPlayerItem?`](https://developer.apple.com/documentation/avfoundation/avplayer/1387569-currentitem)
+
+  플레이어의 현재 플레이어 항목.
+
+* [`var isOutputObscuredDueToInsufficientExternalProtection: Bool`](https://developer.apple.com/documentation/avfoundation/avplayer/1624254-isoutputobscuredduetoinsufficien)
+
+  외부 보호가 불충분하여 출력이 가려지는지 여부를 나타내는 불 값.
+
+#### Determining HDR Playback
+
+* [`class var availableHDRModes: AVPlayer.HDRMode`](https://developer.apple.com/documentation/avfoundation/avplayer/2936889-availablehdrmodes)
+
+  재생 가능한 HDR 모드.
+
+* [`struct AVPlayer.HDRMode`](https://developer.apple.com/documentation/avfoundation/avplayer/hdrmode)
+
+  HDR 모드를 지정하는 비트필드 유형.
+
+#### Setting The GPU
+
+* [`var preferredVideoDecoderGPURegistryID: UInt64`](https://developer.apple.com/documentation/avfoundation/avplayer/2942616-preferredvideodecodergpuregistry)  비디오 디코딩에 사용되는 GPU의 레지스트리 식별자.
+
