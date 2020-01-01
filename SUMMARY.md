@@ -137,5 +137,5 @@
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)
 * [Responding to Playback State Changes](responding-to-playback-state-changes.md)
 * [Seeking Through Media](seeking-through-media.md)
-* [Presenting Chapter Markers](presenting-chapter-markers.md)
+* [Observing the Playback Time](presenting-chapter-markers.md)
 
