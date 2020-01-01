@@ -138,4 +138,5 @@
 * [Responding to Playback State Changes](responding-to-playback-state-changes.md)
 * [Seeking Through Media](seeking-through-media.md)
 * [Observing the Playback Time](presenting-chapter-markers.md)
+* [Using Key-Value Observing in Swift](using-key-value-observing-in-swift.md)
 
