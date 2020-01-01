@@ -5,6 +5,7 @@
 * [AVPlayer](avplayer.md)
 * [AVPlayerItem](avplayeritem.md)
 * [AVPlayerLayer](avplayerlayer.md)
+* [CALayer](calayer.md)
 
 ## Human Interface Guidelines
 
@@ -132,6 +133,7 @@
 * [Uploading Data to a Website](article/uploading-data-to-a-website.md)
 * [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
   * [Playback](avfoundation-programming-guide/playback.md)
+  * [Time and Media Representations](avfoundation-programming-guide/time-and-media-representations.md)
 * [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
 * [HTTP Live Streaming](http-live-streaming.md)
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)
@@ -139,4 +141,5 @@
 * [Seeking Through Media](seeking-through-media.md)
 * [Observing the Playback Time](presenting-chapter-markers.md)
 * [Using Key-Value Observing in Swift](using-key-value-observing-in-swift.md)
+* [Adding Subtitles and Alternative Audio Tracks](adding-subtitles-and-alternative-audio-tracks.md)
 
