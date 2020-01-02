@@ -142,4 +142,5 @@
 * [Observing the Playback Time](presenting-chapter-markers.md)
 * [Using Key-Value Observing in Swift](using-key-value-observing-in-swift.md)
 * [Adding Subtitles and Alternative Audio Tracks](adding-subtitles-and-alternative-audio-tracks.md)
+* [Key-Value Observing Programming Guide](key-value-observing-programming-guide.md)
 

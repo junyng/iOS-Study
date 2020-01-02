@@ -86,9 +86,17 @@ if (CMTIME_IS_INVALID(myTime)) {
 
 [`CMTimeRangeMake`](https://developer.apple.com/documentation/coremedia/1462785-cmtimerangemake) 또는 [`CMTimeRangeFromTimeToTime`](https://developer.apple.com/documentation/coremedia/1462817-cmtimerangefromtimetotime)를 사용하여 시간 범위를 생성하라. `CMTime`값의 epochs에 제약이 있다.
 
-* `CMTimeRange` 구조체는 서로 다른 시대를 뛰어넘을 수 없다.
+* `CMTimeRange` 구조체는 서로 다른 epochs를 뛰어넘을 수 없다.
+* 타임스탬프를 나타내는 CMTime 구조체의 epoch는 0이 아닐 수 있지만, 시작 필드가 동일한 범위에서만 범위 작업\(예: [`CMTimeRangeGetUnion`](https://developer.apple.com/documentation/coremedia/1462837-cmtimerangegetunion)\)을 수행할 수 있다.
+* 지속시간을 나타내는 `CMTime` 구조체의 시점은 항상 0이어야하며 값은 음수가 아니어야 한다.
+
+**Working with Time Ranges**
+
+Core Media는 시간 범위가 주어진 시간 범위 또는 다른 시간 범위를 포함하는지 여부를 결정하고, 두 시간 범위가 동일한지 여부를 결정하며,  과 같은 시간 범위의 조합과 교차점을 계산하는 데 사용할 수 있는 기능을 제공한다
 
 
 
 ### Representations of Media
+
+비디오 데이터 및 관련 메타 데이터는 Core Media 프레임워크의 불투명한 객체로 AVFoundation에서 표현된다. Core Media는 CMSampleBuffer를 사용하여 비디오 데이터를 나타낸다.\([`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) 참조\)
 
