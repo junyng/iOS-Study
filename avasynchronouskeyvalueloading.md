@@ -14,7 +14,7 @@ protocol AVAsynchronousKeyValueLoading
 
 이 프로토콜에는 키의 상태\(비동기식으로 키, 값 로딩을 사용하는 클래스의 모든 속성\)를 찾는 데 사용할 수 있는 메서드가 포함되어 있다. 예를 들어 키의 값이 로드되었는지 여부를 확인할 수 있다. 또한 객체에 값을 비동기식으로 로드하도록 요청하여 작업이 완료되면 알려줄 수 있다.
 
-시간적 시청각 미디어의 특성 때문에 에셋의 성공적인 초기화가 반드시 모든 데이터를 즉시 사용할 수 있다는 것을 의미하지는 않는다. 대신 에셋은 관련 A 메서드를 직접 호출하고, [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) 객체를 통해 재생하고, [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession)를 사용하여 내보내기, [`AVAssetReader`](https://developer.apple.com/documentation/avfoundation/avassetreader)인스턴스를 사용하여 읽기 등의 작업을 수행할 때까지 데이터 로딩을 기다린다. 어떤 키의 값도 언제든지 요청할 수 있고 그 값도 동시에 반환되지만, 요청이 충족될 때까지 호출 쓰레드가 차단될 수 있다. 차단을 피하기 위해:
+시간적 시청각 미디어의 특성 때문에 에셋의 성공적인 초기화가 반드시 모든 데이터를 즉시 사용할 수 있다는 것을 의미하지는 않는다. 대신 에셋은 관련 [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset)메서드를 직접 호출하고, [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) 객체를 통해 재생하고, [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession)를 사용하여 내보내기, [`AVAssetReader`](https://developer.apple.com/documentation/avfoundation/avassetreader)인스턴스를 사용하여 읽기 등의 작업을 수행할 때까지 데이터 로딩을 기다린다. 어떤 키의 값도 언제든지 요청할 수 있고 그 값도 동시에 반환되지만, 요청이 충족될 때까지 호출 쓰레드가 차단될 수 있다. 차단을 피하기 위해:
 
 * 값이 아직 로드되지 않은 경우 [`loadValuesAsynchronously(forKeys:completionHandler:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/1387321-loadvaluesasynchronously)메서드를 사용하여 에셋에 하나 이상의 값을 비동기식으로 로드하도록 요청하고 사용 가능해지면 사용자에게 알려라.
 * [`statusOfValue(forKey:error:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/1386816-statusofvalue)메서드를 사용하여 주어진 키에 대한 값이 사용가능한지 여부를 결정한다.
