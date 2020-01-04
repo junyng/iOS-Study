@@ -7,6 +7,8 @@
 * [AVPlayerLayer](avplayerlayer.md)
 * [CALayer](calayer.md)
 * [AVComposition](avcomposition.md)
+* [AVAssetTrack](avassettrack.md)
+* [AVAsynchronousKeyValueLoading](avasynchronouskeyvalueloading.md)
 
 ## Human Interface Guidelines
 
