@@ -6,6 +6,7 @@
 * [AVPlayerItem](avplayeritem.md)
 * [AVPlayerLayer](avplayerlayer.md)
 * [CALayer](calayer.md)
+* [AVComposition](avcomposition.md)
 
 ## Human Interface Guidelines
 
