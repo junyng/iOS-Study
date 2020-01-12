@@ -7,8 +7,10 @@
 * [AVPlayerLayer](avplayerlayer.md)
 * [CALayer](calayer.md)
 * [AVComposition](avcomposition.md)
+* [AVVideoComposition](avvideocomposition.md)
 * [AVAssetTrack](avassettrack.md)
 * [AVAsynchronousKeyValueLoading](avasynchronouskeyvalueloading.md)
+* [AVAudioPlayer](avaudioplayer.md)
 
 ## Human Interface Guidelines
 
@@ -124,6 +126,7 @@
   * [Building a Basic Playback App](media-playback-programming-guide/building-a-basic-playback-app.md)
   * [Configuring Audio Settings for iOS and tvOS](media-playback-programming-guide/configuring-audio-settings-for-ios-and-tvos.md)
   * [Exploring AVFoundation](media-playback-programming-guide/exploring-avfoundation.md)
+  * [Using AVKit Platform Features](media-playback-programming-guide/using-avkit-platform-features.md)
   * [Refining The User Experience](media-playback-programming-guide/refining-the-user-experience.md)
   * [Working with HTTP Live Streaming](media-playback-programming-guide/working-with-http-live-streaming.md)
 * [HTTP Live Streaming Overview](http-live-streaming-overview/README.md)
