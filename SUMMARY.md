@@ -11,6 +11,7 @@
 * [AVAssetTrack](avassettrack.md)
 * [AVAsynchronousKeyValueLoading](avasynchronouskeyvalueloading.md)
 * [AVAudioPlayer](avaudioplayer.md)
+* [AVAudioSession](avaudiosession.md)
 
 ## Human Interface Guidelines
 
