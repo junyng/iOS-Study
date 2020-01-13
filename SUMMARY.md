@@ -141,6 +141,7 @@
 * [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
   * [Playback](avfoundation-programming-guide/playback.md)
   * [Time and Media Representations](avfoundation-programming-guide/time-and-media-representations.md)
+  * [Editing](avfoundation-programming-guide/editing.md)
 * [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
 * [HTTP Live Streaming](http-live-streaming.md)
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)
