@@ -2,19 +2,19 @@
 
 AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하게 하기 위해 기능이 풍부한 클래스 세트를 제공한다. AVFoundation의 편집 API의 핵심은 구성이다. 구성은 하나 이상의 다른 미디어 에셋의 트랙 모음이다. [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition)클래스는 트랙 삽입 및 제거를 위한 인터페이스를 제공하며, 시간적 순서를 관리한다. Figure 3-1은 새로운 구성을 기존 에셋의 조합에서 결합하여 새로운 에셋을 구성하는 방법을 보여준다. 여러 에셋을 순차적으로 필요한 만큼 단일 파일로 병합하기만 하면 된다. 구성의 트랙에서 사용자 지정 오디오 또는 비디오 처리를 수행하려면 각각 오디오 믹스 또는 비디오 구성을 통합해야 한다.
 
-**Figure 3-1**  AVMutableComposition은 에셋을 함께 모은다.
+**Figure 3-1**  `AVMutableComposition`은 에셋을 함께 모은다.
 
 ![](../.gitbook/assets/avmutablecomposition_2x.png)
 
-[`AVMutableAudioMix`](https://developer.apple.com/documentation/avfoundation/avmutableaudiomix) 클래스를 사용하여 그림 3-2 에서와 같이 성의 오디오 트랙에서 사용자 정의 오디오 처리를 수행할 수 있다. 현재 오디오 트랙의 최대 볼륨을 지정하거나 볼륨 램프를 설정할 수 있다.
+[`AVMutableAudioMix`](https://developer.apple.com/documentation/avfoundation/avmutableaudiomix) 클래스를 사용하여 그림 3-2 에서와 같이 구성의 오디오 트랙에서 사용자 정의 오디오 처리를 수행할 수 있다. 현재 오디오 트랙의 최대 볼륨을 지정하거나 볼륨 램프를 설정할 수 있다.
 
-**Figure 3-2**  AVMutableAudioMix는 오디오 믹싱을 수행한다.
+**Figure 3-2**  `AVMutableAudioMix`는 오디오 믹싱을 수행한다.
 
 ![](../.gitbook/assets/avmutableaudiomix_2x.png)
 
-Figure 3-3에 나온것처럼 [`AVMutableVideoComposition`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition) 클래스를 사용하여 편집을 위해 구성의 비디오 트랙과 직접 작업할 수 있다. 단일 비디오 구성으로 출력 비디오에 대해 원하는 렌더 크기 및 사이즈와 프레임 기간을 지정할 수 있다. 비디오 구성 명령\([`AVMutableVideoCompositionInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction) 클래스로 표시됨\)을 통해 비디오의 배경색을 수정하고 레이어 구성을 적용할 수 있다. 이러한 레이어 계층 구성\([`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction) 로 표시됨\)을 사용하여 성 내의 비디오 트랙에 변환, 변환 램프, 불투명도 및 불투명도 램프를 적용할 수 있다. 비디오 구성 클래스는 또한 [`animationTool`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition/1390395-animationtool) 속성을 사용하여 코어 애니메이션 프레임워크에서 비디오로 효과를 소개하는 기능을 제공한다.
+Figure 3-3에 나온것처럼 [`AVMutableVideoComposition`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition) 클래스를 사용하여 편집을 위해 구성의 비디오 트랙과 직접 작업할 수 있다. 단일 비디오 구성으로 출력 비디오에 대해 원하는 렌더 크기 및 사이즈와 프레임 기간을 지정할 수 있다. 비디오 구성 명령\([`AVMutableVideoCompositionInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction) 클래스로 표시됨\)을 통해 비디오의 배경색을 수정하고 레이어 구성을 적용할 수 있다. 이러한 레이어 계층 구성\([`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction) 로 표시됨\)을 사용하여 구성 내의 비디오 트랙에 변환, 변환 램프, 불투명도 및 불투명도 램프를 적용할 수 있다. 비디오 구성 클래스는 또한 [`animationTool`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition/1390395-animationtool) 속성을 사용하여 코어 애니메이션 프레임워크에서 비디오로 효과를 소개하는 기능을 제공한다.
 
-**Figure 3-3**  AVMutableVideoComposition
+**Figure 3-3**  `AVMutableVideoComposition`
 
 ![](../.gitbook/assets/avmutablevideocomposition_2x.png)
 
@@ -44,7 +44,7 @@ AVMutableCompositionTrack *mutableCompositionAudioTrack = [mutableComposition ad
 
 ### Adding Audiovisual Data to a Composition
 
-한 개 이상의 트랙으로 구성된 후에는 적절한 트랙에 미디어 데이터를 추가하기 시작할 수 있다. 구성 트랙에 미디어 데이터를 추가하려면 미디어 데이터가 있는 [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) 객체에 접근해야 한다. Mutable 구성 트랙 인터페이스를 사용하여 동일한 기본 미디어 유형을 가진 여러 트랙을 동일한 트랙에 함께 배치할 수 있다. 다음 예는 두 개의 서로 다른 비디오 에셋 트랙을 동일한 구성 트랙에 순차적으로 추가하는 방법을 보여준다.
+한 개 이상의 트랙으로 구성된 후에는 적절한 트랙에 미디어 데이터를 추가하기 시작할 수 있다. 구성 트랙에 미디어 데이터를 추가하려면 미디어 데이터가 있는 [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) 객체에 접근해야 한다. 변이 가능한 구성 트랙 인터페이스를 사용하여 동일한 기본 미디어 유형을 가진 여러 트랙을 동일한 트랙에 함께 배치할 수 있다. 다음 예는 두 개의 서로 다른 비디오 에셋 트랙을 동일한 구성 트랙에 순차적으로 추가하는 방법을 보여준다.
 
 ```objectivec
 // You can retrieve AVAssets from a number of places, like the camera roll for example.
@@ -60,7 +60,7 @@ AVAssetTrack *anotherVideoAssetTrack = [[anotherVideoAsset tracksWithMediaType:A
 
 #### Retrieving Compatible Composition Tracks
 
-가능한 경우 각 미디어 유형에 대해 하나의 구성 트랙만 있어야 한다. 이러한 호환 가능한 에셋 트랙의 통합은 최소한의 자원 사용으로 이어진다. 미디어 데이터를 연속적으로 표시할 때는 동일한 유형의 미디어 데이터를 동일한 구성 트랙에 배치해야 한다. 원하는 에셋 트랙과 호환되는 구성 트랙이 있는지 확인하기 위해 mutable 구성을 쿼리할 수 있다.
+가능한 경우 각 미디어 유형에 대해 하나의 구성 트랙만 있어야 한다. 이러한 호환 가능한 에셋 트랙의 통합은 최소한의 자원 사용으로 이어진다. 미디어 데이터를 연속적으로 표시할 때는 동일한 유형의 미디어 데이터를 동일한 구성 트랙에 배치해야 한다. 원하는 에셋 트랙과 호환되는 구성 트랙이 있는지 확인하기 위해 변이 가능한 구성을 쿼리할 수 있다.
 
 ```objectivec
 AVMutableCompositionTrack *compatibleCompositionTrack = [mutableComposition mutableTrackCompatibleWithTrack:<#the AVAssetTrack you want to insert#>];
@@ -103,7 +103,7 @@ mutableVideoCompositionInstruction.backgroundColor = [[UIColor redColor] CGColor
 
 #### Applying Opacity Ramps
 
-비디오 구성 명령은 비디오 구성 레이어 명령어를 적용하는 데에도 사용될 수 있다. [`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction)객체는 변환, 변환 램프, 불투명도 및 불투명도 램프의 구성 내의 특정 비디오 트랙에 적용할 수 있다. 비디오 성 명령어 배열에서 [`layerInstructions`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction/1388912-layerinstructions)의 순서는 소스 트랙의 비디오 프레임이 해당 구성 명령어의 지속 기간 동안 계층화되고 구성되어야하는 방법을 결정한다. 다음 코드 조각은 두 번째 비디오로 전환하기 전에 구성에서 첫 번째 비디오를 천천히 페이드 아웃하도록 불투명 램프를 설정하는 방법을 보여준다.
+비디오 구성 명령은 비디오 구성 레이어 명령어를 적용하는 데에도 사용될 수 있다. [`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction)객체는 변환, 변환 램프, 불투명도 및 불투명도 램프의 구성 내의 특정 비디오 트랙에 적용할 수 있다. 비디오 구성 명령어 배열에서 [`layerInstructions`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction/1388912-layerinstructions)의 순서는 소스 트랙의 비디오 프레임이 해당 구성 명령어의 지속 기간 동안 계층화되고 구성되어야하는 방법을 결정한다. 다음 코드 조각은 두 번째 비디오로 전환하기 전에 구성에서 첫 번째 비디오를 천천히 페이드 아웃하도록 불투명 램프를 설정하는 방법을 보여준다.
 
 ```objectivec
 AVAsset *firstVideoAssetTrack = <#AVAssetTrack representing the first video segment played in the composition#>;
@@ -133,7 +133,7 @@ mutableVideoComposition.instructions = @[firstVideoCompositionInstruction, secon
 
 #### Incorporating Core Animation Effects
 
-비디오 성은 animationTool 속성을 통해 코어 애니메이션의 힘을 구에 추가할 수 있다. 이 애니메이션 툴을 통해 워터마킹, 타이틀 추가, 오버레이 애니메이션 등의 작업을 수행할 수 있다. 코어 애니메이션은 비디오 구성과 함께 두 가지 방법으로 사용할 수 있다. 코어 애니메이션 레이어를 개별 성 트랙으로 추가하거나 코어 애니메이션 효과를 구의 비디오 프레임에 직접 렌더링할 수 있다. 다음 코드는 비디오 중앙에 워터마크를 추가하여 후자의 옵션을 표시한다.
+비디오 구성은 animationTool 속성을 통해 코어 애니메이션의 힘을 구에 추가할 수 있다. 이 애니메이션 툴을 통해 워터마킹, 타이틀 추가, 오버레이 애니메이션 등의 작업을 수행할 수 있다. 코어 애니메이션은 비디오 구성과 함께 두 가지 방법으로 사용할 수 있다. 코어 애니메이션 레이어를 개별 성 트랙으로 추가하거나 코어 애니메이션 효과를 구의 비디오 프레임에 직접 렌더링할 수 있다. 다음 코드는 비디오 중앙에 워터마크를 추가하여 후자의 옵션을 표시한다.
 
 ```objectivec
 CALayer *watermarkLayer = <#CALayer representing your desired watermark image#>;

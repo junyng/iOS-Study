@@ -61,7 +61,7 @@ if (CMTIME_COMPARE_INLINE(time2, ==, time3)) {
 
 **Special Values of CMTime**
 
-Core Media는 `kCMTimeZero`, `kCMTimeInvalid`, `kCMTimePositiveInfinity` 및 `kCMTimeNegativeInfinity`의 특수 값에 대한 상수를 제공한다. 예를 들어, `CMTime` 구조체가 유효하지 않은 시간을 나타내는 많은 방법이 있다. CMTime이 유효한지 또는 숫자가 아닌 값을 테스트하려면 [`CMTIME_IS_INVALID`](https://developer.apple.com/documentation/coremedia/cmtime_is_invalid), [`CMTIME_IS_POSITIVE_INFINITY`](https://developer.apple.com/documentation/coremedia/cmtime_is_positive_infinity), 또는 [`CMTIME_IS_INDEFINITE`](https://developer.apple.com/documentation/coremedia/cmtime_is_indefinite) 과 같은 매크로를 사용하라.
+Core Media는 `kCMTimeZero`, `kCMTimeInvalid`, `kCMTimePositiveInfinity` 및 `kCMTimeNegativeInfinity`의 특수 값에 대한 상수를 제공한다. 예를 들어, `CMTime` 구조체가 유효하지 않은 시간을 나타내는 많은 방법이 있다. `CMTime`이 유효한지 또는 숫자가 아닌 값을 테스트하려면 [`CMTIME_IS_INVALID`](https://developer.apple.com/documentation/coremedia/cmtime_is_invalid), [`CMTIME_IS_POSITIVE_INFINITY`](https://developer.apple.com/documentation/coremedia/cmtime_is_positive_infinity), 또는 [`CMTIME_IS_INDEFINITE`](https://developer.apple.com/documentation/coremedia/cmtime_is_indefinite) 과 같은 매크로를 사용하라.
 
 ```objectivec
 CMTime myTime = <#Get a CMTime#>;
@@ -92,11 +92,108 @@ if (CMTIME_IS_INVALID(myTime)) {
 
 **Working with Time Ranges**
 
-Core Media는 시간 범위가 주어진 시간 범위 또는 다른 시간 범위를 포함하는지 여부를 결정하고, 두 시간 범위가 동일한지 여부를 결정하며,  과 같은 시간 범위의 조합과 교차점을 계산하는 데 사용할 수 있는 기능을 제공한다
+Core Media는 시간 범위가 주어진 시간 범위 또는 다른 시간 범위가 포함되어 있는지 여부, 두 시간 범위가 동일한지 여부, [`CMTimeRangeContainsTime`](https://developer.apple.com/documentation/coremedia/1462775-cmtimerangecontainstime), [`CMTimeRangeEqual`](https://developer.apple.com/documentation/coremedia/1462841-cmtimerangeequal), [`CMTimeRangeContainsTimeRange`](https://developer.apple.com/documentation/coremedia/1462830-cmtimerangecontainstimerange), [`CMTimeRangeGetUnion`](https://developer.apple.com/documentation/coremedia/1462837-cmtimerangegetunion)와 같은 시간 범위의 조합과 교차점을 계산하는 데 사용할 수 있는 기능을 제공한다.
 
+시간 범위에 시작 시간과 지속 시간이 포함되지 않는 경우, 다음식은 항상 거짓으로 평가된다:
 
+```objectivec
+CMTimeRangeContainsTime(range, CMTimeRangeGetEnd(range))
+```
+
+사용 가능한 모든 함수 목록은 [_CMTimeRange Reference_](https://developer.apple.com/documentation/coremedia/cmtimerange-qts)를 참조하라.
+
+**Special Values of CMTimeRange**
+
+코어 미디어는 각 0의 길이 범위와 유효하지 않은 범위인 [`kCMTimeRangeZero`](https://developer.apple.com/documentation/coremedia/kcmtimerangezero)와 [`kCMTimeRangeInvalid`](https://developer.apple.com/documentation/coremedia/kcmtimerangeinvalid)에 대한 상수를 제공한다. `CMTimeRange` 구조체가 무효이거나 0일 수 있는 경우 또는 무기한일 수 있는 경우\(`CMTime` 구조체 중 하나가 무기한일 경우\) 여러 가지 방법이 있다.
 
 ### Representations of Media
 
-비디오 데이터 및 관련 메타 데이터는 Core Media 프레임워크의 불투명한 객체로 AVFoundation에서 표현된다. Core Media는 CMSampleBuffer를 사용하여 비디오 데이터를 나타낸다.\([`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) 참조\)
+비디오 데이터 및 관련 메타 데이터는 Core Media 프레임워크의 불투명한 객체로 AVFoundation에서 표현된다. Core Media는 CMSampleBuffer를 사용하여 비디오 데이터를 나타낸다.\([`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) 참조\). `CMTimeRange` 구조체가 유효한지, 0인지, 비한정인지 테스트해야 하는 경우 적절한 매크로를 사용하라: [`CMTIMERANGE_IS_VALID`](https://developer.apple.com/documentation/coremedia/cmtimerange_is_valid), [`CMTIMERANGE_IS_INVALID`](https://developer.apple.com/documentation/coremedia/cmtimerange_is_invalid), [`CMTIMERANGE_IS_EMPTY`](https://developer.apple.com/documentation/coremedia/cmtimerange_is_empty), or [`CMTIMERANGE_IS_EMPTY`](https://developer.apple.com/documentation/coremedia/cmtimerange_is_empty).
+
+```objectivec
+CMTimeRange myTimeRange = <#Get a CMTimeRange#>;
+if (CMTIMERANGE_IS_EMPTY(myTimeRange)) {
+    // The time range is zero.
+}
+```
+
+임의 `CMTimeRange` 구조체의 값을 `kCMTimeRangeInvalid`와 비교해서는 안된다.
+
+**Representing a CMTimeRange Structure as an Object**
+
+주석이나 Core Foundation 컨테이너에서 `CMTimeRange` 구조체를 사용해야 하는 경우, `CMTimeRange` 구조체를 각각 [`CMTimeRangeCopyAsDictionary`](https://developer.apple.com/documentation/coremedia/1462781-cmtimerangecopyasdictionary)와 [`CMTimeRangeMakeFromDictionary`](https://developer.apple.com/documentation/coremedia/1462777-cmtimerangemakefromdictionary)를 사용하여 C 유형\([`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionaryref) 참조\)로 변환할 수 있다. [`CMTimeRangeCopyDescription`](https://developer.apple.com/documentation/coremedia/1462823-cmtimerangecopydescription)함수를 사용하여 CMTime 구조체의 문자열 표현을 얻을 수도 있다.
+
+### Representations of Media
+
+비디오 데이터와 관련 메타데이터는 AVFoundation에서 코어 미디어 프레임워크의 불투명 객체에 의해 표현된다. Core Media는 `CMSampleBuffer`를 사용한 비디오 데이터를 나타낸다\([`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) 참조\). `CMSampleBuffer`는 Core Foundation 스타일의 불투명 유형으로, 인스턴스는 Core Video 픽셀 버퍼로서 비디오 데이터의 프레임에 대한 샘플 버퍼를 포함한다.\([`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer) 참조\). [`CMSampleBufferGetImageBuffer`](https://developer.apple.com/documentation/coremedia/1489236-cmsamplebuffergetimagebuffer)를 사용하여 샘플버퍼에 접근하는 경우:
+
+```objectivec
+CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(<#A CMSampleBuffer#>);
+```
+
+픽셀 버퍼에서 실제 비디오 데이터에 접근할 수 있다. 예를 들어, [Converting CMSampleBuffer to a UIImage Object](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/06_MediaRepresentations.html#//apple_ref/doc/uid/TP40010188-CH2-SW4)를 참조하라.
+
+비디오 데이터 외에도 비디오 프레임의 여러 가지 다른 측면을 검색할 수 있다:
+
+* 타이밍 정보. [`CMSampleBufferGetPresentationTimeStamp`](https://developer.apple.com/documentation/coremedia/1489252-cmsamplebuffergetpresentationtim) 및 [`CMSampleBufferGetDecodeTimeStamp`](https://developer.apple.com/documentation/coremedia/1489404-cmsamplebuffergetdecodetimestamp)를 각각 사용하여 원래 프레젠테이션 시간과 디코드 시간에 대한 정확한 타임스탬프를 얻어라.
+* 형식 정보. 형식 정보는 C 객체에 캡슐화 된다.\([`CMFormatDescriptionRef`](https://developer.apple.com/documentation/coremedia/cmformatdescriptionref) 참조\). 형식 설명에서 예를 들어 `CMVideoFormatDescriptionGetCodecType` 및 [`CMVideoFormatDescriptionGetDimensions`](https://developer.apple.com/documentation/coremedia/1489287-cmvideoformatdescriptiongetdimen)를 사용하여 픽셀 유형과 비디오 치수를 얻을 수 있다.
+* 메타데이터. 메타데이터는 첨부파일로 딕셔너리에 저장된다. [`CMGetAttachment`](https://developer.apple.com/documentation/coremedia/1470707-cmgetattachment)를 사용하여 딕셔너리를 검색하라.
+
+```objectivec
+CMSampleBufferRef sampleBuffer = <#Get a sample buffer#>;
+CFDictionaryRef metadataDictionary =
+    CMGetAttachment(sampleBuffer, CFSTR("MetadataDictionary", NULL);
+if (metadataDictionary) {
+    // Do something with the metadata.
+}
+```
+
+### Converting CMSampleBuffer to a UIImage Object
+
+다음 코드는 CMSampleBuffer를 UIImage 객체로 변환하는 방법을 보여준다. 당신은 그것을 사용하기 전에 당신의 요구 사항을 신중히 고려해야 한다. 변환을 수행하는 것은 비교적 비용이 많이 드는 작업이다. 예를 들어 매초마다 찍은 비디오 데이터의 프레임에서 정지된 이미지를 생성하는 것이 적절하다. 당신은 이것을 캡처 장치에서 나오는 모든 비디오 프레임을 실시간으로 조작하는 수단으로 사용해서는 안된다.
+
+```objectivec
+// Create a UIImage from sample buffer data
+- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer
+{
+    // Get a CMSampleBuffer's Core Video image buffer for the media data
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    // Lock the base address of the pixel buffer
+    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+ 
+    // Get the number of bytes per row for the pixel buffer
+    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+ 
+    // Get the number of bytes per row for the pixel buffer
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    // Get the pixel buffer width and height
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+ 
+    // Create a device-dependent RGB color space
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+ 
+    // Create a bitmap graphics context with the sample buffer data
+    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+      bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    // Create a Quartz image from the pixel data in the bitmap graphics context
+    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    // Unlock the pixel buffer
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+ 
+    // Free up the context and color space
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+ 
+    // Create an image object from the Quartz image
+    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+ 
+    // Release the Quartz image
+    CGImageRelease(quartzImage);
+ 
+    return (image);
+}
+```
+
+
 
