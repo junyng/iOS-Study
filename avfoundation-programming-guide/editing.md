@@ -303,3 +303,385 @@ exporter.videoComposition = mutableVideoComposition;
 }];
 ```
 
+성공적이든 아니든 트랙 로딩 프로세스가 완료되면 나머지 작업은 메인 직렬화 큐로 보내져서 이 모든 작업이 취소될 가능성이 있는 상태로 연속화되도록 한다. 이제 이젠 코드 목록의 마지막에 취소 프로세스와 세 가지 사용자 지정 방법을 실행하기만 하면 된다.
+
+#### Initializing the Asset Reader and Writer
+
+사용자 지정 A 메서드는 reader와 writer를 초기화하고 오디오 트랙과 비디오 트랙의 두 가지 출력/입력 조합을 구성한다. 이 예에서 오디오는 asset writer를 사용하여 선형 PCM으로 압축되고 asset writer를 사용하여 128kbps AAC로 다시 압축된다. 비디오는 asset reader를 사용하여 YUV로 압축되고 asset writer를 사용하여 H.264로 압축된다.
+
+```objectivec
+- (BOOL)setupAssetReaderAndAssetWriter:(NSError **)outError
+{
+     // Create and initialize the asset reader.
+     self.assetReader = [[AVAssetReader alloc] initWithAsset:self.asset error:outError];
+     BOOL success = (self.assetReader != nil);
+     if (success)
+     {
+          // If the asset reader was successfully initialized, do the same for the asset writer.
+          self.assetWriter = [[AVAssetWriter alloc] initWithURL:self.outputURL fileType:AVFileTypeQuickTimeMovie error:outError];
+          success = (self.assetWriter != nil);
+     }
+ 
+     if (success)
+     {
+          // If the reader and writer were successfully initialized, grab the audio and video asset tracks that will be used.
+          AVAssetTrack *assetAudioTrack = nil, *assetVideoTrack = nil;
+          NSArray *audioTracks = [self.asset tracksWithMediaType:AVMediaTypeAudio];
+          if ([audioTracks count] > 0)
+               assetAudioTrack = [audioTracks objectAtIndex:0];
+          NSArray *videoTracks = [self.asset tracksWithMediaType:AVMediaTypeVideo];
+          if ([videoTracks count] > 0)
+               assetVideoTrack = [videoTracks objectAtIndex:0];
+ 
+          if (assetAudioTrack)
+          {
+               // If there is an audio track to read, set the decompression settings to Linear PCM and create the asset reader output.
+               NSDictionary *decompressionAudioSettings = @{ AVFormatIDKey : [NSNumber numberWithUnsignedInt:kAudioFormatLinearPCM] };
+               self.assetReaderAudioOutput = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:assetAudioTrack outputSettings:decompressionAudioSettings];
+               [self.assetReader addOutput:self.assetReaderAudioOutput];
+               // Then, set the compression settings to 128kbps AAC and create the asset writer input.
+               AudioChannelLayout stereoChannelLayout = {
+                    .mChannelLayoutTag = kAudioChannelLayoutTag_Stereo,
+                    .mChannelBitmap = 0,
+                    .mNumberChannelDescriptions = 0
+               };
+               NSData *channelLayoutAsData = [NSData dataWithBytes:&stereoChannelLayout length:offsetof(AudioChannelLayout, mChannelDescriptions)];
+               NSDictionary *compressionAudioSettings = @{
+                    AVFormatIDKey         : [NSNumber numberWithUnsignedInt:kAudioFormatMPEG4AAC],
+                    AVEncoderBitRateKey   : [NSNumber numberWithInteger:128000],
+                    AVSampleRateKey       : [NSNumber numberWithInteger:44100],
+                    AVChannelLayoutKey    : channelLayoutAsData,
+                    AVNumberOfChannelsKey : [NSNumber numberWithUnsignedInteger:2]
+               };
+               self.assetWriterAudioInput = [AVAssetWriterInput assetWriterInputWithMediaType:[assetAudioTrack mediaType] outputSettings:compressionAudioSettings];
+               [self.assetWriter addInput:self.assetWriterAudioInput];
+          }
+ 
+          if (assetVideoTrack)
+          {
+               // If there is a video track to read, set the decompression settings for YUV and create the asset reader output.
+               NSDictionary *decompressionVideoSettings = @{
+                    (id)kCVPixelBufferPixelFormatTypeKey     : [NSNumber numberWithUnsignedInt:kCVPixelFormatType_422YpCbCr8],
+                    (id)kCVPixelBufferIOSurfacePropertiesKey : [NSDictionary dictionary]
+               };
+               self.assetReaderVideoOutput = [AVAssetReaderTrackOutput assetReaderTrackOutputWithTrack:assetVideoTrack outputSettings:decompressionVideoSettings];
+               [self.assetReader addOutput:self.assetReaderVideoOutput];
+               CMFormatDescriptionRef formatDescription = NULL;
+               // Grab the video format descriptions from the video track and grab the first one if it exists.
+               NSArray *videoFormatDescriptions = [assetVideoTrack formatDescriptions];
+               if ([videoFormatDescriptions count] > 0)
+                    formatDescription = (__bridge CMFormatDescriptionRef)[formatDescriptions objectAtIndex:0];
+               CGSize trackDimensions = {
+                    .width = 0.0,
+                    .height = 0.0,
+               };
+               // If the video track had a format description, grab the track dimensions from there. Otherwise, grab them direcly from the track itself.
+               if (formatDescription)
+                    trackDimensions = CMVideoFormatDescriptionGetPresentationDimensions(formatDescription, false, false);
+               else
+                    trackDimensions = [assetVideoTrack naturalSize];
+               NSDictionary *compressionSettings = nil;
+               // If the video track had a format description, attempt to grab the clean aperture settings and pixel aspect ratio used by the video.
+               if (formatDescription)
+               {
+                    NSDictionary *cleanAperture = nil;
+                    NSDictionary *pixelAspectRatio = nil;
+                    CFDictionaryRef cleanApertureFromCMFormatDescription = CMFormatDescriptionGetExtension(formatDescription, kCMFormatDescriptionExtension_CleanAperture);
+                    if (cleanApertureFromCMFormatDescription)
+                    {
+                         cleanAperture = @{
+                              AVVideoCleanApertureWidthKey            : (id)CFDictionaryGetValue(cleanApertureFromCMFormatDescription, kCMFormatDescriptionKey_CleanApertureWidth),
+                              AVVideoCleanApertureHeightKey           : (id)CFDictionaryGetValue(cleanApertureFromCMFormatDescription, kCMFormatDescriptionKey_CleanApertureHeight),
+                              AVVideoCleanApertureHorizontalOffsetKey : (id)CFDictionaryGetValue(cleanApertureFromCMFormatDescription, kCMFormatDescriptionKey_CleanApertureHorizontalOffset),
+                              AVVideoCleanApertureVerticalOffsetKey   : (id)CFDictionaryGetValue(cleanApertureFromCMFormatDescription, kCMFormatDescriptionKey_CleanApertureVerticalOffset)
+                         };
+                    }
+                    CFDictionaryRef pixelAspectRatioFromCMFormatDescription = CMFormatDescriptionGetExtension(formatDescription, kCMFormatDescriptionExtension_PixelAspectRatio);
+                    if (pixelAspectRatioFromCMFormatDescription)
+                    {
+                         pixelAspectRatio = @{
+                              AVVideoPixelAspectRatioHorizontalSpacingKey : (id)CFDictionaryGetValue(pixelAspectRatioFromCMFormatDescription, kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing),
+                              AVVideoPixelAspectRatioVerticalSpacingKey   : (id)CFDictionaryGetValue(pixelAspectRatioFromCMFormatDescription, kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing)
+                         };
+                    }
+                    // Add whichever settings we could grab from the format description to the compression settings dictionary.
+                    if (cleanAperture || pixelAspectRatio)
+                    {
+                         NSMutableDictionary *mutableCompressionSettings = [NSMutableDictionary dictionary];
+                         if (cleanAperture)
+                              [mutableCompressionSettings setObject:cleanAperture forKey:AVVideoCleanApertureKey];
+                         if (pixelAspectRatio)
+                              [mutableCompressionSettings setObject:pixelAspectRatio forKey:AVVideoPixelAspectRatioKey];
+                         compressionSettings = mutableCompressionSettings;
+                    }
+               }
+               // Create the video settings dictionary for H.264.
+               NSMutableDictionary *videoSettings = (NSMutableDictionary *) @{
+                    AVVideoCodecKey  : AVVideoCodecH264,
+                    AVVideoWidthKey  : [NSNumber numberWithDouble:trackDimensions.width],
+                    AVVideoHeightKey : [NSNumber numberWithDouble:trackDimensions.height]
+               };
+               // Put the compression settings into the video settings dictionary if we were able to grab them.
+               if (compressionSettings)
+                    [videoSettings setObject:compressionSettings forKey:AVVideoCompressionPropertiesKey];
+               // Create the asset writer input and add it to the asset writer.
+               self.assetWriterVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:[videoTrack mediaType] outputSettings:videoSettings];
+               [self.assetWriter addInput:self.assetWriterVideoInput];
+          }
+     }
+     return success;
+}bj
+```
+
+#### Reencoding the Asset
+
+asset reader와 asset writer가 성공적으로 초기화 및 구성될 경우 [Handling the Initial Setup](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/05_Export.html#//apple_ref/doc/uid/TP40010188-CH9-SW1)에 설명된 `startAssetReaderAndWriter:` 메서드를 호출한다. 이 메서드는 에셋의 실제 읽기와 쓰기가 이루어지는 방법이다.
+
+```objectivec
+- (BOOL)startAssetReaderAndWriter:(NSError **)outError
+{
+     BOOL success = YES;
+     // Attempt to start the asset reader.
+     success = [self.assetReader startReading];
+     if (!success)
+          *outError = [self.assetReader error];
+     if (success)
+     {
+          // If the reader started successfully, attempt to start the asset writer.
+          success = [self.assetWriter startWriting];
+          if (!success)
+               *outError = [self.assetWriter error];
+     }
+ 
+     if (success)
+     {
+          // If the asset reader and writer both started successfully, create the dispatch group where the reencoding will take place and start a sample-writing session.
+          self.dispatchGroup = dispatch_group_create();
+          [self.assetWriter startSessionAtSourceTime:kCMTimeZero];
+          self.audioFinished = NO;
+          self.videoFinished = NO;
+ 
+          if (self.assetWriterAudioInput)
+          {
+               // If there is audio to reencode, enter the dispatch group before beginning the work.
+               dispatch_group_enter(self.dispatchGroup);
+               // Specify the block to execute when the asset writer is ready for audio media data, and specify the queue to call it on.
+               [self.assetWriterAudioInput requestMediaDataWhenReadyOnQueue:self.rwAudioSerializationQueue usingBlock:^{
+                    // Because the block is called asynchronously, check to see whether its task is complete.
+                    if (self.audioFinished)
+                         return;
+                    BOOL completedOrFailed = NO;
+                    // If the task isn't complete yet, make sure that the input is actually ready for more media data.
+                    while ([self.assetWriterAudioInput isReadyForMoreMediaData] && !completedOrFailed)
+                    {
+                         // Get the next audio sample buffer, and append it to the output file.
+                         CMSampleBufferRef sampleBuffer = [self.assetReaderAudioOutput copyNextSampleBuffer];
+                         if (sampleBuffer != NULL)
+                         {
+                              BOOL success = [self.assetWriterAudioInput appendSampleBuffer:sampleBuffer];
+                              CFRelease(sampleBuffer);
+                              sampleBuffer = NULL;
+                              completedOrFailed = !success;
+                         }
+                         else
+                         {
+                              completedOrFailed = YES;
+                         }
+                    }
+                    if (completedOrFailed)
+                    {
+                         // Mark the input as finished, but only if we haven't already done so, and then leave the dispatch group (since the audio work has finished).
+                         BOOL oldFinished = self.audioFinished;
+                         self.audioFinished = YES;
+                         if (oldFinished == NO)
+                         {
+                              [self.assetWriterAudioInput markAsFinished];
+                         }
+                         dispatch_group_leave(self.dispatchGroup);
+                    }
+               }];
+          }
+ 
+          if (self.assetWriterVideoInput)
+          {
+               // If we had video to reencode, enter the dispatch group before beginning the work.
+               dispatch_group_enter(self.dispatchGroup);
+               // Specify the block to execute when the asset writer is ready for video media data, and specify the queue to call it on.
+               [self.assetWriterVideoInput requestMediaDataWhenReadyOnQueue:self.rwVideoSerializationQueue usingBlock:^{
+                    // Because the block is called asynchronously, check to see whether its task is complete.
+                    if (self.videoFinished)
+                         return;
+                    BOOL completedOrFailed = NO;
+                    // If the task isn't complete yet, make sure that the input is actually ready for more media data.
+                    while ([self.assetWriterVideoInput isReadyForMoreMediaData] && !completedOrFailed)
+                    {
+                         // Get the next video sample buffer, and append it to the output file.
+                         CMSampleBufferRef sampleBuffer = [self.assetReaderVideoOutput copyNextSampleBuffer];
+                         if (sampleBuffer != NULL)
+                         {
+                              BOOL success = [self.assetWriterVideoInput appendSampleBuffer:sampleBuffer];
+                              CFRelease(sampleBuffer);
+                              sampleBuffer = NULL;
+                              completedOrFailed = !success;
+                         }
+                         else
+                         {
+                              completedOrFailed = YES;
+                         }
+                    }
+                    if (completedOrFailed)
+                    {
+                         // Mark the input as finished, but only if we haven't already done so, and then leave the dispatch group (since the video work has finished).
+                         BOOL oldFinished = self.videoFinished;
+                         self.videoFinished = YES;
+                         if (oldFinished == NO)
+                         {
+                              [self.assetWriterVideoInput markAsFinished];
+                         }
+                         dispatch_group_leave(self.dispatchGroup);
+                    }
+               }];
+          }
+          // Set up the notification that the dispatch group will send when the audio and video work have both finished.
+          dispatch_group_notify(self.dispatchGroup, self.mainSerializationQueue, ^{
+               BOOL finalSuccess = YES;
+               NSError *finalError = nil;
+               // Check to see if the work has finished due to cancellation.
+               if (self.cancelled)
+               {
+                    // If so, cancel the reader and writer.
+                    [self.assetReader cancelReading];
+                    [self.assetWriter cancelWriting];
+               }
+               else
+               {
+                    // If cancellation didn't occur, first make sure that the asset reader didn't fail.
+                    if ([self.assetReader status] == AVAssetReaderStatusFailed)
+                    {
+                         finalSuccess = NO;
+                         finalError = [self.assetReader error];
+                    }
+                    // If the asset reader didn't fail, attempt to stop the asset writer and check for any errors.
+                    if (finalSuccess)
+                    {
+                         finalSuccess = [self.assetWriter finishWriting];
+                         if (!finalSuccess)
+                              finalError = [self.assetWriter error];
+                    }
+               }
+               // Call the method to handle completion, and pass in the appropriate parameters to indicate whether reencoding was successful.
+               [self readingAndWritingDidFinishSuccessfully:finalSuccess withError:finalError];
+          });
+     }
+     // Return success here to indicate whether the asset reader and writer were started successfully.
+     return success;
+}
+```
+
+재인코딩하는 동안 오디오 및 비디오 트랙은 개별 직렬화 큐에서 비동기적으로 처리되어 프로세스의 전반적인 성능을 증가시키지만 두 큐는 동일한 디스패치 그룹 내에 포함된다. 각 트랙에 대한 작업을 동일한 디스패치 그룹 내에 배치함으로써, 그룹은 모든 작업이 수행되고 재인코딩 프로세스의 성공이 결정될 수 있는 경우 통지를 보낼 수 있다.
+
+#### Handling Completion
+
+읽기 및 쓰기 과정의 완료를 처리하기 위해 다시 인코딩이 성공적으로 완료되었는지 여부를 나타내는 매개변수와 함께`readingAndWritingDidFinishSuccessfully:` 메서드를 호출한다. 프로세스가 성공적으로 완료되지 않으면 asset reader 및 writer가 모두 취소되고 UI 관련 작업이 메인 큐에 발송된다.
+
+```objectivec
+- (void)readingAndWritingDidFinishSuccessfully:(BOOL)success withError:(NSError *)error
+{
+     if (!success)
+     {
+          // If the reencoding process failed, we need to cancel the asset reader and writer.
+          [self.assetReader cancelReading];
+          [self.assetWriter cancelWriting];
+          dispatch_async(dispatch_get_main_queue(), ^{
+               // Handle any UI tasks here related to failure.
+          });
+     }
+     else
+     {
+          // Reencoding was successful, reset booleans.
+          self.cancelled = NO;
+          self.videoFinished = NO;
+          self.audioFinished = NO;
+          dispatch_async(dispatch_get_main_queue(), ^{
+               // Handle any UI tasks here related to success.
+          });
+     }
+}
+```
+
+#### Handling Cancellation
+
+여러 개의 직렬화 큐를 사용하여 앱 사용자가 쉽게 재코딩 프로세스를 취소할 수 있다. 메인 직렬화 대기열에서 메시지는 각 에셋 재인코딩 직렬화 대기열로 비동기적으로 전송되어 읽기 및 쓰기를 취소한다. 이 두 개의 직렬화 대기열이 취소를 완료하면, 디스패치 그룹은 취소된 속성이 YES로 설정된 기본 직렬화 대기열에 통지를 전송한다. 다음 코드 목록의 취소 메서드를 UI의 버튼과 연결할 수 있다.
+
+```objectivec
+- (void)cancel
+{
+     // Handle cancellation asynchronously, but serialize it with the main queue.
+     dispatch_async(self.mainSerializationQueue, ^{
+          // If we had audio data to reencode, we need to cancel the audio work.
+          if (self.assetWriterAudioInput)
+          {
+               // Handle cancellation asynchronously again, but this time serialize it with the audio queue.
+               dispatch_async(self.rwAudioSerializationQueue, ^{
+                    // Update the Boolean property indicating the task is complete and mark the input as finished if it hasn't already been marked as such.
+                    BOOL oldFinished = self.audioFinished;
+                    self.audioFinished = YES;
+                    if (oldFinished == NO)
+                    {
+                         [self.assetWriterAudioInput markAsFinished];
+                    }
+                    // Leave the dispatch group since the audio work is finished now.
+                    dispatch_group_leave(self.dispatchGroup);
+               });
+          }
+ 
+          if (self.assetWriterVideoInput)
+          {
+               // Handle cancellation asynchronously again, but this time serialize it with the video queue.
+               dispatch_async(self.rwVideoSerializationQueue, ^{
+                    // Update the Boolean property indicating the task is complete and mark the input as finished if it hasn't already been marked as such.
+                    BOOL oldFinished = self.videoFinished;
+                    self.videoFinished = YES;
+                    if (oldFinished == NO)
+                    {
+                         [self.assetWriterVideoInput markAsFinished];
+                    }
+                    // Leave the dispatch group, since the video work is finished now.
+                    dispatch_group_leave(self.dispatchGroup);
+               });
+          }
+          // Set the cancelled Boolean property to YES to cancel any work on the main queue as well.
+          self.cancelled = YES;
+     });
+}
+```
+
+### Asset Output Settings Assistant
+
+AVOutputSettings 클래스는 asset reader 또는 asset writer를 위한 출력 설정 딕셔너리를 만드는 데 도움이 된다. 이것은 특히 많은 특정 프리셋을 가진 높은 프레임 속도 H264 영화의 경우 설정을 훨씬 더 간단하게 만든다. Listing 5-1은 출력 설정 보조자를 사용하여 설정 보조자를 사용하는 예를 보여준다.
+
+**Listing 5-1**  AVOutputSettingsAssistant sample
+
+```objectivec
+AVOutputSettingsAssistant *outputSettingsAssistant = [AVOutputSettingsAssistant outputSettingsAssistantWithPreset:<some preset>];
+CMFormatDescriptionRef audioFormat = [self getAudioFormat];
+ 
+if (audioFormat != NULL)
+    [outputSettingsAssistant setSourceAudioFormat:(CMAudioFormatDescriptionRef)audioFormat];
+ 
+CMFormatDescriptionRef videoFormat = [self getVideoFormat];
+ 
+if (videoFormat != NULL)
+    [outputSettingsAssistant setSourceVideoFormat:(CMVideoFormatDescriptionRef)videoFormat];
+ 
+CMTime assetMinVideoFrameDuration = [self getMinFrameDuration];
+CMTime averageFrameDuration = [self getAvgFrameDuration]
+ 
+[outputSettingsAssistant setSourceVideoAverageFrameDuration:averageFrameDuration];
+[outputSettingsAssistant setSourceVideoMinFrameDuration:assetMinVideoFrameDuration];
+ 
+AVAssetWriter *assetWriter = [AVAssetWriter assetWriterWithURL:<some URL> fileType:[outputSettingsAssistant outputFileType] error:NULL];
+AVAssetWriterInput *audioInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:[outputSettingsAssistant audioSettings] sourceFormatHint:audioFormat];
+AVAssetWriterInput *videoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:[outputSettingsAssistant videoSettings] sourceFormatHint:videoFormat];
+```
+
