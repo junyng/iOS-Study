@@ -139,6 +139,7 @@
 * [Fetching Website Data into Memory](article/fetching-website-data-into-memory.md)
 * [Uploading Data to a Website](article/uploading-data-to-a-website.md)
 * [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
+  * [Using Assets](avfoundation-programming-guide/using-assets.md)
   * [Playback](avfoundation-programming-guide/playback.md)
   * [Time and Media Representations](avfoundation-programming-guide/time-and-media-representations.md)
   * [Editing](avfoundation-programming-guide/editing.md)
