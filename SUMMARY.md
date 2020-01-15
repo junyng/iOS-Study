@@ -168,4 +168,5 @@
 * [AVVideoCompositionCoreAnimationTool](avvideocompositioncoreanimationtool.md)
 * [AVVideoCompositionRenderContext](avvideocompositionrendercontext.md)
 * [AVVideoCompositionInstruction](avvideocompositioninstruction.md)
+* [AVAudioMixInputParameters](avaudiomixinputparameters.md)
 
