@@ -169,4 +169,5 @@
 * [AVVideoCompositionRenderContext](avvideocompositionrendercontext.md)
 * [AVVideoCompositionInstruction](avvideocompositioninstruction.md)
 * [AVAudioMixInputParameters](avaudiomixinputparameters.md)
+* [Media Composition](media-composition.md)
 
