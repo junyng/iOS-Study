@@ -32,21 +32,18 @@ class AVMutableVideoCompositionLayerInstruction : AVVideoCompositionLayerInstruc
 
 지정된 시간 범위 동안 적용할 불투명 램프를 설정한다.
 
-[`func setTransform(CGAffineTransform, at: CMTime)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1390899-settransform)
-
-인스트럭션의 시간 범위 내에서 한 번에 변환 값을 설정한다.
+[`func setTransform(CGAffineTransform, at: CMTime)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1390899-settransform)인
 
 [`func setTransformRamp(fromStart: CGAffineTransform, toEnd: CGAffineTransform, timeRange: CMTimeRange)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1388192-settransformramp)
 
-주어진 시간 범위 동안 적용할 변환 램프를 설정한다.
+인스트럭션의 시간 범위 내에서 한 번에 변환 값을 설정한다.
 
 #### Setting Crop Rectangle Values
 
 [`func setCropRectangle(CGRect, at: CMTime)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1387402-setcroprectangle)
 
-인스트럭션의 시간 범위 내에서 한 번에 자를 직사각형 값을 설정하라.
+Sets the crop rectangle value at a time within the time range of the instruction.[`func setCropRectangleRamp(fromStartCropRectangle: CGRect, toEndCropRectangle: CGRect, timeRange: CMTimeRange)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1385677-setcroprectangleramp)
 
-[`func setCropRectangleRamp(fromStartCropRectangle: CGRect, toEndCropRectangle: CGRect, timeRange: CMTimeRange)`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction/1385677-setcroprectangleramp)
+Sets a crop rectangle ramp to apply during the specified time range.  
 
-지정된 시간 범위 동안 적용할 자르기 직사각형 램프를 설정하라.
 
