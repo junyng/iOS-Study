@@ -7,7 +7,6 @@
 * [AVPlayerLayer](avplayerlayer.md)
 * [CALayer](calayer.md)
 * [AVVideoComposition](avvideocomposition.md)
-* [AVAssetTrack](avassettrack.md)
 * [AVAsynchronousKeyValueLoading](avasynchronouskeyvalueloading.md)
 * [AVAudioPlayer](avaudioplayer.md)
 * [AVAudioSession](avaudiosession.md)
@@ -156,7 +155,8 @@
 ## Edit
 
 * [CALayer](edit/calayer.md)
-* [AVComposition](avcomposition.md)
+* [AVComposition](edit/avcomposition/README.md)
+  * [AVAssetTrack](edit/avcomposition/avassettrack.md)
   * [AVCompositionTrack](edit/avcomposition/avcompositiontrack.md)
   * [AVCompositionTrackSegment](edit/avcomposition/avcompositiontracksegment.md)
   * [AVMutableCompositionTrack](edit/avcomposition/avmutablecompositiontrack.md)
