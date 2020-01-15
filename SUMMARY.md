@@ -156,7 +156,8 @@
 ## Edit
 
 * [CALayer](edit/calayer.md)
-* [AVComposition](edit/avcomposition/README.md)
+* [AVComposition](avcomposition.md)
   * [AVCompositionTrack](edit/avcomposition/avcompositiontrack.md)
   * [AVCompositionTrackSegment](edit/avcomposition/avcompositiontracksegment.md)
+  * [AVMutableCompositionTrack](edit/avcomposition/avmutablecompositiontrack.md)
 
