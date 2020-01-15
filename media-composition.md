@@ -96,5 +96,5 @@ QuickTime 또는 ISO 기반 미디어 파일 형식을 준수하는 변경가능
 
 [`class AVMutableAudioMixInputParameters`](https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters)
 
-혼합물에 오디오 트랙을 추가할 때 사용하는 매개 변
+혼합물에 오디오 트랙을 추가할 때 사용하는 매개 변수.
 
