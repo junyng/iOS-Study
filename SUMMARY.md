@@ -162,4 +162,7 @@
 * [AVVideoComposition](avvideocomposition.md)
   * [AVMutableVideoComposition](avvideocomposition/avmutablevideocomposition.md)
 * [AVAsynchronousCIImageFilteringRequest](avasynchronousciimagefilteringrequest.md)
+* [AVMutableVideoCompositionInstruction](avmutablevideocompositioninstruction.md)
+* [AVMutableVideoCompositionLayerInstruction](avmutablevideocompositionlayerinstruction.md)
+* [AVVideoCompositionLayerInstruction](avvideocompositionlayerinstruction.md)
 
