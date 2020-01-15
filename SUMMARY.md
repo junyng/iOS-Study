@@ -154,11 +154,12 @@
 ## Edit
 
 * [CALayer](edit/calayer.md)
-* [AVComposition](edit/avcomposition/README.md)
-  * [AVAssetTrack](edit/avcomposition/avassettrack.md)
+* [AVComposition](avcomposition.md)
+  * [AVAssetTrack](avassettrack.md)
   * [AVCompositionTrack](edit/avcomposition/avcompositiontrack.md)
   * [AVCompositionTrackSegment](edit/avcomposition/avcompositiontracksegment.md)
   * [AVMutableCompositionTrack](edit/avcomposition/avmutablecompositiontrack.md)
-* [AVVideoComposition](avvideocomposition/README.md)
+* [AVVideoComposition](avvideocomposition.md)
   * [AVMutableVideoComposition](avvideocomposition/avmutablevideocomposition.md)
+* [AVAsynchronousCIImageFilteringRequest](avasynchronousciimagefilteringrequest.md)
 
