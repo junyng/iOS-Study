@@ -166,4 +166,5 @@
 * [AVMutableVideoCompositionLayerInstruction](avmutablevideocompositionlayerinstruction.md)
 * [AVVideoCompositionLayerInstruction](avvideocompositionlayerinstruction.md)
 * [AVVideoCompositionCoreAnimationTool](avvideocompositioncoreanimationtool.md)
+* [AVVideoCompositionRenderContext](avvideocompositionrendercontext.md)
 
