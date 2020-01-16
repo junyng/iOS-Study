@@ -176,5 +176,6 @@
   * [AVAudioMix](media-composition/avaudiomix.md)
   * [AVAudioMixInputParameters](avaudiomixinputparameters.md)
   * [AVMutableAudioMix](media-composition/avmutableaudiomix.md)
+  * [AVMutableAudioMixInputParameters](media-composition/avmutableaudiomixinputparameters.md)
 * [AVAssetTrack](avassettrack.md)
 
