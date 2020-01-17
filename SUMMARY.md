@@ -157,6 +157,7 @@
 
 * [CALayer](edit/calayer.md)
 * [Media Composition](media-composition.md)
+  * [AVAssetReader](media-composition/avassetreader.md)
   * [AVComposition](avcomposition.md)
   * [AVCompositionTrack](edit/avcomposition/avcompositiontrack.md)
   * [AVCompositionTrackSegment](edit/avcomposition/avcompositiontracksegment.md)
