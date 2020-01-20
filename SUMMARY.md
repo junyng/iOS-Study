@@ -182,4 +182,5 @@
   * [AVMutableAudioMixInputParameters](media-composition/avmutableaudiomixinputparameters.md)
 * [AVAssetTrack](avassettrack.md)
 * [Core Media](core-media.md)
+* [AVAssetImageGenerator](avassetimagegenerator.md)
 
