@@ -36,7 +36,7 @@ AVAssetExportSession.determineCompatibility(ofExportPreset: preset, with: anAsse
 }}) 
 ```
 
-호환성을 결정한 후 A에 구성한 사전 설정을 사용하여 변환을 수행하라고 알려 준다. 대형 비디오 파일을 만드는 것은 시간이 많이 걸리는 작업이므로 [`exportAsynchronously(completionHandler:)`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1388005-exportasynchronously)를 사용하여 비디오를 비동기적으로 내보내라. 이 메서드는 세션이 새 동영상 파일 작성을 완료한 후 결과를 처리할 수 있는 완료 블록을 제공한다.
+호환성을 결정한 후 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession)에 구성한 사전 설정을 사용하여 변환을 수행하라고 알려 준다. 대형 비디오 파일을 만드는 것은 시간이 많이 걸리는 작업이므로 [`exportAsynchronously(completionHandler:)`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1388005-exportasynchronously)를 사용하여 비디오를 비동기적으로 내보내라. 이 메서드는 세션이 새 동영상 파일 작성을 완료한 후 결과를 처리할 수 있는 완료 블록을 제공한다.
 
 ```swift
 guard let export = AVAssetExportSession(asset: anAsset, presetName: preset) else { 
