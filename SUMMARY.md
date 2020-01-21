@@ -156,6 +156,7 @@
 ## Edit
 
 * [CALayer](edit/calayer.md)
+* [AVSynchronizedLayer](edit/avsynchronizedlayer.md)
 * [Media Composition](media-composition.md)
   * [AVComposition](avcomposition.md)
   * [AVCompositionTrack](edit/avcomposition/avcompositiontrack.md)
