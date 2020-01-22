@@ -194,3 +194,7 @@
   * [AVAssetImageGenerator](asset-file-import-and-export/avassetimagegenerator.md)
 * [Exporting Video to Alternative Formats](exporting-video-to-alternative-formats.md)
 
+## Core Animation
+
+* [CAPropertyAnimation](core-animation/capropertyanimation.md)
+
