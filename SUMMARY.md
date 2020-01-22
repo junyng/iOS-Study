@@ -197,4 +197,6 @@
 ## Core Animation
 
 * [CAPropertyAnimation](core-animation/capropertyanimation.md)
+* [Core Animation Programming Guide](core-animation-programming-guide/README.md)
+  * [Core Animation Basics](core-animation-programming-guide/core-animation-basics.md)
 
