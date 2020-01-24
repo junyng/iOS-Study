@@ -201,4 +201,5 @@
   * [Core Animation Basics](core-animation-programming-guide/core-animation-basics.md)
   * [Building a Layer Hierarchy](core-animation-programming-guide/building-a-layer-hierarchy.md)
   * [Setting Up Layer Objects](core-animation-programming-guide/setting-up-layer-objects.md)
+  * [Appendix C: Key-Value Coding Extensions](core-animation-programming-guide/appendix-c-key-value-coding-extensions.md)
 
