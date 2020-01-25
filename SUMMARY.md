@@ -201,6 +201,7 @@
   * [Core Animation Basics](core-animation-programming-guide/core-animation-basics.md)
   * [Building a Layer Hierarchy](core-animation-programming-guide/building-a-layer-hierarchy.md)
   * [Setting Up Layer Objects](core-animation-programming-guide/setting-up-layer-objects.md)
+  * [Improving Animation Performance](core-animation-programming-guide/improving-animation-performance.md)
   * [Appendix A: Layer Style Property Animations](core-animation-programming-guide/appendix-a-layer-style-property-animations.md)
   * [Appendix B: Animatable Properties](core-animation-programming-guide/appendix-b-animatable-properties.md)
   * [Appendix C: Key-Value Coding Extensions](core-animation-programming-guide/appendix-c-key-value-coding-extensions.md)
