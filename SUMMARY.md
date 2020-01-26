@@ -153,6 +153,7 @@
 * [Key-Value Observing Programming Guide](key-value-observing-programming-guide.md)
 * [Threading Programming Guide](threading-programming-guide/README.md)
   * [About Threaded Programming](threading-programming-guide/about-threaded-programming.md)
+  * [Run Loops](threading-programming-guide/run-loops.md)
   * [Glossary](threading-programming-guide/glossary.md)
 
 ## Edit
