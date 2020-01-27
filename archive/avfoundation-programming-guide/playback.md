@@ -14,13 +14,13 @@
 
 **그림 2-1**  에셋 재생
 
-![](../.gitbook/assets/avplayerlayer_2x.png)
+![](../../.gitbook/assets/avplayerlayer_2x.png)
 
 이 추상화는 서로 다른 플레이어를 동시에 사용하되 각 플레이어에 의해 다른 방식으로 렌더링된 주어진 에셋을 재생할 수 있다는 것을 의미한다. 그림 2-2는 두 개의 다른 플레이어가 서로 다른 설정으로 동일한 에셋을 사용하는 하나의 가능성을 보여준다. 예를 들어 재생 중에 특정 트랙을 비활성화 할 수 있다\(예를 들어, sound component를 재생하지 않을 수 있다\).
 
 **그림 2-2** 여러 가지 방법으로 동일한 에셋 재생
 
-![](../.gitbook/assets/playerobjects_2x.png)
+![](../../.gitbook/assets/playerobjects_2x.png)
 
 기존 에셋으로 player item을 초기화하거나, URL에서 직접 player item을 초기화하여 특정 위치에서 리소스를 재생할 수 있다. \(그러면 `AVPlayerItem`이 리소스의 에셋을 생성하고 구성할 것이다.\) 그러나 `AVAsset`과 마찬가지로 player item을 초기화한다고 해서 반드시 즉시 재생할 수 있는 것은 아니다. item의 [`status`](https://developer.apple.com/documentation/avfoundation/avplayeritem/1389493-status) 속성을 관찰 \(key-value observing 사용\)하여 재생 준비 여부와 시기를 결정할 수 있다.
 

@@ -8,7 +8,7 @@
 
 **Figure 6-1** AVAsset은 시각 기반 추상화된 시청각 데이터를 제공한다.
 
-![](../.gitbook/assets/avassethierarchy_2x.png)
+![](../../.gitbook/assets/avassethierarchy_2x.png)
 
 에셋에는 오디오, 비디오, 텍스트, 닫힌 캡션 및 자막을 포함하여\(이에 제한되지는 않음\) 함께 표시하거나 처리하기 위한 트랙 컬렉션이 포함되어 있다. 에셋 객체는 전체 리소스에 대한 정보\(예: 지속 시간 또는 제목\) 뿐만아니라 표시에 대한 힌트\(예: natural size\)를 제공한다. 에셋은 또한 [`AVMetadataItem`](https://developer.apple.com/documentation/avfoundation/avmetadataitem)의 인스턴스로 대표되는 메타데이터를 가질 수 있다.
 
@@ -16,7 +16,7 @@
 
 **Figure 6-2**  AVAssetTrack
 
-![](../.gitbook/assets/avassetandtracks_2x.png)
+![](../../.gitbook/assets/avassetandtracks_2x.png)
 
 트랙은 유형\(비디오 또는 오디오\), 시각적 및/또는 청각적 특성\(적절한 경우\), 메타데이터 및 시간표\(상위 에셋 관점에서 표현됨\)와 같은 많은 속성을 가지고 있다. 트랙에는 포멧 설명 배열도 가지고 있다. 배열에는 `CMFormatDescription` 객체\([`CMFormatDescriptionRef`](https://developer.apple.com/documentation/coremedia/cmformatdescriptionref) 참조\)가 있으며, 각 객체는 트랙에서 참조하는 미디어 샘플의 포멧을 설명한다. 동일한 미디어가 포함된 트랙\(예: 모두 동일한 설정으로 인코딩됨\)은 1개의 개수를 가진 배열을 제공한다.
 

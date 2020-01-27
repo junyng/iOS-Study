@@ -67,8 +67,14 @@
   * [Creating Self-Sizing Table View Cells](uikit/table-views/creating-self-sizing-table-view-cells.md)
   * [UITableViewDataSourcePrefetching](uikit/table-views/uitableviewdatasourceprefetching.md)
 
-## Archive
+## Documentation Archive <a id="archive"></a>
 
+* [AVFoundation Programming Guide](archive/avfoundation-programming-guide/README.md)
+  * [Using Assets](archive/avfoundation-programming-guide/using-assets.md)
+  * [Playback](archive/avfoundation-programming-guide/playback.md)
+  * [Editing](archive/avfoundation-programming-guide/editing.md)
+  * [Export](archive/avfoundation-programming-guide/export.md)
+  * [Time and Media Representations](archive/avfoundation-programming-guide/time-and-media-representations.md)
 * [Cocoa Application Competencies-for iOS](archive/cocoa-application-competencies-for-ios/README.md)
   * [Animation](archive/cocoa-application-competencies-for-ios/animation.md)
   * [Application object](archive/cocoa-application-competencies-for-ios/application-object.md)
@@ -136,12 +142,6 @@
 
 * [Fetching Website Data into Memory](article/fetching-website-data-into-memory.md)
 * [Uploading Data to a Website](article/uploading-data-to-a-website.md)
-* [AVFoundation Programming Guide](avfoundation-programming-guide/README.md)
-  * [Using Assets](avfoundation-programming-guide/using-assets.md)
-  * [Playback](avfoundation-programming-guide/playback.md)
-  * [Time and Media Representations](avfoundation-programming-guide/time-and-media-representations.md)
-  * [Editing](avfoundation-programming-guide/editing.md)
-  * [Export](avfoundation-programming-guide/export.md)
 * [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
 * [HTTP Live Streaming](http-live-streaming.md)
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)

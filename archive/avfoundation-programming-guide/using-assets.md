@@ -190,7 +190,7 @@ image generator에 [`cancelAllCGImageGeneration`](https://developer.apple.com/do
 
 **그림 1-1**  export session 워크 플로우.
 
-![](../.gitbook/assets/export_2x.png)
+![](../../.gitbook/assets/export_2x.png)
 
 예제에 나타난 바와 같이 [`exportPresetsCompatibleWithAsset:`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1390567-exportpresetscompatiblewithasset)를 사용하여 지정된 preset을 사용하여 특정 에셋을 내보낼 수 있는지 확인할 수 있다.
 

@@ -4,25 +4,25 @@ AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하�
 
 **Figure 3-1**  `AVMutableComposition`은 에셋을 함께 모은다.
 
-![](../.gitbook/assets/avmutablecomposition_2x.png)
+![](../../.gitbook/assets/avmutablecomposition_2x.png)
 
 [`AVMutableAudioMix`](https://developer.apple.com/documentation/avfoundation/avmutableaudiomix) 클래스를 사용하여 그림 3-2 에서와 같이 구성의 오디오 트랙에서 사용자 정의 오디오 처리를 수행할 수 있다. 현재 오디오 트랙의 최대 볼륨을 지정하거나 볼륨 램프를 설정할 수 있다.
 
 **Figure 3-2**  `AVMutableAudioMix`는 오디오 믹싱을 수행한다.
 
-![](../.gitbook/assets/avmutableaudiomix_2x.png)
+![](../../.gitbook/assets/avmutableaudiomix_2x.png)
 
 Figure 3-3에 나온것처럼 [`AVMutableVideoComposition`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition) 클래스를 사용하여 편집을 위해 구성의 비디오 트랙과 직접 작업할 수 있다. 단일 비디오 구성으로 출력 비디오에 대해 원하는 렌더 크기 및 사이즈와 프레임 기간을 지정할 수 있다. 비디오 구성 명령\([`AVMutableVideoCompositionInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction) 클래스로 표시됨\)을 통해 비디오의 배경색을 수정하고 레이어 구성을 적용할 수 있다. 이러한 레이어 계층 구성\([`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction) 로 표시됨\)을 사용하여 구성 내의 비디오 트랙에 변환, 변환 램프, 불투명도 및 불투명도 램프를 적용할 수 있다. 비디오 구성 클래스는 또한 [`animationTool`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition/1390395-animationtool) 속성을 사용하여 코어 애니메이션 프레임워크에서 비디오로 효과를 소개하는 기능을 제공한다.
 
 **Figure 3-3**  `AVMutableVideoComposition`
 
-![](../.gitbook/assets/avmutablevideocomposition_2x.png)
+![](../../.gitbook/assets/avmutablevideocomposition_2x.png)
 
 구성을 오디오 믹스와 비디오 구성과 결합하려면 Figure 3-4에서와 같이 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) 객체를 사용한다. 구성으로 내보내기 세션을 초기화한 다음 오디오 믹스와 비디오 구성을 [`audioMix`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1388155-audiomix)와 [`videoComposition`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1389477-videocomposition)속성에 각각 할당하라.
 
 **Figure 3-4**  `AVAssetExportSession`을 사용하여 미디어 요소를 출력파일로 결합한다.
 
-![](../.gitbook/assets/puttingitalltogether_2x.png)
+![](../../.gitbook/assets/puttingitalltogether_2x.png)
 
 ### Creating a Composition
 
