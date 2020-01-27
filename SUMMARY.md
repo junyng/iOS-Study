@@ -155,6 +155,7 @@
   * [About Threaded Programming](threading-programming-guide/about-threaded-programming.md)
   * [Run Loops](threading-programming-guide/run-loops.md)
   * [Thread Safety Summary](threading-programming-guide/thread-safety-summary.md)
+  * [Synchronization](threading-programming-guide/synchronization.md)
   * [Glossary](threading-programming-guide/glossary.md)
 
 ## Edit
