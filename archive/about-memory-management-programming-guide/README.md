@@ -4,7 +4,7 @@
 
 메모리 관리는 일반적으로 개별 객체 수준에서 고려되지만 실제로 객체 그래프를 관리하는 것이 목표이다. 실제로 필요한 것보다 더 많은 객체를 메모리에 담지 않기를 바란다.
 
-![](../.gitbook/assets/memory_management_2x.png)
+![](../../.gitbook/assets/memory_management_2x.png)
 
 ### 한눈에
 
