@@ -71,6 +71,7 @@
 ## Documentation Archive <a id="archive"></a>
 
 * [About Memory Management Programming Guide](archive/about-memory-management-programming-guide/README.md)
+  * [Memory Management Policy](archive/about-memory-management-programming-guide/memory-management-policy.md)
   * [Using Autorelease Pool Blocks](archive/about-memory-management-programming-guide/using-autorelease-pool-blocks.md)
 * [AVFoundation Programming Guide](archive/avfoundation-programming-guide/README.md)
   * [Using Assets](archive/avfoundation-programming-guide/using-assets.md)
