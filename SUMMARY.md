@@ -17,6 +17,7 @@
   * [Concurrency and Application Design](concurrency-programming-guide/concurrency-and-application-design.md)
   * [Operation Queues](concurrency-programming-guide/operation-queues.md)
   * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
+  * [Dispatch Sources](concurrency-programming-guide/dispatch-sources.md)
   * [Glossary](concurrency-programming-guide/glossary.md)
 
 ## Photos
