@@ -10,7 +10,7 @@
 
 이 문서를 읽기 전에 애플리케이션 번들에 의해 부과되는 조직 구조를 숙지해야 한다. 이 구조를 이해하면 애플리케이션이 사용하는 리소스 파일을 쉽게 구성하고 찾을 수 있다. 번들 구조에 대한 자세한 내용은 [_Bundle Programming Guide_](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i)을 참조하라.
 
-### g한눈에
+### 한눈에
 
 애플리케이션에는 여러 종류의 리소스가 포함될 수 있지만, iOS와 OS X에 의해 직접 지원되는 리소스가 몇 개 있다.
 

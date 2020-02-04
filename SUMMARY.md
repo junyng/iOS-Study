@@ -218,5 +218,6 @@
   * [Appendix A: Layer Style Property Animations](core-animation-programming-guide/appendix-a-layer-style-property-animations.md)
   * [Appendix B: Animatable Properties](core-animation-programming-guide/appendix-b-animatable-properties.md)
   * [Appendix C: Key-Value Coding Extensions](core-animation-programming-guide/appendix-c-key-value-coding-extensions.md)
-* [Resource Programming Guide](resource-programming-guide.md)
+* [Resource Programming Guide](resource-programming-guide/README.md)
+  * [Nib Files](resource-programming-guide/nib-files.md)
 
