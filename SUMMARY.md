@@ -10,6 +10,7 @@
 * [AVAudioPlayer](avaudioplayer.md)
 * [AVAudioSession](avaudiosession.md)
 * [RunLoop](runloop.md)
+* [NSCopying](nscopying.md)
 
 ## Human Interface Guidelines
 
