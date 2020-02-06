@@ -11,6 +11,7 @@
 * [AVAudioSession](avaudiosession.md)
 * [RunLoop](runloop.md)
 * [NSCopying](nscopying.md)
+* [contentsScale](contentsscale.md)
 
 ## Human Interface Guidelines
 
