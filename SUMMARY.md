@@ -209,6 +209,7 @@
 ## Core Animation
 
 * [CAPropertyAnimation](core-animation/capropertyanimation.md)
+* [shouldRasterize](core-animation/shouldrasterize.md)
 * [Core Animation Programming Guide](core-animation-programming-guide/README.md)
   * [Core Animation Basics](core-animation-programming-guide/core-animation-basics.md)
   * [Setting Up Layer Objects](core-animation-programming-guide/setting-up-layer-objects.md)
