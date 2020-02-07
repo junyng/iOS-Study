@@ -12,6 +12,7 @@
 * [RunLoop](runloop.md)
 * [NSCopying](nscopying.md)
 * [contentsScale](contentsscale.md)
+* [contentsGravity](contentsgravity.md)
 
 ## Human Interface Guidelines
 
