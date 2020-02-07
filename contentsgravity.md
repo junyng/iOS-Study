@@ -10,7 +10,7 @@ description: 레이어 콘텐츠가 바운드 내에서 배치되거나 확장�
 var contentsGravity: CALayerContentsGravity { get set }
 ```
 
-### s논의
+### 논의
 
 이 속성의 가능한 값은 [Contents Gravity Values](https://developer.apple.com/documentation/quartzcore/calayer/contents_gravity_values)에 나열되어 있다.
 
