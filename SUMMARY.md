@@ -13,6 +13,7 @@
 * [NSCopying](nscopying.md)
 * [contentsScale](contentsscale.md)
 * [contentsGravity](contentsgravity.md)
+* [layoutSublayers\(of:\)](layoutsublayers-of.md)
 
 ## Human Interface Guidelines
 
