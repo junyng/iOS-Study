@@ -75,6 +75,7 @@
 
 ## Documentation Archive <a id="archive"></a>
 
+* [Animation Types and Timing Programming Guide](archive/animation-types-and-timing-programming-guide.md)
 * [About Memory Management Programming Guide](archive/about-memory-management-programming-guide/README.md)
   * [Memory Management Policy](archive/about-memory-management-programming-guide/memory-management-policy.md)
   * [Using Autorelease Pool Blocks](archive/about-memory-management-programming-guide/using-autorelease-pool-blocks.md)
