@@ -77,6 +77,7 @@
 
 * [Animation Types and Timing Programming Guide](archive/animation-types-and-timing-programming-guide/README.md)
   * [Animation Class Roadmap](archive/animation-types-and-timing-programming-guide/animation-class-roadmap.md)
+  * [Timing, Timespaces, and CAAnimation](archive/animation-types-and-timing-programming-guide/timing-timespaces-and-caanimation.md)
 * [About Memory Management Programming Guide](archive/about-memory-management-programming-guide/README.md)
   * [Memory Management Policy](archive/about-memory-management-programming-guide/memory-management-policy.md)
   * [Using Autorelease Pool Blocks](archive/about-memory-management-programming-guide/using-autorelease-pool-blocks.md)
