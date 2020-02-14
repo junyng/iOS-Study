@@ -14,6 +14,7 @@
 * [contentsScale](contentsscale.md)
 * [contentsGravity](contentsgravity.md)
 * [layoutSublayers\(of:\)](layoutsublayers-of.md)
+* [CAReplicatorLayer](careplicatorlayer.md)
 
 ## Human Interface Guidelines
 
