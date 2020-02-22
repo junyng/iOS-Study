@@ -2,57 +2,202 @@
 
 GCD\(Grand Central Dispatch\) 디스패치 큐는 작업을 수행하기 위한 강력한 도구이다. 디스패치 큐를 통해 발신자와 관련하여 비동기 또는 동기식으로 임의의 코드 블록을 실행할 수 있다. 디스패치 큐를 사용하여 별도의 쓰레드에서 수행하는 데 사용한 거의 모든 태스크를 수행할 수 있다. 디스패치 큐의 장점은 해당 쓰레드 코드보다 사용이 간편하고 태스크를 실행하는 데 훨씬 효율적이라는 것이다.
 
-이 장에서는 애플리케이션에서 일반 태스크를 실행하는 데 사용하는 방법에 대한 정보와 함께 디스패치 큐에 대한 소개를 제공한다. 기존의 쓰레드 코드를 디스패치 큐로 바꾸려면 Migrating Away from Threads을 통해 쓰레드 코드 사용 방법에 대한 몇가지 추가적인 팁을 참조하라.
+이 장에서는 애플리케이션에서 일반 태스크를 실행하는 데 사용하는 방법에 대한 정보와 함께 디스패치 큐에 대한 소개를 제공한다. 기존의 쓰레드 코드를 디스패치 큐로 바꾸려면 [Migrating Away from Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW1)에서 쓰레드 코드 사용 방법에 대한 몇 가지 추가적인 팁을 참조하라.
 
-## About Dispatch Queues
+## 디스패치 큐에 대해
 
-디스패치 큐는 애플리케이션에서 작업을 비동기적으로 동시에 수행하는 쉬운 방법이다. 태스크는 단순히 당신의 애플리케이션이 수행해야 하는 일부 작업이다. 예를 들어, 어떤 계산을 수행하거나, 데이터 구조를 생성 또는 수정하거나, 파일에서 읽은 일부 데이터를 처리하거나, 또는 여러가지 작업을 처리하는 태스크를 정의할 수 있다. 함수 또는 블록 객체 내부에 해당 코드를 배치하고 디스패치 큐에 추가하여 태스크를 정의한다.
+디스패치 큐는 애플리케이션에서 작업을 비동기적으로 병렬적으로 수행하는 쉬운 방법이다. _태스크_는 단순히 당신의 애플리케이션이 수행해야 하는 일부 작업이다. 예를 들어, 어떤 계산을 수행하거나, 데이터 구조를 생성 또는 수정하거나, 파일에서 읽은 일부 데이터를 처리하거나, 또는 여러가지 작업을 처리하는 태스크를 정의할 수 있다. 함수 또는 블록 객체 내부에 해당 코드를 배치하고 디스패치 큐에 추가하여 태스크를 정의한다.
 
-디스패치 큐는 제출하는 태스크를 관리하는 object-like 구조이다. 모든 디스패치 큐는 선입선출 데이터 구조이다. 따라서 큐에 추가하는 태스크는 항상 추가된 순서대로 시작된다. GCD는 자동으로 일부 디스패치 큐를 제공하지만 특정 목적을 위해 생성할 수 있는 다른 디스패치 큐도 제공한다. Table 3-1에는 애플리케이션에 사용할 수 있는 디스패치 큐의 유형 및 사용 방법이 나와 있다.
+디스패치 큐는 제출하는 태스크를 관리하는 객체와 같은 구조체이다. 모든 디스패치 큐는 선입선출 데이터 구조이다. 따라서 큐에 추가하는 태스크는 항상 추가된 순서대로 시작된다. GCD는 자동으로 일부 디스패치 큐를 제공하지만 특정 목적을 위해 생성할 수 있는 다른 디스패치 큐도 제공한다. 목록 3-1에는 애플리케이션에 사용할 수 있는 디스패치 큐의 유형 및 사용 방법이 나와 있다.
 
-**Table 3-1** Types of dispatch queues
+**목록 3-1** 디스패치 큐 유형
 
-| Type | Description |
-| :--- | :--- |
-| Serial | 시리얼 큐\(private 디스패치 큐라고도 함\)는 큐에 추가된 순서대로 한 번에 하나의 태스크를 실행한다. 현재 실행 중인 태스크는 디스패치 큐에 의해 관리되는 별개의 쓰레드\(태스크 마다 다를 수 있음\)에서 실행된다. 시리얼 큐는 종종 특정 리소스에 대한 액세스를 동기화하는 데 사용 된다. 필요한 만큼 많은 시리얼 큐를 생성할 수 있으며, 각 큐는 다른 모든 큐와 동시에 작동한다. 즉, 4개의 시리얼 큐를 생성하면 각 큐는 한 번에 하나의 작업만 실행하지만 각 큐에서 최대 4개의 작업이 동시에 실행될 수 있다. 시리얼 큐를 생성하는 방법에 대한 자세한 내용은 Creating Serial Dispatch Queues를 참조하라. |
-| Concurrent | 컨커런트 큐\(글로벌 디스패치 큐라고도 함\)는 하나 이상의 태스크를 동시에 실행하지만 태스크는 대기열에 추가된 순서대로 여전히 시작된다. 현재 실행 중인 태스크는 디스패치 큐에 의해 관리되는 별개의 쓰레드에서 실행된다. 특정 지점에서 실행되는 태스크의 정확한 수는 가변적이며 시스템 조건에 따라 달라진다. iOS 5 이상에서는 `DISPATCH_QUEUE_CONCURRENT` 를 큐 유형으로 지정하여 컨커런트 큐를 직접 생성할 수 있다. 또한 애플리케이션이 사용할 미리 정의된 글로벌 컨커런트 큐 4개가 있다. 글로벌 컨커런트 큐를 가져오는 방법에 대한 자세한 내용은 Getting the Global Concurrent Dispatch Queues를 참조하라. |
-| Main dispatch queue | 메인 디스패치 큐는 메인 쓰레드 태스크를 실행하고 있는 시리얼 큐를 전역으로 사용 가능합니다. 이 큐는 애플리케이션의 런 루프\(있는 경우\)와 함께 작동하여 대기 중인 태스크의 실행을 런 루프에 연결된 다른 이벤트 소스의 실행과 상호 작용한다. 애플리케이션의 메인 쓰레드에서 실행된 큐는 종종 애플리케이션에 대한 주요 동기점으로 사용된다. 메인 디스패치 큐를 생성하지 않아도 애플리케이션이 그것을 적절하게 제거하는지 확인할 필요가 있다. 이 큐가 어떻게 관리되는지에 대한 자세한 내용은 Performing Tasks on the Main Thread를 참조하라. |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>&#xC720;&#xD615;</b>
+      </th>
+      <th style="text-align:left"><b>&#xC124;&#xBA85;</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">&#xC2DC;&#xB9AC;&#xC5BC;</td>
+      <td style="text-align:left">&#xC2DC;&#xB9AC;&#xC5BC; &#xD050; (<em>private &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;</em>&#xB77C;&#xACE0;&#xB3C4;
+        &#xD568;)&#xB294; &#xD050;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xC21C;&#xC11C;&#xB300;&#xB85C;
+        &#xD55C; &#xBC88;&#xC5D0; &#xD558;&#xB098;&#xC758; &#xD0DC;&#xC2A4;&#xD06C;&#xB97C;
+        &#xC2E4;&#xD589;&#xD55C;&#xB2E4;. &#xD604;&#xC7AC; &#xC2E4;&#xD589; &#xC911;&#xC778;
+        &#xD0DC;&#xC2A4;&#xD06C;&#xB294; &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;&#xC5D0;
+        &#xC758;&#xD574; &#xAD00;&#xB9AC;&#xB418;&#xB294; &#xBCC4;&#xAC1C;&#xC758;
+        &#xC4F0;&#xB808;&#xB4DC; (&#xD0DC;&#xC2A4;&#xD06C; &#xB9C8;&#xB2E4; &#xB2E4;&#xB97C;
+        &#xC218; &#xC788;&#xC74C;)&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.
+        &#xC2DC;&#xB9AC;&#xC5BC; &#xD050;&#xB294; &#xC885;&#xC885; &#xD2B9;&#xC815;
+        &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xB300;&#xD55C; &#xC561;&#xC138;&#xC2A4;&#xB97C;
+        &#xB3D9;&#xAE30;&#xD654;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9; &#xB41C;&#xB2E4;.
+        &#xD544;&#xC694;&#xD55C; &#xB9CC;&#xD07C; &#xB9CE;&#xC740; &#xC2DC;&#xB9AC;&#xC5BC;
+        &#xD050;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70;,
+        &#xAC01; &#xD050;&#xB294; &#xB2E4;&#xB978; &#xBAA8;&#xB4E0; &#xD050;&#xC640;
+        &#xB3D9;&#xC2DC;&#xC5D0; &#xC791;&#xB3D9;&#xD55C;&#xB2E4;. &#xC989;, 4&#xAC1C;&#xC758;
+        &#xC2DC;&#xB9AC;&#xC5BC; &#xD050;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xBA74;
+        &#xAC01; &#xD050;&#xB294; &#xD55C; &#xBC88;&#xC5D0; &#xD558;&#xB098;&#xC758;
+        &#xC791;&#xC5C5;&#xB9CC; &#xC2E4;&#xD589;&#xD558;&#xC9C0;&#xB9CC; &#xAC01;
+        &#xD050;&#xC5D0;&#xC11C; &#xCD5C;&#xB300; 4&#xAC1C;&#xC758; &#xC791;&#xC5C5;&#xC774;
+        &#xB3D9;&#xC2DC;&#xC5D0; &#xC2E4;&#xD589;&#xB420; &#xC218; &#xC788;&#xB2E4;.
+        &#xC2DC;&#xB9AC;&#xC5BC; &#xD050;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294;
+        &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740;
+        <a
+        href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW6">Creating Serial Dispatch Queues</a>&#xB97C; &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">&#xCEE8;&#xCEE4;&#xB7F0;&#xD2B8;</td>
+      <td style="text-align:left">&#xCEE8;&#xCEE4;&#xB7F0;&#xD2B8; &#xD050; (<em>global &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;</em>&#xB77C;&#xACE0;&#xB3C4;
+        &#xD568;)&#xB294; &#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; &#xD0DC;&#xC2A4;&#xD06C;&#xB97C;
+        &#xB3D9;&#xC2DC;&#xC5D0; &#xC2E4;&#xD589;&#xD558;&#xC9C0;&#xB9CC; &#xD0DC;&#xC2A4;&#xD06C;&#xB294;
+        &#xC5EC;&#xC804;&#xD788; &#xB300;&#xAE30;&#xC5F4;&#xC5D0; &#xCD94;&#xAC00;&#xB41C;
+        &#xC21C;&#xC11C;&#xB300;&#xB85C; &#xC2DC;&#xC791;&#xB41C;&#xB2E4;. &#xD604;&#xC7AC;
+        &#xC2E4;&#xD589; &#xC911;&#xC778; &#xD0DC;&#xC2A4;&#xD06C;&#xB294; &#xB514;&#xC2A4;&#xD328;&#xCE58;
+        &#xD050;&#xC5D0; &#xC758;&#xD574; &#xAD00;&#xB9AC;&#xB418;&#xB294; &#xBCC4;&#xAC1C;&#xC758;
+        &#xC4F0;&#xB808;&#xB4DC;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.
+        &#xD2B9;&#xC815; &#xC9C0;&#xC810;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294;
+        &#xD0DC;&#xC2A4;&#xD06C;&#xC758; &#xC815;&#xD655;&#xD55C; &#xAC1C;&#xC218;&#xB294;
+        &#xAC00;&#xBCC0;&#xC801;&#xC774;&#xBA70; &#xC2DC;&#xC2A4;&#xD15C; &#xC870;&#xAC74;&#xC5D0;
+        &#xB530;&#xB77C; &#xB2EC;&#xB77C;&#xC9C4;&#xB2E4;. iOS 5 &#xC774;&#xC0C1;&#xC5D0;&#xC11C;&#xB294; <code>DISPATCH_QUEUE_CONCURRENT</code> &#xB97C;
+        &#xD050; &#xC720;&#xD615;&#xC73C;&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xC5EC;
+        &#xCEE8;&#xCEE4;&#xB7F0;&#xD2B8; &#xD050;&#xB97C; &#xC9C1;&#xC811; &#xC0DD;&#xC131;&#xD560;
+        &#xC218; &#xC788;&#xB2E4;. &#xB610;&#xD55C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774;
+        &#xC0AC;&#xC6A9;&#xD560; &#xBBF8;&#xB9AC; &#xC815;&#xC758;&#xB41C; &#xAE00;&#xB85C;&#xBC8C;
+        &#xCEE8;&#xCEE4;&#xB7F0;&#xD2B8; &#xD050; 4&#xAC1C;&#xAC00; &#xC788;&#xB2E4;.
+        &#xAE00;&#xB85C;&#xBC8C; &#xCEE8;&#xCEE4;&#xB7F0;&#xD2B8; &#xD050;&#xB97C;
+        &#xAC00;&#xC838;&#xC624;&#xB294; &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C;
+        &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW5">Getting the Global Concurrent Dispatch Queues</a>&#xB97C;
+        &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>&#xBA54;&#xC778;</p>
+        <p>&#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;</p>
+      </td>
+      <td style="text-align:left">
+        <p>&#xBA54;&#xC778; &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;&#xB294; &#xBA54;&#xC778;
+          &#xC4F0;&#xB808;&#xB4DC;&#xC5D0;&#xC11C; &#xD0DC;&#xC2A4;&#xD06C;&#xB97C;
+          &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC804;&#xC5ED;&#xC801;&#xC73C;&#xB85C;
+          &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; &#xC2DC;&#xB9AC;&#xC5BC; &#xD050;&#xC774;&#xB2E4;.
+          &#xC774; &#xD050;&#xB294; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758;
+          &#xB7F0; &#xB8E8;&#xD504; (&#xC788;&#xB294; &#xACBD;&#xC6B0;)&#xC640; &#xD568;&#xAED8;
+          &#xC791;&#xB3D9;&#xD558;&#xC5EC; &#xB300;&#xAE30; &#xC911;&#xC778; &#xD0DC;&#xC2A4;&#xD06C;&#xC758;
+          &#xC2E4;&#xD589;&#xC744; &#xB7F0; &#xB8E8;&#xD504;&#xC5D0; &#xC5F0;&#xACB0;&#xB41C;
+          &#xB2E4;&#xB978; &#xC774;&#xBCA4;&#xD2B8; &#xC18C;&#xC2A4;&#xC758; &#xC2E4;&#xD589;&#xACFC;
+          &#xC0C1;&#xD638; &#xC791;&#xC6A9;&#xD55C;&#xB2E4;. &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758;
+          &#xBA54;&#xC778; &#xC4F0;&#xB808;&#xB4DC;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB41C;
+          &#xD050;&#xB294; &#xC885;&#xC885; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;
+          &#xB300;&#xD55C; &#xC8FC;&#xC694; &#xB3D9;&#xAE30;&#xD654; &#xC9C0;&#xC810;&#xC73C;&#xB85C;
+          &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xACBD;&#xC6B0;&#xAC00; &#xB9CE;&#xB2E4;.</p>
+        <p>&#xBA54;&#xC778; &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xD050;&#xB97C; &#xC0DD;&#xC131;&#xD560;
+          &#xD544;&#xC694;&#xB294; &#xC5C6;&#xC9C0;&#xB9CC; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C;
+          &#xD574;&#xB2F9; &#xD050;&#xB97C; &#xC801;&#xC808;&#xD788; &#xBC30;&#xCD9C;&#xD558;&#xB294;&#xC9C0;
+          &#xD655;&#xC778;&#xD558;&#xB77C;. &#xC774; &#xD050;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C;
+          &#xAD00;&#xB9AC;&#xB418;&#xB294;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C;
+          &#xB0B4;&#xC6A9;&#xC740; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW15">Performing Tasks on the Main Thread</a>&#xB97C;
+          &#xCC38;&#xC870;&#xD558;&#xB77C;.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>애플리케이션에 동시성을 추가하는 경우, 디스패치 큐는 쓰레드보다 몇 가지 이점을 제공한다. 가장 직접적인 장점은 작업 큐 프로그래밍 모델의 단순성이다. 쓰레드의 경우, 수행하고자 하는 태스크와 쓰레드 자체의 생성과 관리를 위해 코드를 작성해야 한다. 디스패치 큐를 사용하면 쓰레드 생성 및 관리에 대한 걱정 없이 실제로 수행하고자 하는 작업에 집중할 수 있다. 대신 시스템이 모든 쓰레드 생성 및 관리를 처리해 준다. 장점은 단일 애플리케이션보다 훨씬 더 효율적으로 쓰레드를 관리할 수 있다는 것이다. 시스템은 가용 자원과 현재 시스템 조건에 따라 쓰레드 수를 동적으로 확장할 수 있다. 게다가, 시스템은 보통 직접 쓰레드를 만들었을 때보다 더 빠르게 당신의 태스크를 실행할 수 있다.
 
-애플리케이션에 동시성을 추가하는 것에 관해 디스패치 큐 쓰레드에 대한 여럿의 이점을 제공한다. work-queue 프로그래밍 모델의 가장 직접적인 장점은 간단함이다. 당신은 수행을 원하는 쓰레드의 생성과 쓰레드를 관리하는 작업에 대한 코드를 작성해야한다. 디스패치 큐는 실제로 쓰레드 생성과 관리 수행에 걱정 없이 작업에 집중하게 해준다. 대신, 그 시스템이 모든 쓰레드의 생성 및 관리 전반을 담당한다. 시스템의 장점은 단일 애플리케이션보다 쓰레드를 더 효율적으로 관리할 수 있다. 그 시스템은 사용 가능한 자원과 현재 시스템 조건에 기초를 둔 쓰레드의 수를 동적으로 확장할 수 있다. 게다가, 시스템은 보통 직접 쓰레드를 만들었을 때보다 더 빨리 당신의 태스크를 실행할 수 있다.
+디스패치 큐를 위해 코드를 재작성하는 것이 어려울것이라고 생각 할 수 있지만, 쓰레드에 대한 코드를 작성하는 것보다 디스패치 큐에 대한 코드를 작성하는 것이 더 쉬운 경우가 많다. 코드를 작성하는 데 있어 핵심은 비동기적으로 실행할 수 있는 태스크를 설계하는 것이다. \(이것은 쓰레드와 디스패치 큐 모두 해당한다.\) 그러나 디스패치 큐가 예측 가능성에 있어 유리하다. 동일한 공유 리소스에 액세스하지만 서로 다른 쓰레드에서 실행되는 두 태스크가 있는 경우 두 쓰레드는 먼저 리소스를 수정할 수 있으며 두 태스크가 동시에 해당 리소스를 수정하지 않도록 락을 사용해야 한다. 디스패치 큐를 사용하면 두 태스크를 시리얼 디스패치 큐에 추가하여 지정된 시간에 한 태스크만 리소스를 수정하도록 할 수 있다. 이 유형의 큐 기반 동기화는 락이 항상 문제가 있거나 검증되지 않은 경우 모두 값비싼 커널 트랩을 필요로 하는 반면, 디스패치 큐는 주로 애플리케이션 프로세스 공간에서 작동하며 절대적으로 필요할 때만 커널로 호출하기 때문에 락보다 더 효율적이다.
 
-디스패치 큐를 위해 코드를 재작성하는 것이 어려울것이라고 생각 할 수 있지만, 쓰레드에 코드를 작성하는 것보다 디스패치 큐의 코드를 작성하는 것이 더 쉬운 경우가 많다. 코드를 작성하는 데 있어 핵심은 비동기적으로 실행할 수 있는 태스크를 설계하는 것이다. \(이것은 쓰레드와 디스패치 큐 모두 해당한다.\) 그러나 디스패치 큐가 예측 가능성에 있어 유리하다. 동일한 공유 리소스에 액세스하지만 서로 다른 쓰레드에서 실행되는 두 태스크가 있는 경우 두 쓰레드는 먼저 리소스를 수정할 수 있으며 두 태스크가 동시에 해당 리소스를 수정하지 않도록 락을 사용해야 한다. 디스패치 큐를 사용하면 두 태스크를 시리얼 디스패치 큐에 추가하여 지정된 시간에 한 태스크만 리소스를 수정하도록 할 수 있다. 이 유형의 큐 기반 동기화는 락 보다 더 효율적이다. 락은 항상 경쟁 비경쟁상태 모두 값비싼 커널 트랩이 필요하기 때문이다. 디스패치 큐는 주로 애플리케이션 프로세스 공간에서 작동하며 절대적으로 필요한 경우에만 커널로 호출한다.
-
-시리얼 큐에서 실행되는 두 개의 태스크가 동시에 실행되지 않는다는 점을 지적하는 것이 옳더라도 두 개의 쓰레드가 동시에 잠기면 쓰레드가 제공하는 동시성이 상실되거나 현저히 감소한다는 점을 기억해야 한다. 더 중요한 것은, 쓰레드 모델은 커널과 사용자-공간 메모리를 모두 차지하는 두 개의 쓰레드를 생성해야 한다는 것이다. 디스패치 큐는 쓰레드에 대해 동일한 메모리 패널티를 지불하지 않으며, 그들이 사용하는 쓰레드는 사용량이 많고 차단되지 않는다.
+시리얼 큐에서 실행되는 두 개의 태스크가 병렬적으로 실행되지 않는다는 점을 지적하는 것은 옳겠지만, 두 개의 쓰레드가 동시에 락을 취하면 쓰레드가 제공하는 동시성이 손실되거나 크게 감소한다는 것을 기억해야 한다. 더 중요한 것은 쓰레드 모델이 커널과 사용자 공간 메모리를 모두 차지하는 두 개의 쓰레드를 생성해야 한다는 것이다. 디스패치 큐는 쓰레드에 대해 동일한 메모리 패널티를 지불하지 않으며, 사용하는 쓰레드는 분주하게 유지되고 차단되지 않는다.
 
 디스패치 큐에 대해 기억해야 할 다른 주요 사항에는 다음이 포함된다.
 
-* 디스패치 큐는 다른 디스패치 큐와 동시에 태스크를 수행한다. 일련의 태스크는 단일 디스패치 큐에 있는 태스크로 제한된다.
-* 시스템은 한 번에 실행하는 총 태스크 수를 결정한다. 따라서 100개의 다른 큐에서 100개의 태스크를 가진 애플리케이션은 모든 태스크를 동시에 실행하지 못할 수 있다. \(100개 이상의 유효 코어를 가지고 있지 않는 한\)
-* 시스템은 시작할 새 태스크를 선택할 때 큐 우선 순위를 고려한다. 시리얼 큐의 우선 순위를 설정하는 방법에 대한 자세한 내용은 Providing a Clean Up Function For a Queue를 참조하라.
+* 디스패치 큐는 다른 디스패치 큐와 관련해 태스크를 병렬적으로 실행한다. 태스크의 직렬화는 단일 디스패치 큐에 있는 태스크로 제한된다.
+* 시스템은 한 번에 실행하는 총 태스크 수를 결정한다. 따라서 100개의 다른 큐에서 100개의 태스크를 가진 애플리케이션은 \(100개 이상의 유효 코어를 가지고 있지 않는 한\) 모든 태스크를 병렬적으로 실행하지 않을 수 있다.
+* 시스템은 시작할 새 태스크를 선택할 때 큐 우선 순위 수준을 고려한다. 시리얼 큐의 우선 순위를 설정하는 방법에 대한 자세한 내용은 [Providing a Clean Up Function For a Queue](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW7)를 참조하라.
 * 큐의 태스크는 큐에 추가될 때 실행할 준비가 되어 있어야 한다. \(이전에 Cocoa 오퍼레이션 객체를 사용한 적이 있는 경우 이 동작은 모델 오퍼레이션 사용과 다르다는 점에 유의하라.\)
-* Private 디스패치 큐는 참조 카운트 객체이다. 코드로 큐를 유지하는 것 외에도 디스패치 소스가 큐에 부착될 수 있고 리테인 카운트를 증가시킬 수 있다는 점에 유의하라. 따라서 모든 디스패치 소스가 취소되고 모든 릴리스 호출로 리테인 호출이 균형을 이루도록 해야 한다. 큐 리테인 및 릴리스에 대한 자세한 내용은 Memory Management for Dispatch Queues를 참조하라. 디스패치 소스에 대한 자세한 내용은 About Dispatch Sources를 참조하라.
+* Private 디스패치 큐는 참조 객체로 계산된다. 큐를 자신의 코드로 유지하는 것 외에도, 디스패치 소스가 큐에 부착될 수 있고 보관횟수를 증가시킬 수 있다는 점에 유의하라. 따라서, 모든 디스패치 소스가 취소되고 모든 리테인 호출은 적절한 릴리즈 호출과 균형을 이루도록 해야 한다. 큐를 리테인 및 릴리스하는 방법에 대한 자세한 내용은 [Memory Management for Dispatch Queues](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW11)를 참조하라. 디스패치 소스에 대한 자세한 내용은 [About Dispatch Sources](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/GCDWorkQueues/GCDWorkQueues.html#//apple_ref/doc/uid/TP40008091-CH103-SW12)를 참조하라.
 
-디스패치 큐를 조작하는 데 사용하는 인터페이스에 대한 자세한 내용은 GCD\(Grand Central Dispatch\) 를 참조하라.
+디스패치 큐를 조작하는 데 사용하는 인터페이스에 대한 자세한 내용은 _Grand Central Dispatch \(GCD\)_를 참조하라.
 
-## Queue-Related Technologies
+## 큐-관련 기술
 
-Grand Central Dispatch는 디스패치 큐 외에도 큐를 사용하여 코드를 관리하는 데 도움이 되는 몇 가지 기술을 제공한다. Table 3-2는 이러한 기술들을 나열하고 당신이 그것에 대해 더 많은 정보를 찾을 수 있는 곳에 대한 링크를 제공한다.
+Grand Central Dispatch는 디스패치 큐 외에도 큐를 사용하여 코드를 관리하는 데 도움이 되는 몇 가지 기술을 제공한다. 표 3-2는 이러한 기술들을 나열하고 자세한 정보를 확인할 수 있도록 링크를 제공한다.
 
-**Table 3-2** Technologies that use dispatch queues
+**표 3-2** 디스패치 큐에 사용되는 기술
 
-| **Technology** | **Description** |
-| :--- | :--- |
-| Dispatch groups | 디스패치 그룹은 블록 객체 셋을 모니터링하여 완료하는 방법이다. \(필요에 따라 블록을 동기식 또는 비동기식으로 모니터링할 수 있다.\) 그룹은 다른 태스크의 완료에 따라 달라지는 코드에 대한 유용한 동기화 메커니즘을 제공한다. 그룹 사용에 대한 자세한 정보는 Waiting on Groups of Queued Tasks를 참조하라. |
-| Dispatch semaphores | 디스패치 세마포어는 전통적인 세마포어와 비슷하지만 일반적으로 더 효율적이다. 디스패치 세마포어는 세마포어를 사용할 수 없기 때문에 호출 쓰레드를 차단해야 할 경우에만 커널로 호출한다. 세마포어를 사용할 수 있으면 커널 콜이 이루어지지 않는다. 디스패치 세마포어에 대한 사용 방법에 대한 예는 [Using Dispatch Semaphores to Regulate the Use of Finite Resources](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW24) 를 참조하라. |
-| Dispatch sources | 디스패치 소스는 특정 유형의 시스템 이벤트에 대응하여 알림을 생성한다. 디스패치 소스를 사용하여 프로세스 알림, 신호 및 설명자 이벤트와 같은 이벤트를 모니터링할 수 있다. 이벤트가 발생하면, 디스패치 소스는 처리를 위해 지정된 디스패치 큐에 작업 코드를 비동기적으로 제출한다. 디스패치에 대한 자세한 정보는 [Dispatch Sources](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/GCDWorkQueues/GCDWorkQueues.html#//apple_ref/doc/uid/TP40008091-CH103-SW1) 를 참조하라. |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>&#xAE30;&#xC220;</b>
+      </th>
+      <th style="text-align:left"><b>&#xC124;&#xBA85;</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">
+        <p>&#xB514;&#xC2A4;&#xD328;&#xCE58;</p>
+        <p>&#xADF8;&#xB8F9;</p>
+      </td>
+      <td style="text-align:left">&#xB514;&#xC2A4;&#xD328;&#xCE58; &#xADF8;&#xB8F9;&#xC740; &#xBE14;&#xB85D;
+        &#xAC1D;&#xCCB4; &#xC14B;&#xC744; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1;&#xD558;&#xC5EC;
+        &#xC644;&#xB8CC;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774;&#xB2E4;. (&#xD544;&#xC694;&#xC5D0;
+        &#xB530;&#xB77C; &#xBE14;&#xB85D;&#xC744; &#xB3D9;&#xAE30;&#xC2DD; &#xB610;&#xB294;
+        &#xBE44;&#xB3D9;&#xAE30;&#xC2DD;&#xC73C;&#xB85C; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1;&#xD560;
+        &#xC218; &#xC788;&#xB2E4;.) &#xADF8;&#xB8F9;&#xC740; &#xB2E4;&#xB978; &#xD0DC;&#xC2A4;&#xD06C;&#xC758;
+        &#xC644;&#xB8CC;&#xC5D0; &#xB530;&#xB77C; &#xB2EC;&#xB77C;&#xC9C0;&#xB294;
+        &#xCF54;&#xB4DC;&#xC5D0; &#xB300;&#xD55C; &#xC720;&#xC6A9;&#xD55C; &#xB3D9;&#xAE30;&#xD654;
+        &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC744; &#xC81C;&#xACF5;&#xD55C;&#xB2E4;.
+        &#xADF8;&#xB8F9; &#xC0AC;&#xC6A9;&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C;
+        &#xC815;&#xBCF4;&#xB294; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW25">Waiting on Groups of Queued Tasks</a>&#xB97C;
+        &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>&#xB514;&#xC2A4;&#xD328;&#xCE58;</p>
+        <p>&#xC138;&#xB9C8;&#xD3EC;&#xC5B4;</p>
+      </td>
+      <td style="text-align:left">&#xB514;&#xC2A4;&#xD328;&#xCE58; &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xB294;
+        &#xC804;&#xD1B5;&#xC801;&#xC778; &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xC640;
+        &#xBE44;&#xC2B7;&#xD558;&#xC9C0;&#xB9CC; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;
+        &#xB354; &#xD6A8;&#xC728;&#xC801;&#xC774;&#xB2E4;. &#xB514;&#xC2A4;&#xD328;&#xCE58;
+        &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xB294; &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xB97C;
+        &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;
+        &#xD638;&#xCD9C; &#xC4F0;&#xB808;&#xB4DC;&#xB97C; &#xCC28;&#xB2E8;&#xD574;&#xC57C;
+        &#xD560; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; &#xCEE4;&#xB110;&#xB85C; &#xD638;&#xCD9C;&#xD55C;&#xB2E4;.
+        &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;
+        &#xC788;&#xC73C;&#xBA74; &#xCEE4;&#xB110; &#xCF5C;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xC9C0;
+        &#xC54A;&#xB294;&#xB2E4;. &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xC138;&#xB9C8;&#xD3EC;&#xC5B4;&#xC5D0;
+        &#xB300;&#xD55C; &#xC0AC;&#xC6A9; &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C;
+        &#xC608;&#xB294; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW24">Using Dispatch Semaphores to Regulate the Use of Finite Resources</a>&#xB97C;
+        &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">&#xB514;&#xC2A4;&#xD328;&#xCE58;&#xC18C;&#xC2A4;</td>
+      <td style="text-align:left">&#xB514;&#xC2A4;&#xD328;&#xCE58; &#xC18C;&#xC2A4;&#xB294; &#xD2B9;&#xC815;
+        &#xC720;&#xD615;&#xC758; &#xC2DC;&#xC2A4;&#xD15C; &#xC774;&#xBCA4;&#xD2B8;&#xC5D0;
+        &#xB300;&#xC751;&#xD558;&#xC5EC; &#xC54C;&#xB9BC;&#xC744; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;.
+        &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xC18C;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC;
+        &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC54C;&#xB9BC;, &#xC2E0;&#xD638; &#xBC0F;
+        &#xC124;&#xBA85;&#xC790; &#xC774;&#xBCA4;&#xD2B8;&#xC640; &#xAC19;&#xC740;
+        &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1;&#xD560;
+        &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xBCA4;&#xD2B8;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74;,
+        &#xB514;&#xC2A4;&#xD328;&#xCE58; &#xC18C;&#xC2A4;&#xB294; &#xCC98;&#xB9AC;&#xB97C;
+        &#xC704;&#xD574; &#xC9C0;&#xC815;&#xB41C; &#xB514;&#xC2A4;&#xD328;&#xCE58;
+        &#xD050;&#xC5D0; &#xC791;&#xC5C5; &#xCF54;&#xB4DC;&#xB97C; &#xBE44;&#xB3D9;&#xAE30;&#xC801;&#xC73C;&#xB85C;
+        &#xC81C;&#xCD9C;&#xD55C;&#xB2E4;. &#xB514;&#xC2A4;&#xD328;&#xCE58;&#xC5D0;
+        &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xC815;&#xBCF4;&#xB294; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/GCDWorkQueues/GCDWorkQueues.html#//apple_ref/doc/uid/TP40008091-CH103-SW1">Dispatch Sources</a> &#xB97C;
+        &#xCC38;&#xC870;&#xD558;&#xB77C;.</td>
+    </tr>
+  </tbody>
+</table>### 블록을 사용하여 태스크 구현하기
 
-### Implementing Tasks Using Blocks
+블록 객체는 C, Objective-C 및 C++ 코드에 사용할 수 있는 C언어 기반 기능이다. 블록을 통해 자가 작업 단위를 쉽게 정의할 수 있다. 비록 그것들이 함수 포인터와 비슷하게 보일 수 있지만 블록은 실제로 객체와 유사하고 컴파일러가 작성하고 관리하는 기본 데이터 구조로 표시된다. 컴파일러는 당신이 제공하는 코드를 패키지화하고 \(관련 데이터와 함께\) 힙에 존재할 수 있고 당신의 애플리케이션을 통과할 수 있는 형태로 캡슐화한다.
 
-블록 객체는 C, Objective-C 및 C++ 코드에 사용할 수 있는 C언어 기반 기능이다. 블록을 통해 자기 포함 작업 단위를 쉽게 정의할 수 있다. 비록 그것들이 함수 포인터와 비슷하게 보일지 모르지만, 블록은 실제로 객체를 닮은 기본 데이터 구조로 표현되며, 컴파일러에 의해 생성되고 관리된다. 컴파일러는 당신이 제공하는 코드를 패키징하고\(관련 데이터와 함께\) 힙에 살면서 당신의 애플리케이션을 통과할 수 있는 형태로 캡슐화한다.
+블록의 주요 장점 중 하나는 자체 어휘 범위에서 외부 변수를 사용할 수 있다는 것이다. 함수나 메서드 내부의 블록을 정의할 때, 블록은 어떤 면에서 전통적인 코드 블록처럼 작용한다. 예를 들어, 블록은 상위 범위에 정의된 변수 값을 읽을 수 있다. 블록에 의해 접근된 변수는 블록이 나중에 접근할 수 있도록 힙의 블록 데이터 구조에 복사된다. 블록이 디스패치 큐에 추가되면 일반적으로 이러한 값은 읽기 전용 형식으로 남겨 두어야 한다. 그러나 동기식으로 실행되는 블록은 `__block` 키워드가 부모의 호출로 데이터를 반환할 준비가 되어 있는 변수를 사용할 수도 있다.
 
-블록의 주요 장점 중 하나는 자체 어휘 범위에서 외부 변수를 사용할 수 있다는 것이다. 함수나 메서드 내부의 블록을 정의할 때, 블록은 어떤 면에서 전통적인 코드 블록으로 작용한다. 예를 들어, 블록은 상위 범위에 정의된 변수 값을 읽을 수 있다. 블록이 접근하는 변수는 나중에 블록이 접근할 수 있도록 힙의 블록 데이터 구조에 복사된다. 블록이 디스패치 큐에 추가되면 이러한 값은 일반적으로 읽기 전용 형식으로 남겨야 한다. 그러나 동시에 실행되는 블록은 데이터를 상위 호출 범위에 되돌리기 위해 `__block` 키워드를 미리 사용하는 변수를 사용할 수도 있다.
-
-함수 포인터에 사용되는 구문과 유사한 구문을 사용하여 코드에 따라 블록을 인라인으로 선언할 수 있다. 블록과 함수 포인터의 주요 차이점은 블록 이름에 별표\(`*`\) 대신 캐럿\(`^`\)이 선행된다는 것이다. 함수 포인터처럼 블록에 인수를 전달하고 그로부터 반환값을 받을 수 있다. Listing 3-1은 당신의 코드에 블록을 동시에 선언하고 실행하는 방법을 보여준다. 변수 `aBlock` 은 블록에 선언된 값을 반환하는 단일 정수 매개 변수 인자이고 아무 값도 반환하지 않는다. 프로토타입과 일치하는 실제 블록이 `aBlock` 에 할당되고 인라인으로 선언된다. 마지막 줄은 블록을 즉시 실행하고 표준화할 지정된 정수를 출력한다.
+함수 포인터에 사용되는 구문과 유사한 구문을 사용하여 코드에 따라 블록을 인라인으로 선언할 수 있다. 블록과 함수 포인터의 주요 차이점은 블록 이름에 별표\(`*`\) 대신 캐럿\(`^`\)이 선행된다는 것이다. 함수 포인터처럼 블록에 인수를 전달하여 반환값을 수신할 수 있다. 목록 3-1은 당신의 코드에 블록을 동시에 선언하고 실행하는 방법을 보여준다. 변수 `aBlock` 은 블록에 선언된 값을 반환하는 단일 정수 매개 변수 인자이고 아무 값도 반환하지 않는다. 프로토타입과 일치하는 실제 블록이 `aBlock` 에 할당되고 인라인으로 선언된다. 마지막 줄은 블록을 즉시 실행하고 표준화할 지정된 정수를 출력한다.
 
 **Listing 3-1**  A simple block example
 
@@ -317,15 +462,15 @@ dispatch_semaphore_signal(fd_sema);
 
 세마포어를 생성할 때 사용 가능한 리소스 수를 지정하라. 이 값은 세마포어의 초기 카운트 변수가 된다. 리소스가 차단되고 대기 중인 태스크가 있는 경우 해당 태스크 중 하나는 나중에 차단 해제되어 작업을 수행할 수 있게 된다.
 
-### Waiting on Groups of Queued Tasks
+### 대기중엔 큐 태스크 그룹
 
 디스패치 그룹은 하나 이상의 태스크가 실행을 마칠 때까지 쓰레드를 차단하는 방법이다. 이 동작은 지정된 모든 태스크가 완료될 때까지 진행할 수 없는 곳에서 사용할 수 있다. 예를 들어, 일부 데이터를 계산하기 위해 여러 태스크를 전송한 후 그룹을 사용하여 해당 태스크에서 대기한 다음 완료되었을 때 결과를 처리할 수 있다. 쓰레드 조인의 대안으로 디스패치 그룹을 사용하는 또 다른 방법이 있다. 여러 개의 하위 쓰레드를 시작한 다음 각 쓰레드와 결합하는 대신, 해당 태스크를 디스패치 그룹에 추가하고 그룹 전체에서 대기할 수 있다.
 
 Listing 3-6 은 그룹 설정, 태스크 전송, 결과 대기를 위한 기본 프로세스를 보여준다. [`dispatch_async`](https://developer.apple.com/documentation/dispatch/1453057-dispatch_async) 함수를 사용하여 큐에 태스크를 전송하는 대신 [`dispatch_group_async`](https://developer.apple.com/documentation/dispatch/1453084-dispatch_group_async) 함수를 사용하라. 이 함수는 태스크를 그룹과 연결하고 실행을 위해 큐에 넣어라. 태스크 그룹이 완료될 때까지 기다리려면 해당 그룹을 전달하면서 [`dispatch_group_wait`](https://developer.apple.com/documentation/dispatch/1452794-dispatch_group_wait) 함수를 사용하라.
 
-**Listing 3-6**  Waiting on asynchronous tasks
+**Listing 3-6**  대기 중인 비동기 태스크
 
-```text
+```objectivec
 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 dispatch_group_t group = dispatch_group_create();
  
@@ -344,14 +489,14 @@ dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 dispatch_release(group);
 ```
 
-### Dispatch Queues and Thread Safety
+### 디스패치 큐 및 쓰레드 세이프
 
-디스패치 큐의 컨텍스트에서 쓰레드 안전성에 대해 말하는 것이 이상하게 보일 수 있지만, 쓰레드 안전성은 여전히 관련 주제이다. 애플리케이션에서 동시성을 구현할 때마다 몇 가지 알아야 할 사항이 있다.
+디스패치 큐의 컨텍스트에서 쓰레드 안전성에 대해 말하는 것이 이상하게 보일 수 있지만, 쓰레드 안전성은 여전히 관련 주제이다. 애플리케이션에서 동시성을 구현할 때마다 몇 가지 알아야 할 사항이 있다:
 
-* 디스패치 큐 자체는 쓰레드에 안전하다. 즉, 먼저 큐에 대한 접근에 락을 걸거나 동기화하지 않고 시스템의 쓰레드에서 디스패치 큐에 태스크를 제출할 수 있다.
-* 함수 호출에 전달된 것과 동일한 큐에서 실행 중인 태스크에서 [`dispatch_sync`](https://developer.apple.com/documentation/dispatch/1452870-dispatch_sync) 함수를 호출하지 않아야 한다. 이렇게 하면 큐가 교착 상태가 된다. 현재 큐로 발송해야 하는 경우 [`dispatch_async`](https://developer.apple.com/documentation/dispatch/1453057-dispatch_async) 함수를 사용하여 비동기식으로 발송하라.
-* 디스패치 큐에 제출한 태스크에서 락을 사용하지 마라. 태스크에서 락을 사용하는 것은 안전하지만 락을 획득할 때 해당 락을 사용할 수 없는 경우 시리얼 큐를 완전히 차단할 위험이 있다. 마찬가지로 콘커런트 큐의 경우 락을 대기하면 다른 태스크가 대신 실행되지 않을 수 있다. 코드의 일부를 동기화해야 하는 경우 락 대신 시리얼 큐를 사용하라.
+* 디스패치 큐 자체는 쓰레드에 안전하다. 즉, 먼저 락을 해제하거나 큐에 대한 접근을 동기화하지 않고 시스템의 쓰레드에서 태스크를 디스패치 큐에 제출할 수 있다.
+* 함수 호출에 전달된 것과 동일한 큐에서 실행 중인 태스크에서 [`dispatch_sync`](https://developer.apple.com/documentation/dispatch/1452870-dispatch_sync) 함수를 호출하지 않아야 한다. 이렇게 하면 큐가 교착 상태가 된다. 현재 큐로 발송해야 하는 경우 [`dispatch_async`](https://developer.apple.com/documentation/dispatch/1453057-dispatch_async) 함수를 사용하여 비동기식으로 처리하라.
+* 디스패치 큐에 제출하는 태스크에서 락을 해제하지 마라. 태스크에서 락을 사용하는 것은 안전하지만 락을 획득할 때 해당 락을 사용할 수 없는 경우 시리얼 큐를 완전히 차단할 위험이 있다. 마찬가지로 콘커런트 큐의 경우 락에서 대기하면 다른 태스크가 대신 실행되지 않을 수 있다. 코드의 일부를 동기화해야 하는 경우 락 대신 시리얼 디스패치 큐를 사용하라.
 * 태스크를 실행하는 메인 쓰레드에 대한 정보를 얻을 수 있지만 그렇게 하지 않는 것이 좋다. 디스패치 큐와 쓰레드의 호환성에 대한 자세한 정보는 [Compatibility with POSIX Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW18) 를 참조하라.
 
-디스패치 큐를 사용하도록 기존 쓰레드 코드를 변경하는 방법에 대한 추가 팁은 [Migrating Away from Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW1) 을 참조하라.
+디스패치 큐를 사용하도록 기존 쓰레드 코드를 변경하는 방법에 대한 추가 팁은 [Migrating Away from Threads](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ThreadMigration/ThreadMigration.html#//apple_ref/doc/uid/TP40008091-CH105-SW1)을 참조하라.
 
