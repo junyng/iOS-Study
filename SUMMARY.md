@@ -230,4 +230,5 @@
   * [Appendix C: Key-Value Coding Extensions](core-animation-programming-guide/appendix-c-key-value-coding-extensions.md)
 * [Resource Programming Guide](resource-programming-guide/README.md)
   * [Nib Files](resource-programming-guide/nib-files.md)
+  * [Image, Sound, and Video Resources](resource-programming-guide/image-sound-and-video-resources.md)
 
