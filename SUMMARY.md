@@ -15,7 +15,8 @@
 * [contentsGravity](contentsgravity.md)
 * [layoutSublayers\(of:\)](layoutsublayers-of.md)
 * [CAReplicatorLayer](careplicatorlayer.md)
-* [Testing with Xcode](testing-with-xcode.md)
+* [Testing with Xcode](testing-with-xcode/README.md)
+  * [Code Coverage](testing-with-xcode/code-coverage.md)
 
 ## Human Interface Guidelines
 
