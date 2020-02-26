@@ -16,8 +16,9 @@
 * [layoutSublayers\(of:\)](layoutsublayers-of.md)
 * [CAReplicatorLayer](careplicatorlayer.md)
 * [Testing with Xcode](testing-with-xcode/README.md)
-  * [Code Coverage](testing-with-xcode/code-coverage.md)
   * [Testing Basics](testing-with-xcode/testing-basics.md)
+  * [Writing Test Classes and Methods](testing-with-xcode/writing-test-classes-and-methods.md)
+  * [Code Coverage](testing-with-xcode/code-coverage.md)
 
 ## Human Interface Guidelines
 
