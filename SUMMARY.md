@@ -17,6 +17,7 @@
 * [CAReplicatorLayer](careplicatorlayer.md)
 * [Testing with Xcode](testing-with-xcode/README.md)
   * [Code Coverage](testing-with-xcode/code-coverage.md)
+  * [Testing Basics](testing-with-xcode/testing-basics.md)
 
 ## Human Interface Guidelines
 
