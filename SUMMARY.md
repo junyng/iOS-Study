@@ -18,6 +18,7 @@
 * [Testing with Xcode](testing-with-xcode/README.md)
   * [Testing Basics](testing-with-xcode/testing-basics.md)
   * [Writing Test Classes and Methods](testing-with-xcode/writing-test-classes-and-methods.md)
+  * [Running Tests and Viewing Results](testing-with-xcode/untitled.md)
   * [Code Coverage](testing-with-xcode/code-coverage.md)
 
 ## Human Interface Guidelines
