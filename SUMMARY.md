@@ -1,6 +1,9 @@
 # Table of contents
 
 * [iOS-Study](README.md)
+* [beginUpdates\(\)](beginupdates.md)
+* [endUpdates\(\)](endupdates.md)
+* [performBatchUpdates\(\_:completion:\)](performbatchupdates-_-completion.md)
 * [Core Video](core-video.md)
 * [AVAsset](avasset.md)
 * [AVPlayer](avplayer.md)
