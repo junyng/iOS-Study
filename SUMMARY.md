@@ -98,6 +98,7 @@
   * [Using Assets](archive/avfoundation-programming-guide/using-assets.md)
   * [Playback](archive/avfoundation-programming-guide/playback.md)
   * [Editing](archive/avfoundation-programming-guide/editing.md)
+  * [Still and Video Media Capture](archive/avfoundation-programming-guide/still-and-video-media-capture.md)
   * [Export](archive/avfoundation-programming-guide/export.md)
   * [Time and Media Representations](archive/avfoundation-programming-guide/time-and-media-representations.md)
 * [Cocoa Application Competencies-for iOS](archive/cocoa-application-competencies-for-ios/README.md)
