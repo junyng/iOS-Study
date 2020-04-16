@@ -12,9 +12,9 @@ class AVMutableVideoComposition : AVVideoComposition
 
 ### Overview
 
-비디오 컴포지션은 인스트럭션의 총 시간 범위에서 그 시간에 해당하는 컴포지션 비디오 프레임을 생성하기 위해 사용할 비디오 트랙의 수와 ID를 설명한다. AVFoundation의 내장형 비디오 컴포지터를 사용하는 경우, [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition)이 구성하는 지침은 각 비디오 소스에 대해 공간 변환, 불투명도 값 및 자르기 직시각형을 지정할 수 있으며, 이러한 지침은 단순한 선형 램핑 함수를 통해 시간에 따라 달라질 수 있다.
+비디오 컴포지션은 인스트럭션의 총 시간 범위에서 그 시간에 해당하는 컴포지션 비디오 프레임을 생성하기 위해 사용할 비디오 트랙의 수와 ID를 기술한다. AVFoundation의 내장형 비디오 컴포지터를 사용하는 경우, [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition)이 구성하는 지침은 각 비디오 소스에 대해 공간 변환, 불투명도 값 및 자르기 직시각형을 지정할 수 있으며, 이러한 지침은 단순한 선형 램핑 함수를 통해 시간에 따라 달라질 수 있다.
 
-당신은 또한 [`AVVideoCompositing`](https://developer.apple.com/documentation/avfoundation/avvideocompositing) 프로토콜을 구현함으로써 당신만의 커스텀 비디오 컴포지터를 구현할 수 있다. 사용자 지정 비디오 컴포지터는 재생과 다른 작동 동안에 각각의 비디오 소스에 대해 픽셀 버퍼를 제공하고 그것들에 대해 임의의 그래픽 연산을 수행하여 시각 출력을 생성할 수 있다.
+당신은 또한 [`AVVideoCompositing`](https://developer.apple.com/documentation/avfoundation/avvideocompositing) 프로토콜을 구현함으로써 당신만의 커스텀 비디오 컴포지터를 구현할 수 있다. 사용자 정의 비디오 컴포지터는 재생과 다른 작동 동안에 각각의 비디오 소스에 대해 픽셀 버퍼를 제공하고 그것들에 대해 임의의 그래픽 연산을 수행하여 시각 출력을 생성할 수 있다.
 
 #### Creating a Video Composition
 

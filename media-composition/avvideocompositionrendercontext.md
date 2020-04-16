@@ -1,5 +1,5 @@
 ---
-description: 사용자 지정 컴포지터가 새 출력 픽셀 버퍼를 렌더링하는 컨텍스트를 정의하는 객체.
+description: 사용자 정의 컴포지터가 새 출력 픽셀 버퍼를 렌더링하는 컨텍스트를 정의하는 객체.
 ---
 
 # AVVideoCompositionRenderContext

@@ -87,7 +87,8 @@
 
 ## Documentation Archive <a id="archive"></a>
 
-* [Core Video Programming Guide](archive/core-video-programming-guide.md)
+* [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
+  * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
 * [Animation Types and Timing Programming Guide](archive/animation-types-and-timing-programming-guide/README.md)
   * [Animation Class Roadmap](archive/animation-types-and-timing-programming-guide/animation-class-roadmap.md)
   * [Timing, Timespaces, and CAAnimation](archive/animation-types-and-timing-programming-guide/timing-timespaces-and-caanimation.md)

@@ -12,11 +12,11 @@ class AVMutableMovie : AVMovie
 
 ### Overview
 
-[`AVMovie`](https://developer.apple.com/documentation/avfoundation/avmovie)의 가변 서브 클래스인 `AVMutableMovie`는 친숙한 동영상 편집 모델을 지원하는 메서드를 제공한다. 예를 들어, `AVMutableMovie`를 사용하여 한 트랙에서 미디어 데이터를 복사하고 해당 데이터를 다른 트랙에 붙여 넣을 수 있다. `AVMutableMovie`를 사용하여 한 트랙에서 다른 트랙으로 트랙 참조를 설정할 수도 있다. \(예를 들어, 한 트랙을 다른 트랙의 챕터 트랙으로 설정\) 개별 트랙에서 편집 작업을 수행하려면 관련 클래스 [`AVMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmovietrack) 및 [`AVMutableMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack) 를 사용할 수 있다.
+[`AVMovie`](https://developer.apple.com/documentation/avfoundation/avmovie)의 가변 서브 클래스인 `AVMutableMovie`는 친숙한 동영상 편집 모델을 지원하는 메서드를 제공한다. 예를 들어, `AVMutableMovie`를 사용하여 한 트랙에서 미디어 데이터를 복사하고 해당 데이터를 다른 트랙에 붙여 넣을 수 있다. `AVMutableMovie`를 사용하여 한 트랙에서 다른 트랙으로 트랙 참조를 설정할 수도 있다. \(예를 들어, 한 트랙을 다른 트랙의 챕터 트랙으로 설정\) 개별 트랙에서 편집 작업을 수행하려면 관련 클래스 [`AVMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmovietrack) 및 [`AVMutableMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack)를 사용할 수 있다.
 
 QuickTime 또는 ISO 기본 미디어 파일의 형식별 기능을 작동할 때만 `AVMovie` 및 `AVMutableMovie`를 사용한다. 일반적으로 `QuickTime` 동영상 파일이나 `ISO` 기본 미디어 파일을 열고 재생하기 위해 이러한 클래스를 사용할 필요가 없다. 대신 [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset)와 [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem)를 사용한다.
 
-미디어 삽입을 수행할 때, `AVMutableMovie`는 재생에 최적화된 동영상 파일을 만들기 위해 소스 에셋의 트랙에서 미디어 데이터를 인터리빙한다. 그러나 일련의 미디어 삽입을 수행하려면 최적의 인터리빙이 되지 않는 동영상 파일이 발생할 수 있다. `AVMutableMovie` 인스턴스의 프리셋 [`AVAssetExportPresetPassthrough`](https://developer.apple.com/documentation/avfoundation/avassetexportpresetpassthrough) 을 내보내고 [`shouldOptimizeForNetworkUse`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1390593-shouldoptimizefornetworkuse) 속성을 `YES`로 설정하고 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession)객체로 전달하여 잘 분리되고 자체적인 고속 시작 동영상 파일을 만들 수 있다.
+미디어 삽입을 수행할 때, `AVMutableMovie`는 재생에 최적화된 동영상 파일을 만들기 위해 소스 에셋의 트랙에서 미디어 데이터를 인터리빙한다. 그러나 일련의 미디어 삽입을 수행하려면 최적의 인터리빙이 되지 않는 동영상 파일이 발생할 수 있다. `AVMutableMovie` 인스턴스의 프리셋 [`AVAssetExportPresetPassthrough`](https://developer.apple.com/documentation/avfoundation/avassetexportpresetpassthrough)을 내보내고 [`shouldOptimizeForNetworkUse`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1390593-shouldoptimizefornetworkuse) 속성을 `YES`로 설정하고 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession)객체로 전달하여 잘 분리되고 자체적인 고속 시작 동영상 파일을 만들 수 있다.
 
 ### Topics
 

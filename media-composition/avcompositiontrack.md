@@ -14,7 +14,7 @@ class AVCompositionTrack : AVAssetTrack
 
 컴포지션 트랙에서 첫 번째 트랙 세그먼트의 `timeMapping.target.start`는 `kCMTimeZero`이며 각 후속 트랙 세그먼트의 `timeMapping.target.start`는 `CMTimeRangeGetEnd`\(`<#previousTrackSegment #>.timeMapping.target`\)와 같다.
 
-AVFoundation 프레임워크는 또한 mutable 가능한 하위 클래스인 [`AVMutableCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack)도 지원한다.
+AVFoundation 프레임워크는 또한 변형가능한 가능한 하위 클래스인 [`AVMutableCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack)도 지원한다.
 
 ### Topics
 

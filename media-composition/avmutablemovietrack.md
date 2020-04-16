@@ -60,7 +60,7 @@ class AVMutableMovieTrack : AVMovieTrack
 
 [`var naturalSize: CGSize`](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack/1385900-naturalsize)
 
-트랙의 시각 미디어 데이터를 표시하는 데 사용되는 치수.
+트랙의 시각 미디어 데이터를 표시하는 데 사용되는 크기.
 
 [`var preferredTransform: CGAffineTransform`](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack/1386593-preferredtransform)
 

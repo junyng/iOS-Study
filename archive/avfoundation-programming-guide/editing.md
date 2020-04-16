@@ -1,6 +1,6 @@
 # Editing
 
-AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하게 하기 위해 기능이 풍부한 클래스 세트를 제공한다. AVFoundation의 편집 API의 핵심은 컴포지션이다. 컴포지션은 하나 이상의 다른 미디어 에셋의 트랙 모음이다. [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition)클래스는 트랙 삽입 및 제거를 위한 인터페이스를 제공하며, 시간적 순서를 관리한다. 그림 3-1은 새로운 구성을 기존 에셋의 조합에서 결합하여 새로운 에셋을 구성하는 방법을 보여준다. 여러 에셋을 순차적으로 필요한 만큼 단일 파일로 병합하기만 하면 된다. 컴포지션의 트랙에서 사용자 정의 오디오 또는 비디오 처리를 수행하려면 각각 오디오 믹스 또는 비디오 컴포지션을 통합해야 한다.
+AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하게 하기 위해 기능이 풍부한 클래스 세트를 제공한다. AVFoundation의 편집 API의 핵심은 컴포지션이다. 컴포지션은 하나 이상의 다른 미디어 에셋의 트랙 모음이다. [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition)클래스는 트랙 삽입 및 제거를 위한 인터페이스를 제공하며, 시간적 순서를 관리한다. 그림 3-1은 새로운 컴포지션을 기존 에셋의 조합에서 결합하여 새로운 에셋을 구성하는 방법을 보여준다. 여러 에셋을 순차적으로 필요한 만큼 단일 파일로 병합하기만 하면 된다. 컴포지션의 트랙에서 사용자 정의 오디오 또는 비디오 처리를 수행하려면 각각 오디오 믹스 또는 비디오 컴포지션을 통합해야 한다.
 
 **그림 3-1**  AVMutableComposition은 에셋을 함께 조립한다.
 
@@ -12,13 +12,13 @@ AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하�
 
 ![](../../.gitbook/assets/avmutableaudiomix_2x.png)
 
-그림 3-3에 나온것처럼 [`AVMutableVideoComposition`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition) 클래스를 사용하여 편집을 위해 컴포지션의 비디오 트랙과 직접 작업할 수 있다. 단일 비디오 컴포지션으로 출력 비디오에 대해 원하는 렌더 사이즈 및 사이즈와 프레임 지속시간을 지정할 수 있다. 비디오 컴포지션 인스트럭션\([`AVMutableVideoCompositionInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction) 클래스로 표시됨\)을 통해 비디오의 백그라운드 색상을 수정하고 레이어 컴포지션을 적용할 수 있다. 이러한 레이어 계층 컴포지션\([`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction) 로 표시됨\)을 사용하여 컴포지션 내의 비디오 트랙에 변환, 변환 램프, 불투명도 및 불투명도 램프를 적용할 수 있다. 비디오 컴포지션 클래스는 또한 [`animationTool`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition/1390395-animationtool) 속성을 사용하여 코어 애니메이션 프레임워크에서 비디오에 효과를 넣는 기능을 제공한다.
+그림 3-3에 나온것처럼 [`AVMutableVideoComposition`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition) 클래스를 사용하여 편집을 위해 컴포지션의 비디오 트랙과 직접 작업할 수 있다. 단일 비디오 컴포지션으로 출력 비디오에 대해 원하는 렌더 사이즈 및 사이즈와 프레임 지속시간을 지정할 수 있다. 비디오 컴포지션 인스트럭션\([`AVMutableVideoCompositionInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction) 클래스로 표시됨\)을 통해 비디오의 백그라운드 색상을 수정하고 레이어 컴포지션을 적용할 수 있다. 이러한 컴포지션 레이어 인스트럭션\([`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction) 로 표시됨\)을 사용하여 컴포지션 내의 비디오 트랙에 변환, 변환 램프, 불투명도 및 불투명도 램프를 적용할 수 있다. 비디오 컴포지션 클래스는 또한 [`animationTool`](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition/1390395-animationtool) 속성을 사용하여 코어 애니메이션 프레임워크에서 비디오에 효과를 넣는 기능을 제공한다.
 
-**Figure 3-3**  AVMutableVideoComposition
+**그림 3-3**  AVMutableVideoComposition
 
 ![](../../.gitbook/assets/avmutablevideocomposition_2x.png)
 
-컴포지션을 오디오 믹스와 비디오 컴포지션과 결합하려면 Figure 3-4에서와 같이 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) 객체를 사용한다. 컴포지션으로 익스포트 세션을 초기화한 다음 오디오 믹스와 비디오 컴포지션을 [`audioMix`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1388155-audiomix)와 [`videoComposition`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1389477-videocomposition)속성에 각각 할당하라.
+컴포지션을 오디오 믹스와 비디오 컴포지션과 결합하려면 그림 3-4에서와 같이 [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) 객체를 사용한다. 컴포지션으로 익스포트 세션을 초기화한 다음 오디오 믹스와 비디오 컴포지션을 [`audioMix`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1388155-audiomix)와 [`videoComposition`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/1389477-videocomposition)속성에 각각 할당하라.
 
 **Figure 3-4**  AVAssetExportSession을 사용하여 미디어 요소를 출력파일로 결합한다.
 
@@ -26,7 +26,7 @@ AVFoundation 프레임워크는 오디오 시각 에셋의 편집을 용이하�
 
 ### 컴포지션 생성
 
-자신만의 컴포지션을 만들려면 [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition) 클래스를 사용하라. 컴포지션에 미디어 데이터를 추가하려면 [`AVMutableCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack) 클래스로 표시되는 하나 이상의 구성 트랙을 추가해야 한다. 가장 간단한 경우는 하나의 비디오 트랙과 하나의 오디오 트랙으로 변이 가능한 컴포지션을 만드는 것이다. 가장 간단한 경우는 하나의 비디오 트랙과 하나의 오디오 트랙으로 변이 가능한 컴포지션을 만드는 것이다.
+자신만의 컴포지션을 만들려면 [`AVMutableComposition`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition) 클래스를 사용하라. 컴포지션에 미디어 데이터를 추가하려면 [`AVMutableCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack) 클래스로 표시되는 하나 이상의 구성 트랙을 추가해야 한다. 가장 간단한 경우는 하나의 비디오 트랙과 하나의 오디오 트랙으로 변이 가능한 컴포지션을 만드는 것이다.
 
 ```objectivec
 AVMutableComposition *mutableComposition = [AVMutableComposition composition];
@@ -103,7 +103,7 @@ mutableVideoCompositionInstruction.backgroundColor = [[UIColor redColor] CGColor
 
 #### 불투명 램프 적용
 
-비디오 컴포지션 비디오 컴포지션 레이어 인스트럭션을 적용하는 데에도 사용될 수 있다. [`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction)객체는 변환, 변환 램프, 불투명도 및 불투명도 램프의 컴포지션 내의 특정 비디오 트랙에 적용할 수 있다. 비디오 컴포지션 인스트럭션 배열에서 [`layerInstructions`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction/1388912-layerinstructions)의 순서는 소스 트랙의 비디오 프레임이 해당 컴포지션 명령어의 지속시간 동안 계층화되고 구성되어야하는 방법을 결정한다. 다음 코드 조각은 두 번째 비디오로 전환하기 전에 구성에서 첫 번째 비디오를 천천히 페이드 아웃하도록 불투명 램프를 설정하는 방법을 보여준다.
+비디오 컴포지션은 비디오 컴포지션 레이어 인스트럭션을 적용하는 데에도 사용될 수 있다. [`AVMutableVideoCompositionLayerInstruction`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction)객체는 변환, 변환 램프, 불투명도 및 불투명도 램프의 컴포지션 내의 특정 비디오 트랙에 적용할 수 있다. 비디오 컴포지션 인스트럭션 배열에서 [`layerInstructions`](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction/1388912-layerinstructions)의 순서는 소스 트랙의 비디오 프레임이 해당 컴포지션 인스트럭션의 지속시간 동안 계층화되고 구성되어야하는 방법을 결정한다. 다음 코드 조각은 두 번째 비디오로 전환하기 전에 구성에서 첫 번째 비디오를 천천히 페이드 아웃하도록 불투명 램프를 설정하는 방법을 보여준다.
 
 ```objectivec
 AVAsset *firstVideoAssetTrack = <#AVAssetTrack representing the first video segment played in the composition#>;
@@ -171,9 +171,9 @@ AVMutableCompositionTrack *videoCompositionTrack = [mutableComposition addMutabl
 AVMutableCompositionTrack *audioCompositionTrack = [mutableComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
 ```
 
-#### Adding the Assets
+#### 에셋 추가
 
-빈 구성은 아무 소용이 없다. 두 개의 비디오 에셋 트랙과 오디오 에셋 트랙을 컴포지션에 추가하라.
+빈 컴포지션은 아무 소용이 없다. 두 개의 비디오 에셋 트랙과 오디오 에셋 트랙을 컴포지션에 추가하라.
 
 ```objectivec
 AVAssetTrack *firstVideoAssetTrack = [[firstVideoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
@@ -303,5 +303,5 @@ exporter.videoComposition = mutableVideoComposition;
 }];
 ```
 
-성공적이든 아니든 트랙 로딩 프로세스가 완료되면 나머지 작업은 메인 직렬화 큐로 보내져서 이 모든 작업이 취소될 가능성이 있는 상태로 연속화되도록 한다. 이제 이젠 코드 목록의 마지막에 취소 프로세스와 세 가지 사용자 지정 방법을 실행하기만 하면 된다.
+성공적이든 아니든 트랙 로딩 프로세스가 완료되면 나머지 작업은 메인 시리얼 큐로 보내져서 이 모든 작업이 취소될 가능성이 있는 상태로 연속화되도록 한다. 이제 이젠 코드 목록의 마지막에 취소 프로세스와 세 가지 사용자 지정 방법을 실행하기만 하면 된다.
 

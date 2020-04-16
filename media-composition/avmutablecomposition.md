@@ -55,7 +55,7 @@ AVPlayerItem *playerItemForSnapshottedComposition =
 
 [`var tracks: [AVMutableCompositionTrack]`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition/1389937-tracks)
 
-컴포지션에 포함된 변경가능한 컴포지션 트랙의 배열.
+컴포지션에 포함된 변경가능한 컴포지션 트랙의 배열
 
 [`func addMutableTrack(withMediaType: AVMediaType, preferredTrackID: CMPersistentTrackID) -> AVMutableCompositionTrack?`](https://developer.apple.com/documentation/avfoundation/avmutablecomposition/1387601-addmutabletrack)
 

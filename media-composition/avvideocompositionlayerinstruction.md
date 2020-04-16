@@ -30,5 +30,5 @@ class AVVideoCompositionLayerInstruction : NSObject
 
 [`func getCropRectangleRamp(for: CMTime, startCropRectangle: UnsafeMutablePointer<CGRect>?, endCropRectangle: UnsafeMutablePointer<CGRect>?, timeRange: UnsafeMutablePointer<CMTimeRange>?) -> Bool`](https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction/1387998-getcroprectangleramp)
 
-지정된 시간을 포함하는 크롭 직사각형 램프를 얻는.
+지정된 시간을 포함하는 크롭 직사각형 램프를 얻는다.
 

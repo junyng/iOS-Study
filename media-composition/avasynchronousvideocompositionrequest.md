@@ -26,15 +26,15 @@ class AVAsynchronousVideoCompositionRequest : NSObject
 
 [`func finishCancelledRequest()`](https://developer.apple.com/documentation/avfoundation/avasynchronousvideocompositionrequest/1386261-finishcancelledrequest)
 
-구성 요청이 취소되었음을 나타낸다.
+컴포지션 요청이 취소되었음을 나타낸다.
 
 [`func finish(withComposedVideoFrame: CVPixelBuffer)`](https://developer.apple.com/documentation/avfoundation/avasynchronousvideocompositionrequest/1387450-finish)
 
-구성 요청이 성공했음을 나타낸다.
+컴포지션 요청이 성공했음을 나타낸다.
 
 [`func finish(with: Error)`](https://developer.apple.com/documentation/avfoundation/avasynchronousvideocompositionrequest/1390797-finish)
 
-구성 요청에 오류가 발생했음을 나타낸다.
+컴포지션 요청에 오류가 발생했음을 나타낸다.
 
 #### Getting the Composition Request Settings
 
