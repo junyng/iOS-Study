@@ -89,6 +89,7 @@
 
 * [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
   * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
+  * [Core Video Tasks](archive/core-video-programming-guide/core-video-tasks.md)
 * [Animation Types and Timing Programming Guide](archive/animation-types-and-timing-programming-guide/README.md)
   * [Animation Class Roadmap](archive/animation-types-and-timing-programming-guide/animation-class-roadmap.md)
   * [Timing, Timespaces, and CAAnimation](archive/animation-types-and-timing-programming-guide/timing-timespaces-and-caanimation.md)
