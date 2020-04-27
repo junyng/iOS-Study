@@ -291,4 +291,6 @@
   * [SNError](etc/soundanalysis/snerror.md)
 * [Core ML](core-ml/README.md)
   * [Getting a Core ML Model](core-ml/getting-a-core-ml-model.md)
+  * [Integrating a Core ML Model into Your App](core-ml/integrating-a-core-ml-model-into-your-app.md)
+  * [Converting Trained Models to Core ML](core-ml/converting-trained-models-to-core-ml.md)
 
