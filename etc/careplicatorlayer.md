@@ -41,7 +41,7 @@ replicatorLayer.addSublayer(redSquare)
 
 **그림 1** 복제 레이어 예제
 
-![](.gitbook/assets/replicator_layer_example.png)
+![](../.gitbook/assets/replicator_layer_example.png)
 
 **그림 2** 중첩 복제 레이어
 
@@ -59,7 +59,7 @@ outerReplicatorLayer.instanceRedOffset = offsetStep
 
 **그림 2** 중첩 복제 레이어 예제
 
-![](.gitbook/assets/nested_replicator_layer_example.png)
+![](../.gitbook/assets/nested_replicator_layer_example.png)
 
 > 참고  
 > [`CAReplicatorLayer`](https://developer.apple.com/documentation/quartzcore/careplicatorlayer)의 [`hitTest(_:)`](https://developer.apple.com/documentation/quartzcore/calayer/1410972-hittest) 구현은 현재 z 복제 레이어의 하위 레이어의 첫 번째 인스턴스만 테스트한다. 이는 미래에 바뀔지도 모른다.

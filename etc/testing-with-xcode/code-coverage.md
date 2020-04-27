@@ -10,13 +10,13 @@ Xcode의 코드 커버리지는 LLVM에서 지원하는 테스트 옵션이다. 
 
 스킴 편집 메뉴에서 Edit Scheme을 선택한다.
 
-![](../.gitbook/assets/twx-codecov-1_2x.png)
+![](../../.gitbook/assets/twx-codecov-1_2x.png)
 
 Test 액션을 선택한다.
 
 커버리지 데이터를 수집하려면 Code Coverage 체크박스를 활성화한다.
 
-![](../.gitbook/assets/twx-codecov-3_2x.png)
+![](../../.gitbook/assets/twx-codecov-3_2x.png)
 
 Close를 클릭한다.
 
@@ -32,21 +32,21 @@ Close를 클릭한다.
 
 테스트 실행이 완료된 후 Xcode는 LLVM 커버리지 데이터를 사용하여 커버리지 창에 보이는 리포트 탐색기에서 커버리지 보고서를 작성한다. 테스트 실행에 대한 요약 정보, 파일 내의 소스 파일과 함수의 목록, 각 파일의 커버리지 비율을 보여준다.
 
-![](../.gitbook/assets/twx-codedov-4_2x.png)
+![](../../.gitbook/assets/twx-codedov-4_2x.png)
 
 소스 편집기는 파일의 각 코드 라인에 대한 카운트를 표시하고 실행되지 않은 코드를 강조 표시한다. 이미 커버된 영역보다 커버리지가 필요한 코드 영역을 강조한다.
 
 예를 들어, 포인터를 위의 커버리지 보고서의 `-[Calculator input:]` 메서드 위에 놓으면 주석을 단 소스 코드로 이동하는 버튼이 나타난다.
 
-![](../.gitbook/assets/twx-codedov-5_2x.png)
+![](../../.gitbook/assets/twx-codedov-5_2x.png)
 
 커버리지 어노테이션은 오른쪽에 그려지며 테스트 중에 코드의 특정 부분이 몇 번을 hit 하였는지 카운트를 보여준다. 예를 들어:
 
-![](../.gitbook/assets/twx-codedov-6_2x.png)
+![](../../.gitbook/assets/twx-codedov-6_2x.png)
 
 `input:` 메서드는 위의 카운트에 의해 테스트에서 자주 호출되었다. 그러나 호출되지 않은 메서드의 섹션이 있었다. 그것은 아래와 같이 소스 편집기에 명확하게 표시되어 있다.
 
-![](../.gitbook/assets/twx-codedov-7_2x.png)
+![](../../.gitbook/assets/twx-codedov-7_2x.png)
 
 이 보고 데이터 및 디스플레이는 오류 처리가 의도한 대로 작동하는지 확인하기 위해 예기치 않거나 잘못된 문자가 포함된 테스트를 작성할 수 있는 기회를 제공한다.
 

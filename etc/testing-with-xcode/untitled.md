@@ -12,23 +12,23 @@
 
 번들에서 모든 테스트를 실행하려면 테스트 번들 이름 위에 포인터를 놓고 오른쪽에 나타나는 실행 버튼을 클릭한다.
 
-![](../.gitbook/assets/twx-runtst-1_2x.png)
+![](../../.gitbook/assets/twx-runtst-1_2x.png)
 
 클래스에서 모든 테스트를 실행하려면 클래스 이름 위에 포인터를 놓고 오른쪽에 나타나는 실행 버튼을 클릭한다.
 
-![](../.gitbook/assets/twx-runtst-2_2x.png)
+![](../../.gitbook/assets/twx-runtst-2_2x.png)
 
 단일 테스트를 실행하려면 테스트 이름 위에 포인터를 놓고 오른쪽에 나타나는 실행 버튼을 클릭한다.
 
-![](../.gitbook/assets/twx-runtst-3_2x.png)
+![](../../.gitbook/assets/twx-runtst-3_2x.png)
 
 #### 소스 에디터 사용
 
 소스 에디터에 테스트 클래스가 열려 있으면 각 테스트 메서드 이름 옆의 gutter에 명확한 인디케이터가 나타난다. 인디케이터 위에 포인터를 놓으면 Run 버튼이 표시된다. Run 버튼을 클릭하면 테스트 메서드가 실행되고 인디케이터가 테스트의 성공 또는 실패 상태를 표시한다. 포인터를 인디케이터 위에 고정하면 Run 버튼이 다시 표시되어 테스트를 반복한다. 이 메커니즘은 항상 한 번에 하나의 테스트만 실행한다.
 
-![](../.gitbook/assets/twx-runtst-4_2x.png)
+![](../../.gitbook/assets/twx-runtst-4_2x.png)
 
-![](../.gitbook/assets/twx-runtst-5_2x.png)
+![](../../.gitbook/assets/twx-runtst-5_2x.png)
 
 > **참고:** 같은 인디케이터가 클래스의 @implementation 옆에 나타나므로 클래스의 모든 테스트를 실행할 수 있다.
 
@@ -54,33 +54,33 @@ XCTest 프레임워크는 테스트 메서드의 성공 또는 실패 결과를 
 
 * 테스트 탐색기에서 테스트 또는 테스트 그룹을 실행한 후 성공/실패 표시기를 볼 수 있다.
 
-![](../.gitbook/assets/twx-runtst-6_2x.png)
+![](../../.gitbook/assets/twx-runtst-6_2x.png)
 
 테스트 메서드가 각각의 클래스로 무너지거나 테스트 클래스가 테스트 번들로 무너지면 지시자는 밀폐된 테스트의 총 상태를 반영한다. 이 예제에서는 `BasicFunctionsTests` 클래스의 테스트 중 적어도 하나가 실패를 알렸다.
 
-![](../.gitbook/assets/twx-runtst-7_2x.png)
+![](../../.gitbook/assets/twx-runtst-7_2x.png)
 
 * 소스 편집기에서 성공/실패 표시기 및 디버깅 정보를 볼 수 있다.
 
-![](../.gitbook/assets/twx-results-srceditor_2x.png)
+![](../../.gitbook/assets/twx-results-srceditor_2x.png)
 
 * 보고서 탐색기에서 테스트 실행별로 결과 출력을 볼 수 있다. 테스트 패널이 활성화된 상태에서 왼쪽 패널에서 검사할 테스트 실행을 선택하라.
 
-![](../.gitbook/assets/twx-runtst-8_2x.png)
+![](../../.gitbook/assets/twx-runtst-8_2x.png)
 
 성능 테스트의 경우 Time 열의 값을 클릭하여 성능 결과에 대한 상세 보고서를 얻는다. 개별 테스트 실행 버튼을 클릭하면 테스트의 총 성능과 10개의 실행에 대한 값을 볼 수 있다. Edit 버튼을 사용하면 성공 또는 실패 표시에 허용되는 테스트 기준선 및 최대 표준 편차를 설정하거나 수정할 수 있다.
 
-![](../.gitbook/assets/twx-runtst-10_2x.png)
+![](../../.gitbook/assets/twx-runtst-10_2x.png)
 
 로그 패널을 사용하여 관련 실패 설명 문자열 및 기타 요약 출력을 볼 수 있다. disclosure 삼각형을 열면 테스트 실행의 모든 세부 정보를 드릴다운할 수 있다.
 
-![](../.gitbook/assets/twx-runtst-9_2x.png)
+![](../../.gitbook/assets/twx-runtst-9_2x.png)
 
 > **참고:** 항목 왼쪽의 disclosure 삼각형 외에도, 위에 표시된 testMultiplication에서 볼 수 있듯이 테스트 실패 항목 오른쪽의 작은 아이콘을 확장하여 더 많은 정보를 표시할 수 있다.
 
 * 디버그 콘솔은 테스트 실행에 대한 포괄적인 정보를 텍스트 형식으로 표시한다. 로그 네비게이터가 보여준 것과 동일한 정보지만, 디버깅에 적극적으로 참여했더라면 디버깅 세션에서 출력된 모든 출력도 여기에 나타난다.
 
-![](../.gitbook/assets/twx-runtst-11_2x.png)
+![](../../.gitbook/assets/twx-runtst-11_2x.png)
 
 ### 스킴 및 테스트 타겟으로 작업
 
@@ -90,13 +90,13 @@ Xcode 스킴은 빌드, 실행, 테스트 및 디버그 메뉴 명령이 하는 
 
 툴바에서 Scheme menu &gt; Manage Schemes를 선택하여 Scheme 관리 시트를 제시한다.
 
-![](../.gitbook/assets/twx-runtst-12_2x.png)
+![](../../.gitbook/assets/twx-runtst-12_2x.png)
 
 이 프로젝트에는 앱을 구축하는 것과 라이브러리/프레임워크를 구축하는 두 가지 스킴이 있다. 오른쪽에 공유라고 표시된 확인란은 스킴을 공유로 구성하고 Xcode Server와 함께 봇에서 사용할 수 있다.
 
 관리 시트에서 스킴 편집기를 표시할 스킴을 두 번 클릭한다. 스킴의 테스트 동작은 테스트 명령을 실행할 때 Xcode가 수행하는 테스트를 식별한다.
 
-![](../.gitbook/assets/twx-runtst-13_2x.png)
+![](../../.gitbook/assets/twx-runtst-13_2x.png)
 
 > **참고:** 테스트 타겟, 테스트 클래스 및 테스트 메서드와 관련된 테스트 탐색기 및 구성/설정 어시스턴트는 일반적으로 테스트 작동에 관한 모든 구성 설정을 유지하라.
 
@@ -108,7 +108,7 @@ Xcode 스킴은 빌드, 실행, 테스트 및 디버그 메뉴 명령이 하는 
 
 이 두 유형의 테스트 번들에 대해 서로 다른 빌드 설정이 필요하다. 빌드 설정 구성은 새 타겟 보조 도구에서 대상 매개 변수를 선택하여 테스트 타겟을 생성할 때 수행된다. 타겟 팝업 메뉴가 열린 상태에서 Target Assistant가 표시된다. 앱, `SampleCalc`와 라이브러리/프레임워크인 `CalcLibrary`를 선택할 수 있다.
 
-![](../.gitbook/assets/twx-runtst-14_2x.png)
+![](../../.gitbook/assets/twx-runtst-14_2x.png)
 
 이 테스트 타겟에 대한 관련 빌드 프로덕트로 SampleCalc를 선택하면 빌드 설정이 앱 테스트용으로 구성된다. 앱 프로세스는 테스트 실행을 주최한다. 테스트는 `applicationDidFinishLaunching` 알림을 받은 후 실행된다. 기본 프로덕트 이름인 "SampleCalc Tests"는 `SampleCalc` 타겟 이름에서 파생된다. 당신은 선호에 맞게 그것을 변경할 수 있다.
 
@@ -122,7 +122,7 @@ Xcode 스킴은 빌드, 실행, 테스트 및 디버그 메뉴 명령이 하는 
 
 프로젝트 탐색기에서 SampleCalc 프로젝트를 클릭하여 프로젝트 편집기를 입력한 다음 `SampleCalcTests` 앱 테스트 타겟을 선택하라. 편집기의 일반 창에 타겟 팝업 메뉴가 표시된다. 팝업 메뉴는 `SampleCalc` 앱을 타겟으로 표시해야 한다.
 
-![](../.gitbook/assets/twx-runtst-15_2x.png)
+![](../../.gitbook/assets/twx-runtst-15_2x.png)
 
 빌드 설정이 `SampleCalcTest` 타겟에 맞는지 확인할 수 있다.
 
@@ -130,7 +130,7 @@ Build Settings를 클릭한 후 검색 필드에 Bundle Loader를 입력한다. 
 
 표시된 대로 `Test Host`를 검색하면 동일한 경로가 나타난다.
 
-![](../.gitbook/assets/twx-runtst-16_2x.png)
+![](../../.gitbook/assets/twx-runtst-16_2x.png)
 
 이 프로젝트의계산기 타겟은 CalcLibrary로 명명되며 CalcLibraryTests 라는 관련 테스트 타겟이 있다.
 

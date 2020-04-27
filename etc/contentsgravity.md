@@ -28,7 +28,7 @@ var contentsGravity: CALayerContentsGravity { get set }
 
 **그림 1** 다른 레이어 콘텐츠 중력 설정의 효과
 
-![](.gitbook/assets/contents_gravity.png)
+![](../.gitbook/assets/contents_gravity.png)
 
 1. 중력 상수가 [`resize`](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/1410811-resize)이다. - 기본 값
 2. 중력 상수가 [`center`](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/1410982-center)이다.

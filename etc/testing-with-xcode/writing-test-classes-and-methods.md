@@ -8,11 +8,11 @@
 
 프로젝트에 테스트 타겟을 추가하면 테스트 번들이 생성된다. 테스트 탐색기는 프로젝트에 있는 모든 테스트 번들의 소스 코드 구성요소를 배치하여 테스트 클래스 및 테스트 번들의 소스 코드 구성요소를 배치하여 테스트 클래스 및 테스트 메서드를 계층 목록에 표시한다. 다음은 테스트 번들, 테스트 클래스 및 테스트 메서드의 중첩된 계층을 보여주는 두 개의 테스트 대상이 있는 프로젝트의 테스트 탐색기 뷰이다.
 
-![](../.gitbook/assets/twx-wtcm-1_2x.png)
+![](../../.gitbook/assets/twx-wtcm-1_2x.png)
 
 테스트 번들은 여러 개의 테스트 클래스를 포함할 수 있다. 테스트 클래스를 사용하여 테스트를 함수 또는 조직 용도로 관련 그룹으로 분리할 수 있다. 예를 들어, 계산기 예제 프로젝트는 `BasicFunctionsTests`, `AdvancedFunctionsTests` 및 `DisplayTests` 클래스 `Mac_Calc_Tests` 테스트 번들의 모든 부분을 생성할 수 있다.
 
-![](../.gitbook/assets/twx-wtcm-2_2x.png)
+![](../../.gitbook/assets/twx-wtcm-2_2x.png)
 
 어떤 유형의 테스트는 특정 타입의 setup 및 teardown 요건을 공유할 수 있으므로, 단일 setup 및 teardown 메서드를 통해 각 테스트 메서드에 대해 작성해야 하는 코드 양을 최소화할 수 있는 클래스로 이러한 테스트를 모으는 것이 합리적일 수 있다.
 
@@ -22,21 +22,21 @@
 
 새 테스트 클래스를 만들려면 테스트 탐색기에서 추가 버튼\(+\)을 사용하라.
 
-![](../.gitbook/assets/twx-wtcm-3_2x.png)
+![](../../.gitbook/assets/twx-wtcm-3_2x.png)
 
 단위 테스트 클래스 또는 UI 테스트 클래스를 추가할 수 있다. 이 중 하나를 선택한 후 Xcode는 선택한 파일 템플릿 유형이 선택된 파일 선택기를 표시한다. 아래 그림에서 "New Unit Test Class" 템플릿이 강조 표시된다. 선택을 진행하려면 다음을 클릭한다.
 
-![](../.gitbook/assets/twx-wtcm-4_2x.png)
+![](../../.gitbook/assets/twx-wtcm-4_2x.png)
 
 각 테스트 클래스를 추가하면 구성 시트에 입력한 테스트 클래스 이름에 따라 프로젝트에 _TestClassName.m_이라는 파일이 추가된다.
 
-![](../.gitbook/assets/twx-wtcm-5_2x.png)
+![](../../.gitbook/assets/twx-wtcm-5_2x.png)
 
 > **참고:** 모든 테스트 클래스는 XCTest 프레임워크에서 제공하는 [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase)의 하위 클래스이다.
 
 Xcode는 기본적으로 프로젝트의 테스트 타겟을 위해 생성한 그룹으로 테스트 클래스 구현 파일을 구성하지만, 원하는 대로 프로젝트의 파일을 구성할 수 있다. 표준 Xcode Add Files 시트는 다음 버튼을 누를 때 이 구성을 따른다.
 
-![](../.gitbook/assets/twx-wtcm-6_2x.png)
+![](../../.gitbook/assets/twx-wtcm-6_2x.png)
 
 프로젝트 탐색기에서 프로젝트에 새 파일을 추가할 때와 같은 방식으로 Add Files 시트를 사용하라. Add Files 시트 사용 방법에 대한 자세한 내용은 Adding an Existing File or Folder를 참조하라.
 
@@ -263,7 +263,7 @@ class MySwiftAppTests: XCTestCase {
 `XCTAssertEqualObjects([calcViewController.displayField stringValue], @"8", @"Part 1 failed.");`  
 이것을 평문으로 읽으면, "컨트롤러의 표시장치의 값에서 생성된 문자열이 기준 문자열 '8'과 동일하지 않을 때 실패를 표시한다."라고 쓰여 있다. 어설션이 실패하면 테스트 탐색기에서 오류 표시기를 사용하여 Xcode 신호를 보내고 Xcode는 문제 네비게이터, 소스 편집기 및 기타 장소에서 설명 문자열의 오류를 표시한다. 소스 편집기의 일반적인 결과는 다음과 같다:
 
-![](../.gitbook/assets/twx-test_failure_assert_result_2x.png)
+![](../../.gitbook/assets/twx-test_failure_assert_result_2x.png)
 
 테스트 메서드에는 여러 어설션이 포함될 수 있다. Xcode는 포함된 어설션 중 하나라도 실패를 보고하는 경우 테스트 메서드 실패를 신호한다.
 
