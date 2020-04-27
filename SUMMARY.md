@@ -277,4 +277,5 @@
 * [performBatchUpdates\(\_:completion:\)](etc/performbatchupdates-_-completion.md)
 * [endUpdates\(\)](etc/endupdates.md)
 * [beginUpdates\(\)](etc/beginupdates.md)
+* [SoundAnalysis](etc/soundanalysis.md)
 
