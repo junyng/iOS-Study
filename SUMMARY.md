@@ -277,5 +277,6 @@
 * [performBatchUpdates\(\_:completion:\)](etc/performbatchupdates-_-completion.md)
 * [endUpdates\(\)](etc/endupdates.md)
 * [beginUpdates\(\)](etc/beginupdates.md)
-* [SoundAnalysis](etc/soundanalysis.md)
+* [SoundAnalysis](etc/soundanalysis/README.md)
+  * [Analyzing Audio to Classify Sounds](etc/soundanalysis/analyzing-audio-to-classify-sounds.md)
 
