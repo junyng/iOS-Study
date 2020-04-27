@@ -293,4 +293,5 @@
   * [Getting a Core ML Model](core-ml/getting-a-core-ml-model.md)
   * [Integrating a Core ML Model into Your App](core-ml/integrating-a-core-ml-model-into-your-app.md)
   * [Converting Trained Models to Core ML](core-ml/converting-trained-models-to-core-ml.md)
+  * [Classifying Images with Vision and Core ML](core-ml/classifying-images-with-vision-and-core-ml.md)
 
