@@ -289,4 +289,5 @@
   * [SNResult](etc/soundanalysis/snresult.md)
   * [SNErrorDomain](etc/soundanalysis/snerrordomain.md)
   * [SNError](etc/soundanalysis/snerror.md)
+* [Core ML](core-ml.md)
 
