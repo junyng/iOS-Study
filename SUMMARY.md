@@ -296,4 +296,6 @@
   * [Classifying Images with Vision and Core ML](core-ml/classifying-images-with-vision-and-core-ml.md)
   * [Understanding a Dice Roll with Vision and Object Detection](core-ml/understanding-a-dice-roll-with-vision-and-object-detection.md)
   * [Detecting Human Body Poses in an Image](core-ml/detecting-human-body-poses-in-an-image.md)
+  * [Finding Answers to Questions in a Text Document](core-ml/finding-answers-to-questions-in-a-text-document.md)
+  * [Reducing the Size of Your Core ML App](core-ml/reducing-the-size-of-your-core-ml-app.md)
 
