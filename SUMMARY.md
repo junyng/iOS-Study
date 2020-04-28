@@ -295,4 +295,5 @@
   * [Converting Trained Models to Core ML](core-ml/converting-trained-models-to-core-ml.md)
   * [Classifying Images with Vision and Core ML](core-ml/classifying-images-with-vision-and-core-ml.md)
   * [Understanding a Dice Roll with Vision and Object Detection](core-ml/understanding-a-dice-roll-with-vision-and-object-detection.md)
+  * [Detecting Human Body Poses in an Image](core-ml/detecting-human-body-poses-in-an-image.md)
 
