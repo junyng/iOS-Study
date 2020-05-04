@@ -299,5 +299,8 @@
   * [Finding Answers to Questions in a Text Document](core-ml/finding-answers-to-questions-in-a-text-document.md)
   * [Reducing the Size of Your Core ML App](core-ml/reducing-the-size-of-your-core-ml-app.md)
   * [Core ML API](core-ml/core-ml-api.md)
-* [Bundle Programming Guide](bundle-programming-guide.md)
+* [Bundle Programming Guide](bundle-programming-guide/README.md)
+  * [About Bundles](bundle-programming-guide/about-bundles.md)
+* [Processes and Threads](processes-and-threads/README.md)
+  * [RunLoop](processes-and-threads/runloop.md)
 
