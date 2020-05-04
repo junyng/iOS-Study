@@ -304,4 +304,6 @@
 * [Processes and Threads](processes-and-threads/README.md)
   * [RunLoop](processes-and-threads/runloop.md)
   * [Timer](processes-and-threads/timer.md)
+  * [ProcessInfo](processes-and-threads/processinfo.md)
+  * [Thread](processes-and-threads/thread.md)
 
