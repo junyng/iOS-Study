@@ -63,6 +63,7 @@
 
 ## Documentation Archive <a id="archive"></a>
 
+* [Core Image Programming Guide](archive/core-image-programming-guide.md)
 * [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
   * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
   * [Core Video Tasks](archive/core-video-programming-guide/core-video-tasks.md)
