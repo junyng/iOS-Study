@@ -66,6 +66,7 @@
 * [Core Image Programming Guide](archive/core-image-programming-guide/README.md)
   * [Processing Images](archive/core-image-programming-guide/processing-images.md)
   * [Detecting Faces in an Image](archive/core-image-programming-guide/detecting-faces-in-an-image.md)
+  * [Auto Enhancing Images](archive/core-image-programming-guide/auto-enhancing-images.md)
 * [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
   * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
   * [Core Video Tasks](archive/core-video-programming-guide/core-video-tasks.md)
