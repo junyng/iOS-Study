@@ -70,6 +70,7 @@
   * [Querying the System for Filters](archive/core-image-programming-guide/querying-the-system-for-filters.md)
   * [Subclassing CIFilter: Recipes for Custom Effects](archive/core-image-programming-guide/subclassing-cifilter-recipes-for-custom-effects.md)
   * [Getting the Best Performance](archive/core-image-programming-guide/getting-the-best-performance.md)
+  * [Using Feedback to Process Images](archive/core-image-programming-guide/using-feedback-to-process-images.md)
 * [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
   * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
   * [Core Video Tasks](archive/core-video-programming-guide/core-video-tasks.md)
