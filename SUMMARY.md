@@ -69,6 +69,7 @@
   * [Auto Enhancing Images](archive/core-image-programming-guide/auto-enhancing-images.md)
   * [Querying the System for Filters](archive/core-image-programming-guide/querying-the-system-for-filters.md)
   * [Subclassing CIFilter: Recipes for Custom Effects](archive/core-image-programming-guide/subclassing-cifilter-recipes-for-custom-effects.md)
+  * [Getting the Best Performance](archive/core-image-programming-guide/getting-the-best-performance.md)
 * [Core Video Programming Guide](archive/core-video-programming-guide/README.md)
   * [Core Video Concepts](archive/core-video-programming-guide/core-video-concepts.md)
   * [Core Video Tasks](archive/core-video-programming-guide/core-video-tasks.md)
