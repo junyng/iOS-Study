@@ -318,3 +318,7 @@
   * [OperationQueue](processes-and-threads/operationqueue.md)
   * [Operation](processes-and-threads/operation.md)
 
+## docs
+
+* [OptimizationTips](docs/optimizationtips.md)
+
