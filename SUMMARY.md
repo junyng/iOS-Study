@@ -309,6 +309,7 @@
   * [Core ML API](core-ml/core-ml-api.md)
 * [Bundle Programming Guide](bundle-programming-guide/README.md)
   * [About Bundles](bundle-programming-guide/about-bundles.md)
+  * [Document Packages](bundle-programming-guide/document-packages.md)
 * [Processes and Threads](processes-and-threads/README.md)
   * [RunLoop](processes-and-threads/runloop.md)
   * [Timer](processes-and-threads/timer.md)
