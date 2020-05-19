@@ -2,16 +2,6 @@
 
 * [iOS-Study](README.md)
 
-## Human Interface Guidelines
-
-* [Concurrency Programming Guide](concurrency-programming-guide/README.md)
-  * [Concurrency and Application Design](concurrency-programming-guide/concurrency-and-application-design.md)
-  * [Operation Queues](concurrency-programming-guide/operation-queues.md)
-  * [Dispatch Queues](concurrency-programming-guide/dispatch-queues.md)
-  * [Dispatch Sources](concurrency-programming-guide/dispatch-sources.md)
-  * [Migrating Away from Threads](concurrency-programming-guide/migrating-away-from-threads.md)
-  * [Glossary](concurrency-programming-guide/glossary.md)
-
 ## Photos
 
 * [PhotoKit](photos/photokit/README.md)
@@ -63,6 +53,13 @@
 
 ## Documentation Archive <a id="archive"></a>
 
+* [Concurrency Programming Guide](archive/concurrency-programming-guide/README.md)
+  * [Concurrency and Application Design](archive/concurrency-programming-guide/concurrency-and-application-design.md)
+  * [Operation Queues](archive/concurrency-programming-guide/operation-queues.md)
+  * [Dispatch Queues](archive/concurrency-programming-guide/dispatch-queues.md)
+  * [Dispatch Sources](archive/concurrency-programming-guide/dispatch-sources.md)
+  * [Migrating Away from Threads](archive/concurrency-programming-guide/migrating-away-from-threads.md)
+  * [Glossary](archive/concurrency-programming-guide/glossary.md)
 * [Core Image Programming Guide](archive/core-image-programming-guide/README.md)
   * [Processing Images](archive/core-image-programming-guide/processing-images.md)
   * [Detecting Faces in an Image](archive/core-image-programming-guide/detecting-faces-in-an-image.md)
