@@ -56,6 +56,7 @@
 * [Performance Overview](archive/performance-overview/README.md)
   * [Developing for Performance](archive/performance-overview/developing-for-performance.md)
   * [Basic Performance Tips](archive/performance-overview/basic-performance-tips.md)
+  * [Doing an Initial Performance Evaluation](archive/performance-overview/doing-an-initial-performance-evaluation.md)
 * [Concurrency Programming Guide](archive/concurrency-programming-guide/README.md)
   * [Concurrency and Application Design](archive/concurrency-programming-guide/concurrency-and-application-design.md)
   * [Operation Queues](archive/concurrency-programming-guide/operation-queues.md)
