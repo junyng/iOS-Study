@@ -53,6 +53,7 @@
 
 ## Documentation Archive <a id="archive"></a>
 
+* [Image I/O Programming Guide](archive/image-i-o-programming-guide.md)
 * [Performance Overview](archive/performance-overview/README.md)
   * [Developing for Performance](archive/performance-overview/developing-for-performance.md)
   * [Basic Performance Tips](archive/performance-overview/basic-performance-tips.md)
