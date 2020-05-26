@@ -69,49 +69,65 @@ Table 4-1 -w 옵션을 사용한 top 출력
     <tr>
       <td style="text-align:left"><code>COMMAND</code>
       </td>
-      <td style="text-align:left">The name of the executable or application package. (Note that Code Fragment
-        Manager applications are named after the native process that launches them, <code>LaunchCFMApp</code>.)</td>
+      <td style="text-align:left">&#xC2E4;&#xD589; &#xD30C;&#xC77C; &#xB610;&#xB294; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;
+        &#xD328;&#xD0A4;&#xC9C0;&#xC758; &#xC774;&#xB984;. (&#xCF54;&#xB4DC; &#xC870;&#xAC01;
+        &#xAD00;&#xB9AC;&#xC790; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758;
+        &#xC774;&#xB984;&#xC740; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744;
+        &#xC2DC;&#xC791;&#xD558;&#xB294; &#xAE30;&#xBCF8; &#xD504;&#xB85C;&#xC138;&#xC2A4; <code>LaunchCFMApp</code>&#xC5D0;&#xC11C;
+        &#xB530;&#xC628;&#xB2E4;&#xB294; &#xC810;&#xC5D0; &#xC720;&#xC758;&#xD558;&#xB77C;.)</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>%CPU</code>
       </td>
-      <td style="text-align:left">The percentage of CPU cycles consumed during the interval on behalf of
-        this process (both kernel and user space).</td>
+      <td style="text-align:left">&#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xB300;&#xC2E0;&#xD558;&#xB294;
+        &#xAC04;&#xACA9; &#xB3D9;&#xC548; CPU &#xC0AC;&#xC774;&#xD074;&#xC758;
+        &#xBC31;&#xBD84;&#xC728; (&#xCEE4;&#xB110; &#xBC0F; &#xC0AC;&#xC6A9;&#xC790;
+        &#xACF5;&#xAC04; &#xBAA8;&#xB450;)</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>TIME</code>
       </td>
-      <td style="text-align:left">The amount of CPU time (<em>minute</em>:<em>seconds</em>.<em>hundredths</em>)
-        consumed by this process since it was launched.</td>
+      <td style="text-align:left">&#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC2DC;&#xC791;&#xB41C;
+        &#xC774;&#xD6C4; &#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C;
+        &#xC18C;&#xBE44;&#xB418;&#xB294; CPU &#xC2DC;&#xAC04;(&#xBD84;:&#xCD08;.100&#xBD84;&#xC758;)&#xC758;
+        &#xC591;.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>#TH</code>
       </td>
-      <td style="text-align:left">The number of threads owned by this process.</td>
+      <td style="text-align:left">&#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xC18C;&#xC720;&#xD558;&#xB294;
+        &#xC4F0;&#xB808;&#xB4DC; &#xC218;.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>#PRTS (delta)</code>
       </td>
-      <td style="text-align:left">The number of Mach port objects owned by this process. (To display the
-        delta value relative to the value first displayed when <code>top</code> was
-        launched, use the <code>-w</code> parameter.)</td>
+      <td style="text-align:left">&#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xC18C;&#xC720;&#xD558;&#xB294;
+        Mach &#xD3EC;&#xD2B8; &#xAC1D;&#xCCB4; &#xC218;. (<code>top</code>&#xC744;
+        &#xC2DC;&#xC791;&#xD560; &#xB54C; &#xCC98;&#xC74C; &#xD45C;&#xC2DC;&#xB418;&#xB294;
+        &#xAC12;&#xC5D0; &#xC0C1;&#xB300;&#xC801;&#xC778; &#xB378;&#xD0C0; &#xAC12;&#xC744;
+        &#xD45C;&#xC2DC;&#xD558;&#xB824;&#xBA74; <code>-w</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C;
+        &#xC0AC;&#xC6A9;&#xD558;&#xB77C;.)</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>#MREG</code>
       </td>
-      <td style="text-align:left">The number of memory regions.</td>
+      <td style="text-align:left">&#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED;&#xC758; &#xC218;.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>VPRVT</code>
       </td>
-      <td style="text-align:left">The private address space currently allocated. (This value is displayed
-        only with the <code>-w</code> parameter.)</td>
+      <td style="text-align:left">&#xD604;&#xC7AC; &#xD560;&#xB2F9;&#xB41C; private &#xC8FC;&#xC18C; &#xACF5;&#xAC04;.
+        (&#xC774; &#xAC12;&#xC740; <code>-w</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C;&#xB9CC;
+        &#xD45C;&#xC2DC;&#xB41C;&#xB2E4;.)</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>RPRVT (delta)</code>
       </td>
-      <td style="text-align:left">The total amount of resident private memory. (To display the delta value
-        relative to the previous sample, use the <code>-w</code> parameter when running <code>top</code>.)</td>
+      <td style="text-align:left">&#xC0C1;&#xC8FC; private &#xBA54;&#xBAA8;&#xB9AC;&#xC758; &#xCD1D; &#xC591;.
+        (&#xC774;&#xC804; &#xC0D8;&#xD50C;&#xC5D0; &#xC0C1;&#xB300;&#xC801;&#xC778;
+        &#xB378;&#xD0C0; &#xAC12;&#xC744; &#xD45C;&#xC2DC;&#xD558;&#xB824;&#xBA74;
+        top &#xC2E4;&#xD589; &#xC2DC; <code>-w</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C;
+        &#xC0AC;&#xC6A9;&#xD558;&#xB77C;.)</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>RSHRD (delta)</code>
@@ -140,9 +156,30 @@ Table 4-1 -w 옵션을 사용한 top 출력
       </td>
     </tr>
   </tbody>
-</table>
+</table>RPRVT 데이터 \(resident `private` 페이지용\)는 애플리케이션이 실제 메모리를 얼마나 사용하고 있는지를 잘 보여준다. RSHRD 열  \(resident shared 페이지용\)은 다른 프로세스와 공유되는 모든 공유 매핑된 파일 또는 메모리 객체의 상주 페이지를 보여준다.
 
+> **Note:** `top` 도구는 프로세스에 매핑되는 공유 라이브러리의 페이지 수에 대한 별도의 카운트를 제공하지 않는다.
+>
+> 윈도우 버퍼는 윈도우 서버와 공유되기 때문에 `top` 도구는 "공유 메모리" 범주에 있는 윈도우의 메모리 사용량을 보고한다.
 
+Table 4-2는 커맨드라인에서 -e, -d 또는 -a 옵션을 사용하여 활성화되는 이벤트 카운팅 모드에서 표시되는 열을 나타낸다. 이러한 옵션을 사용하여 애플리케이션의 특정 동작에 대한 추가 통찰력을 얻을 수 있다. 예를 들어, 페이지 장애 수를 애플리케이션의 메모리 설치 공간이 너무 클 수 있는지 여부를 확인하기 위해 애플리케이션이 사용하고 있는 메모리 양과 연관시킬 수 있다.
+
+**Table 4-2** -d 옵션을 사용한 top 출력
+
+| Column | Description |
+| :--- | :--- |
+| `PID` | The BSD process ID. |
+| `COMMAND` | The name of the executable or application package. \(Note that Code Fragment Manager applications are named after the native process that launches them, `LaunchCFMApp`.\) |
+| `%CPU` | The percentage of CPU cycles consumed during the interval on behalf of this process \(both kernel and user space\). |
+| `TIME` | The amount of CPU time consumed by this process \(_minute_:_seconds_._hundredths_\) since it was launched. |
+| `FAULTS` | The total number of page faults. |
+| `PAGEINS` | The number of page-ins, requests for pages from a pager \(each page-in represents a 4 kilobyte I/O operation\). |
+| `COW_FAULTS` | The number of faults that caused a page to be copied \(generally caused by copy-on-write faults\). |
+| `MSGS_SENT` | The number of Mach messages sent by the process. |
+| `MSGS_RCVD` | The number of Mach messages received by the process. |
+| `BSDSYSCALL` | The number of BSD system calls made by the process. |
+| `MACHSYSCALL` | The number of Mach system calls made by the process. |
+| `CSWITCH` | The number of context switches to the process \(the number of times the process has been given time to run by the kernel’s scheduler\). |
 
 ### Using Instruments
 
@@ -161,4 +198,16 @@ Figure 4-2는 기록 실행 후 Leaks 템플릿에 의해 수집된 데이터의
 ![](../../.gitbook/assets/instruments_trace_document_withdata_2x.png)
 
 인스트루먼트 사용 방법과 수집할 수 있는 성능 데이터 유형에 대한 자세한 내용은 [_Instruments User Guide_](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/index.html#//apple_ref/doc/uid/TP40004652)를 참조하라.
+
+### Using Quartz Debug
+
+Quartz Debug는 그리기 코드의 효율성을 결정하는 중요한 도구이다. 도구는 프로그램의 그리기 호출에서 정보를 수집하여 프로그램이 그리는 위치와 불필요하게 콘텐츠를 다시 그리는지 여부를 확인한다. Figure 4-3은 Quartz Debug 옵션 창을 보여준다.
+
+**Figure 4-3**  Quartz Debug 옵션
+
+![](../../.gitbook/assets/quartzdebug_2x.png)
+
+Flash 스크린 업데이트 옵션이 활성화된 상태에서 Quartz Debug는 코드가 그리는 위치를 시작적으로 보여준다. 다시 그리기 작업이 일어나려는 영역 위에 노란색 사각형을 놓고 잠시 멈춘 뒤 내용을 다시 그리게 된다. 이 깜빡이는 노란색 패턴은 당신이 필요한 것보다 더 많이 그리고 있는 장소를 가리킬 수 있따. 예를 들어, 사용자 정의 뷰의 작은 부분만 업데이트하는 경우, 전체 뷰를 다시 그리도록 강요받지는 않을 수 있다. 또는 시스템 컨트롤을 연속으로 여러 번 다시 그릴 경우 해당 컨트롤의 속성을 변경하기 전에 해당 컨트롤을 숨길 필요가 있다는 점을 지적할 수 있다.
+
+"플래시 동일 화면 업데이트" 옵션은 결과 비트가 현재 콘텐츠와 동일한 영역에 빨간색을 표시한다. 이 옵션을 사용하여 코드에서 중복 그리기 작업을 탐지할 수 있다.
 
