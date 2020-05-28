@@ -187,6 +187,8 @@
 * [CABasicAnimation](edit/cabasicanimation.md)
 * [CAKeyframeAnimation](edit/cakeyframeanimation.md)
 * [CAPropertyAnimation](edit/capropertyanimation.md)
+* [CAAnimationDelegate](edit/caanimationdelegate.md)
+* [CATransition](edit/catransition.md)
 * [Media Composition](media-composition/README.md)
   * [AVComposition](media-composition/avcomposition.md)
   * [AVCompositionTrack](media-composition/avcompositiontrack.md)
