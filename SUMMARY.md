@@ -186,6 +186,7 @@
 * [CAGradientLayer](edit/cagradientlayer.md)
 * [CABasicAnimation](edit/cabasicanimation.md)
 * [CAKeyframeAnimation](edit/cakeyframeanimation.md)
+* [CAPropertyAnimation](edit/capropertyanimation.md)
 * [Media Composition](media-composition/README.md)
   * [AVComposition](media-composition/avcomposition.md)
   * [AVCompositionTrack](media-composition/avcompositiontrack.md)
