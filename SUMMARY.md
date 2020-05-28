@@ -190,6 +190,7 @@
 * [CAAnimationDelegate](edit/caanimationdelegate.md)
 * [CATransition](edit/catransition.md)
 * [CASpringAnimation](edit/caspringanimation.md)
+* [CAValueFunction](edit/cavaluefunction.md)
 * [Media Composition](media-composition/README.md)
   * [AVComposition](media-composition/avcomposition.md)
   * [AVCompositionTrack](media-composition/avcompositiontrack.md)
