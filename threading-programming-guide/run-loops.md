@@ -113,7 +113,9 @@ Table 3-1은 코코아 및 코어 파운데이션에서 정의한 표준 모드�
           &#xC218; &#xC788;&#xB2E4;.</td>
     </tr>
   </tbody>
-</table>#### Input Sources
+</table>
+
+#### Input Sources
 
 입력 소스는 이벤트를 쓰레드에 비동기적으로 전달한다. 이벤트의 소스는 일반적으로 두 가지 카테고리 중 하나인 입력 소스의 유형에 따라 다르다. 포트 기반 입력 소스는 애플리케이션의 Mach 포트를 모니터링한다. 사용자 정의 입력 소스는 사용자 정의 이벤트 소스를 모니터링한다. 런 루프에 관한 한 입력 소스가 포트기반인지 사용자 지정인지는 중요하지 않다. 이 시스템은 일반적으로 당신이 사용할 수 있는 두 유형의 입력 소스를 그대로 구현한다. 두 소스의 유일한 차이점은 두 소스가 어떻게 신호되는가 하는 것이다. 포트 기반 소스는 커널에 의해 자동으로 시그널링되며, 사용자 지정 소스는 다른 쓰레드에서 수동으로 시그널링되어야 한다.
 
@@ -223,7 +225,9 @@ Table 3-2는 `NSObject`에 정의된 메서드를 나열하고 있으며, 다른
           &#xC218; &#xC788;&#xB2E4;.</td>
     </tr>
   </tbody>
-</table>이러한 각 메서드에 대한 자세한 내용은 [_NSObject Class Reference_](https://developer.apple.com/documentation/objectivec/nsobject)를 참조하라.
+</table>
+
+이러한 각 메서드에 대한 자세한 내용은 [_NSObject Class Reference_](https://developer.apple.com/documentation/objectivec/nsobject)를 참조하라.
 
 #### Timer Sources
 

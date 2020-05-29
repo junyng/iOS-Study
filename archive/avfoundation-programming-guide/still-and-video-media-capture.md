@@ -105,7 +105,9 @@ AVCaptureSession *session = [[AVCaptureSession alloc] init];
       </td>
     </tr>
   </tbody>
-</table>미디어 프레임 크기별 구성을 설정하려면 다음과 같이 설정하기 전에 지원되는지 여부를 확인해야 한다.
+</table>
+
+미디어 프레임 크기별 구성을 설정하려면 다음과 같이 설정하기 전에 지원되는지 여부를 확인해야 한다.
 
 ```objectivec
 if ([session canSetSessionPreset:AVCaptureSessionPreset1280x720]) {

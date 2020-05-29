@@ -81,7 +81,9 @@ Cocoa 오퍼레이션은 비동기적으로 수행하고자 하는 작업을 캡
       </td>
     </tr>
   </tbody>
-</table>모든 오퍼레이션 객체는 다음과 같은 주요 기능을 지원한다.
+</table>
+
+모든 오퍼레이션 객체는 다음과 같은 주요 기능을 지원한다.
 
 * 오퍼레이션 객체 간의 그래프 기반 종속성 설정을 지원한다. 이러한 종속성으로 인해 해당 작업이 종속된 모든 작업이 실행될때까지 해당 작업이 실행되지 않는다. 종속성을 구성하는 방법에 대한 자세한 내용은 [Configuring Interoperation Dependencies](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW17) 를 참조하라.
 * 오퍼레이션의 메인 태스크가 완료된 후 실행되는 선택적 완료 블록을 지원한다. \(OS X v10.6 이상\) 완료 블록 설정 방법에 대한 자세한 내용은 [Setting Up a Completion Block](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW33) 을 참조하라.

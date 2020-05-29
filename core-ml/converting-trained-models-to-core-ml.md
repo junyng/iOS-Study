@@ -64,7 +64,9 @@ description: 써드 파티 머신 러닝 도구로 만든 훈련된 모델을 Co
       <td style="text-align:left">scikit-learn 0.18</td>
     </tr>
   </tbody>
-</table>#### Convert Your Model <a id="2891985"></a>
+</table>
+
+#### Convert Your Model <a id="2891985"></a>
 
 모델의 타사 프레임워크에 해당하는 Core ML 변환기를 사용하여 모델을 변환하라. 변환기의  메서드를 호출하고 결과 모델을 Core ML 모델 포멧\(.mlmodel\)에 저장한다.
 
