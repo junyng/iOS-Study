@@ -192,6 +192,7 @@
 * [CASpringAnimation](edit/caspringanimation.md)
 * [CAValueFunction](edit/cavaluefunction.md)
 * [settlingDuration](edit/settlingduration.md)
+* [CAConstraint](edit/caconstraint.md)
 * [Media Composition](media-composition/README.md)
   * [AVComposition](media-composition/avcomposition.md)
   * [AVCompositionTrack](media-composition/avcompositiontrack.md)
