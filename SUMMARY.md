@@ -340,4 +340,5 @@
 ## Metal
 
 * [MTLDevice](metal/mtldevice.md)
+* [CAMetalDrawable](metal/cametaldrawable.md)
 
