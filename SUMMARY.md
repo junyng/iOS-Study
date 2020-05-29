@@ -337,3 +337,7 @@
 
 * [OptimizationTips](docs/optimizationtips.md)
 
+## Metal
+
+* [MTLDevice](metal/mtldevice.md)
+
