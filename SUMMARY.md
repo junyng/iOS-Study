@@ -55,6 +55,7 @@
 
 * [Metal Programming Guide](archive/metal-programming-guide/README.md)
   * [Fundamental Metal Concepts](archive/metal-programming-guide/fundamental-metal-concepts.md)
+  * [Command Organization and Execution Model](archive/metal-programming-guide/command-organization-and-execution-model.md)
 * [Image I/O Programming Guide](archive/image-i-o-programming-guide/README.md)
   * [Basics of Using Image I/O](archive/image-i-o-programming-guide/basics-of-using-image-i-o.md)
   * [Creating and Using Image Sources](archive/image-i-o-programming-guide/creating-and-using-image-sources.md)
