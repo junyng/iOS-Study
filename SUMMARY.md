@@ -352,4 +352,5 @@
   * [Drawing to Other Rendering Destinations](opengl-es-programming-guide/drawing-to-other-rendering-destinations.md)
   * [Best Practices for Working with Vertex Data](opengl-es-programming-guide/best-practices-for-working-with-vertex-data.md)
   * [Best Practices for Working with Texture Data](opengl-es-programming-guide/best-practices-for-working-with-texture-data.md)
+  * [OpenGL ES Design Guidelines](opengl-es-programming-guide/opengl-es-design-guidelines.md)
 
