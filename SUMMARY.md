@@ -349,4 +349,5 @@
 * [OpenGL ES Programming Guide](opengl-es-programming-guide/README.md)
   * [Configuring OpenGL ES Contexts](opengl-es-programming-guide/configuring-opengl-es-contexts.md)
   * [Drawing with OpenGL ES and GLKit](opengl-es-programming-guide/drawing-with-opengl-es-and-glkit.md)
+  * [Best Practices for Working with Texture Data](opengl-es-programming-guide/best-practices-for-working-with-texture-data.md)
 
