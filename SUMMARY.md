@@ -346,5 +346,6 @@
 * [MTLDevice](metal/mtldevice.md)
 * [CAMetalDrawable](metal/cametaldrawable.md)
 * [MTLDrawable](metal/mtldrawable.md)
-* [OpenGL ES Programming Guide](opengl-es-programming-guide.md)
+* [OpenGL ES Programming Guide](opengl-es-programming-guide/README.md)
+  * [Configuring OpenGL ES Contexts](opengl-es-programming-guide/configuring-opengl-es-contexts.md)
 
