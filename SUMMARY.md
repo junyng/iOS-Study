@@ -350,7 +350,10 @@
   * [Configuring OpenGL ES Contexts](opengl-es-programming-guide/configuring-opengl-es-contexts.md)
   * [Drawing with OpenGL ES and GLKit](opengl-es-programming-guide/drawing-with-opengl-es-and-glkit.md)
   * [Drawing to Other Rendering Destinations](opengl-es-programming-guide/drawing-to-other-rendering-destinations.md)
+  * [Multitasking, High Resolution, and Other iOS Features](opengl-es-programming-guide/multitasking-high-resolution-and-other-ios-features.md)
+  * [OpenGL ES Design Guidelines](opengl-es-programming-guide/opengl-es-design-guidelines.md)
+  * [Tuning Your OpenGL ES App](opengl-es-programming-guide/tuning-your-opengl-es-app.md)
   * [Best Practices for Working with Vertex Data](opengl-es-programming-guide/best-practices-for-working-with-vertex-data.md)
   * [Best Practices for Working with Texture Data](opengl-es-programming-guide/best-practices-for-working-with-texture-data.md)
-  * [OpenGL ES Design Guidelines](opengl-es-programming-guide/opengl-es-design-guidelines.md)
+  * [Best Practices for Shaders](opengl-es-programming-guide/best-practices-for-shaders.md)
 
