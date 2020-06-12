@@ -30,3 +30,17 @@ Figure B-1에 표시된 FPS 디버그 게이지와 함께 제공되는 GPU 보�
 
 캡처된 프레임에서 GLSL 셰이더 프로그램을 변경할 때\(아래 [Editing Shader Programs](https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/ToolsOverview/ToolsOverview.html#//apple_ref/doc/uid/TP40008793-A2-SW3) 참조\), 프레임 시간 및 프로그램 성능 그래프는 원래 캡처된 프레임의 기준 렌더링 시간과 편집된 셰이더를 사용한 현재 렌더링 시간을 모두 표시하도록 확장된다.
 
+### Capturing and Analyzing an OpenGL ES Frame
+
+앱의 OpenGL ES 사용법을 자세히 보려면 애니메이션의 단일 프레임을 렌더링하는 데 사용되는 OpenGL ES 명령 순서를 캡처하라. Xcode는 프레임 캡처를 시작할 수 있는 몇 가지 방법을 제공한다:
+
+* Manual Capture. Xcode에서 앱을 실행하는 동안 디버그 바\(Figure B-2\)에서 카메라 아이콘을 클릭하거나 디버그 메뉴에서 OpenGL ES 프레임 캡처를 선택한다.
+
+**Figure B-2**  Debug Bar with Capture OpenGL ES Frame button
+
+![](../.gitbook/assets/xcode_gpu_capture_button_2x.png)
+
+> 참고: Capture OpenGL ES Frame 버튼은 프로젝트가 OpenGL ES 또는 Sprite Kit 프레임워크와 연결된 경우에만 자동으로 나타난다. 활성 스키마를 편집하여 다른 프로젝트에 표시할지 여부를 선택할 수 있다. \([About the Scheme Editing Dialog](http://help.apple.com/xcode) 참조\)
+
+* _Breakpoint action._ 
+
