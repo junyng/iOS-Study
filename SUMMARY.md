@@ -148,6 +148,9 @@
 * [URLSession](foundation/urlsession.md)
 * [URLSessionDataTask](foundation/urlsessiondatatask.md)
 * [URLSessionWebSocketTask](foundation/urlsessionwebsockettask.md)
+
+---
+
 * [Media Playback Programming Guide](media-playback-programming-guide/README.md)
   * [Building a Basic Playback App](media-playback-programming-guide/building-a-basic-playback-app.md)
   * [Configuring Audio Settings for iOS and tvOS](media-playback-programming-guide/configuring-audio-settings-for-ios-and-tvos.md)
@@ -163,6 +166,9 @@
 
 * [Fetching Website Data into Memory](article/fetching-website-data-into-memory.md)
 * [Uploading Data to a Website](article/uploading-data-to-a-website.md)
+
+---
+
 * [Using AVFoundation to Play and Persist HTTP Live Streams](using-avfoundation-to-play-and-persist-http-live-streams.md)
 * [HTTP Live Streaming](http-live-streaming.md)
 * [Understanding the HTTP Live Streaming Architecture](understanding-the-http-live-streaming-architecture.md)
@@ -198,6 +204,9 @@
 * [settlingDuration](edit/settlingduration.md)
 * [CAConstraint](edit/caconstraint.md)
 * [CAMetalLayer](edit/cametallayer.md)
+
+---
+
 * [Media Composition](media-composition/README.md)
   * [AVComposition](media-composition/avcomposition.md)
   * [AVCompositionTrack](media-composition/avcompositiontrack.md)
@@ -246,6 +255,9 @@
 
 * [CAPropertyAnimation](core-animation/capropertyanimation.md)
 * [shouldRasterize](core-animation/shouldrasterize.md)
+
+---
+
 * [Core Animation Programming Guide](core-animation-programming-guide/README.md)
   * [Core Animation Basics](core-animation-programming-guide/core-animation-basics.md)
   * [Setting Up Layer Objects](core-animation-programming-guide/setting-up-layer-objects.md)
@@ -315,6 +327,9 @@
   * [SNResult](etc/soundanalysis/snresult.md)
   * [SNErrorDomain](etc/soundanalysis/snerrordomain.md)
   * [SNError](etc/soundanalysis/snerror.md)
+
+---
+
 * [Core ML](core-ml/README.md)
   * [Getting a Core ML Model](core-ml/getting-a-core-ml-model.md)
   * [Integrating a Core ML Model into Your App](core-ml/integrating-a-core-ml-model-into-your-app.md)
@@ -346,6 +361,9 @@
 * [MTLDevice](metal/mtldevice.md)
 * [CAMetalDrawable](metal/cametaldrawable.md)
 * [MTLDrawable](metal/mtldrawable.md)
+
+---
+
 * [OpenGL ES Programming Guide](opengl-es-programming-guide/README.md)
   * [Configuring OpenGL ES Contexts](opengl-es-programming-guide/configuring-opengl-es-contexts.md)
   * [Drawing with OpenGL ES and GLKit](opengl-es-programming-guide/drawing-with-opengl-es-and-glkit.md)
@@ -358,4 +376,5 @@
   * [Best Practices for Shaders](opengl-es-programming-guide/best-practices-for-shaders.md)
   * [Appendix B: Xcode OpenGL ES Tools Overview](opengl-es-programming-guide/appendix-b-xcode-opengl-es-tools-overview.md)
 * [Drawing and Printing Guide for iOS](drawing-and-printing-guide-for-ios.md)
+* [OpenGL Programming Guide for Mac](opengl-programming-guide-for-mac.md)
 
